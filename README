@@ -1,0 +1,14 @@
+SISL (Simple Iterative Solver Library) is a set of simple routines for
+matrix multiplication and iterative solution of linear systems. It is
+mainly implemented as a wrappers for calls to the BLAS. To install it
+you will need to have installed:
+
+  glib (or glib-2.0) to provide portability and other utility
+  functions (this should be available on most GNU/Linux systems);
+
+  WMPI to handle parallel calculations (even if you do not intend to
+  do parallel runs);
+
+  GSL (GNU Scientific Library) to provide the complex data type;
+
+  BLAS to do the computations;

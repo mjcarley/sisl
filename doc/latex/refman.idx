@@ -1,0 +1,65 @@
+\indexentry{/home/ensmjc/Codes/Codes/SISL/src/ Directory Reference@{/home/ensmjc/Codes/Codes/SISL/src/ Directory Reference}|hyperpage}{5}
+\indexentry{iter_solver.c@{iter\_\discretionary {-}{}{}solver.c}|hyperpage}{7}
+\indexentry{iter_solver.c@{iter\_\discretionary {-}{}{}solver.c}!sisl_solve@{sisl\_\discretionary {-}{}{}solve}|hyperpage}{7}
+\indexentry{sisl_solve@{sisl\_\discretionary {-}{}{}solve}!iter_solver.c@{iter\_\discretionary {-}{}{}solver.c}|hyperpage}{7}
+\indexentry{iter_solver.c@{iter\_\discretionary {-}{}{}solver.c}!sisl_solver_workspace_new@{sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}workspace\_\discretionary {-}{}{}new}|hyperpage}{8}
+\indexentry{sisl_solver_workspace_new@{sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}workspace\_\discretionary {-}{}{}new}!iter_solver.c@{iter\_\discretionary {-}{}{}solver.c}|hyperpage}{8}
+\indexentry{iter_solver.h@{iter\_\discretionary {-}{}{}solver.h}|hyperpage}{9}
+\indexentry{iter_solver.h@{iter\_\discretionary {-}{}{}solver.h}!sisl_solver_t@{sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}t}|hyperpage}{9}
+\indexentry{sisl_solver_t@{sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}t}!iter_solver.h@{iter\_\discretionary {-}{}{}solver.h}|hyperpage}{9}
+\indexentry{SISL_ITER_CG@{SISL\_\-ITER\_\-CG}!iter_solver.h@{iter\_\-solver.h}|hyperpage}{9}
+\indexentry{iter_solver.h@{iter\_\-solver.h}!SISL_ITER_CG@{SISL\_\-ITER\_\-CG}|hyperpage}{9}
+\indexentry{SISL_ITER_BICG@{SISL\_\-ITER\_\-BICG}!iter_solver.h@{iter\_\-solver.h}|hyperpage}{9}
+\indexentry{iter_solver.h@{iter\_\-solver.h}!SISL_ITER_BICG@{SISL\_\-ITER\_\-BICG}|hyperpage}{9}
+\indexentry{SISL_ITER_CGS@{SISL\_\-ITER\_\-CGS}!iter_solver.h@{iter\_\-solver.h}|hyperpage}{9}
+\indexentry{iter_solver.h@{iter\_\-solver.h}!SISL_ITER_CGS@{SISL\_\-ITER\_\-CGS}|hyperpage}{9}
+\indexentry{SISL_ITER_BICGSTAB@{SISL\_\-ITER\_\-BICGSTAB}!iter_solver.h@{iter\_\-solver.h}|hyperpage}{9}
+\indexentry{iter_solver.h@{iter\_\-solver.h}!SISL_ITER_BICGSTAB@{SISL\_\-ITER\_\-BICGSTAB}|hyperpage}{9}
+\indexentry{iter_solver.h@{iter\_\discretionary {-}{}{}solver.h}!sisl_solve@{sisl\_\discretionary {-}{}{}solve}|hyperpage}{9}
+\indexentry{sisl_solve@{sisl\_\discretionary {-}{}{}solve}!iter_solver.h@{iter\_\discretionary {-}{}{}solver.h}|hyperpage}{9}
+\indexentry{iter_solver.h@{iter\_\discretionary {-}{}{}solver.h}!sisl_solver_workspace_new@{sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}workspace\_\discretionary {-}{}{}new}|hyperpage}{10}
+\indexentry{sisl_solver_workspace_new@{sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}workspace\_\discretionary {-}{}{}new}!iter_solver.h@{iter\_\discretionary {-}{}{}solver.h}|hyperpage}{10}
+\indexentry{matrix.c@{matrix.c}|hyperpage}{11}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_add_element@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}add\_\discretionary {-}{}{}element}|hyperpage}{11}
+\indexentry{sisl_mat_add_element@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}add\_\discretionary {-}{}{}element}!matrix.c@{matrix.c}|hyperpage}{11}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_addto_element@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}addto\_\discretionary {-}{}{}element}|hyperpage}{12}
+\indexentry{sisl_mat_addto_element@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}addto\_\discretionary {-}{}{}element}!matrix.c@{matrix.c}|hyperpage}{12}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_clear@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}clear}|hyperpage}{12}
+\indexentry{sisl_mat_clear@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}clear}!matrix.c@{matrix.c}|hyperpage}{12}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_compact@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}compact}|hyperpage}{12}
+\indexentry{sisl_mat_compact@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}compact}!matrix.c@{matrix.c}|hyperpage}{12}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_distribution@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}distribution}|hyperpage}{12}
+\indexentry{sisl_mat_distribution@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}distribution}!matrix.c@{matrix.c}|hyperpage}{12}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_file_header_string@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}file\_\discretionary {-}{}{}header\_\discretionary {-}{}{}string}|hyperpage}{12}
+\indexentry{sisl_mat_file_header_string@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}file\_\discretionary {-}{}{}header\_\discretionary {-}{}{}string}!matrix.c@{matrix.c}|hyperpage}{12}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_get_element@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}get\_\discretionary {-}{}{}element}|hyperpage}{13}
+\indexentry{sisl_mat_get_element@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}get\_\discretionary {-}{}{}element}!matrix.c@{matrix.c}|hyperpage}{13}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_get_row@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}get\_\discretionary {-}{}{}row}|hyperpage}{13}
+\indexentry{sisl_mat_get_row@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}get\_\discretionary {-}{}{}row}!matrix.c@{matrix.c}|hyperpage}{13}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_has_row@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}has\_\discretionary {-}{}{}row}|hyperpage}{13}
+\indexentry{sisl_mat_has_row@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}has\_\discretionary {-}{}{}row}!matrix.c@{matrix.c}|hyperpage}{13}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_new@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}new}|hyperpage}{13}
+\indexentry{sisl_mat_new@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}new}!matrix.c@{matrix.c}|hyperpage}{13}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_set_all@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}set\_\discretionary {-}{}{}all}|hyperpage}{14}
+\indexentry{sisl_mat_set_all@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}set\_\discretionary {-}{}{}all}!matrix.c@{matrix.c}|hyperpage}{14}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_set_distribution@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}set\_\discretionary {-}{}{}distribution}|hyperpage}{14}
+\indexentry{sisl_mat_set_distribution@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}set\_\discretionary {-}{}{}distribution}!matrix.c@{matrix.c}|hyperpage}{14}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_set_element@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}set\_\discretionary {-}{}{}element}|hyperpage}{14}
+\indexentry{sisl_mat_set_element@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}set\_\discretionary {-}{}{}element}!matrix.c@{matrix.c}|hyperpage}{14}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_set_size@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}set\_\discretionary {-}{}{}size}|hyperpage}{15}
+\indexentry{sisl_mat_set_size@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}set\_\discretionary {-}{}{}size}!matrix.c@{matrix.c}|hyperpage}{15}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_size@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}size}|hyperpage}{15}
+\indexentry{sisl_mat_size@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}size}!matrix.c@{matrix.c}|hyperpage}{15}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_split_chunks@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}split\_\discretionary {-}{}{}chunks}|hyperpage}{15}
+\indexentry{sisl_mat_split_chunks@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}split\_\discretionary {-}{}{}chunks}!matrix.c@{matrix.c}|hyperpage}{15}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_trans_vector_multiply@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}trans\_\discretionary {-}{}{}vector\_\discretionary {-}{}{}multiply}|hyperpage}{15}
+\indexentry{sisl_mat_trans_vector_multiply@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}trans\_\discretionary {-}{}{}vector\_\discretionary {-}{}{}multiply}!matrix.c@{matrix.c}|hyperpage}{15}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_vector_multiply@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}vector\_\discretionary {-}{}{}multiply}|hyperpage}{16}
+\indexentry{sisl_mat_vector_multiply@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}vector\_\discretionary {-}{}{}multiply}!matrix.c@{matrix.c}|hyperpage}{16}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_write@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}write}|hyperpage}{16}
+\indexentry{sisl_mat_write@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}write}!matrix.c@{matrix.c}|hyperpage}{16}
+\indexentry{matrix.c@{matrix.c}!sisl_mat_write_sparse@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}write\_\discretionary {-}{}{}sparse}|hyperpage}{16}
+\indexentry{sisl_mat_write_sparse@{sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}write\_\discretionary {-}{}{}sparse}!matrix.c@{matrix.c}|hyperpage}{16}
+\indexentry{sisl-logging.c@{sisl-logging.c}|hyperpage}{17}
+\indexentry{sisl-logging.c@{sisl-logging.c}!sisl_logging_init@{sisl\_\discretionary {-}{}{}logging\_\discretionary {-}{}{}init}|hyperpage}{17}
+\indexentry{sisl_logging_init@{sisl\_\discretionary {-}{}{}logging\_\discretionary {-}{}{}init}!sisl-logging.c@{sisl-logging.c}|hyperpage}{17}

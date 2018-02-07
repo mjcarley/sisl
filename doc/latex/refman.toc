@@ -1,0 +1,46 @@
+\contentsline {chapter}{\numberline {1}SISL Directory Hierarchy}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}SISL Directories}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}SISL File Index}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}SISL File List}{3}{section.2.1}
+\contentsline {chapter}{\numberline {3}SISL Directory Documentation}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}/home/ensmjc/Codes/Codes/SISL/src/ Directory Reference}{5}{section.3.1}
+\contentsline {chapter}{\numberline {4}SISL File Documentation}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}iter\_\discretionary {-}{}{}solver.c File Reference}{7}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{7}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Function Documentation}{7}{subsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.2.1}sisl\_\discretionary {-}{}{}solve}{7}{subsubsection.4.1.2.1}
+\contentsline {subsubsection}{\numberline {4.1.2.2}sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}workspace\_\discretionary {-}{}{}new}{8}{subsubsection.4.1.2.2}
+\contentsline {section}{\numberline {4.2}iter\_\discretionary {-}{}{}solver.h File Reference}{9}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Detailed Description}{9}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Enumeration Type Documentation}{9}{subsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.2.1}sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}t}{9}{subsubsection.4.2.2.1}
+\contentsline {subsection}{\numberline {4.2.3}Function Documentation}{9}{subsection.4.2.3}
+\contentsline {subsubsection}{\numberline {4.2.3.1}sisl\_\discretionary {-}{}{}solve}{9}{subsubsection.4.2.3.1}
+\contentsline {subsubsection}{\numberline {4.2.3.2}sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}workspace\_\discretionary {-}{}{}new}{10}{subsubsection.4.2.3.2}
+\contentsline {section}{\numberline {4.3}matrix.c File Reference}{11}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{11}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Function Documentation}{11}{subsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.2.1}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}add\_\discretionary {-}{}{}element}{11}{subsubsection.4.3.2.1}
+\contentsline {subsubsection}{\numberline {4.3.2.2}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}addto\_\discretionary {-}{}{}element}{12}{subsubsection.4.3.2.2}
+\contentsline {subsubsection}{\numberline {4.3.2.3}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}clear}{12}{subsubsection.4.3.2.3}
+\contentsline {subsubsection}{\numberline {4.3.2.4}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}compact}{12}{subsubsection.4.3.2.4}
+\contentsline {subsubsection}{\numberline {4.3.2.5}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}distribution}{12}{subsubsection.4.3.2.5}
+\contentsline {subsubsection}{\numberline {4.3.2.6}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}file\_\discretionary {-}{}{}header\_\discretionary {-}{}{}string}{13}{subsubsection.4.3.2.6}
+\contentsline {subsubsection}{\numberline {4.3.2.7}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}get\_\discretionary {-}{}{}element}{13}{subsubsection.4.3.2.7}
+\contentsline {subsubsection}{\numberline {4.3.2.8}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}get\_\discretionary {-}{}{}row}{13}{subsubsection.4.3.2.8}
+\contentsline {subsubsection}{\numberline {4.3.2.9}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}has\_\discretionary {-}{}{}row}{13}{subsubsection.4.3.2.9}
+\contentsline {subsubsection}{\numberline {4.3.2.10}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}new}{14}{subsubsection.4.3.2.10}
+\contentsline {subsubsection}{\numberline {4.3.2.11}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}set\_\discretionary {-}{}{}all}{14}{subsubsection.4.3.2.11}
+\contentsline {subsubsection}{\numberline {4.3.2.12}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}set\_\discretionary {-}{}{}distribution}{14}{subsubsection.4.3.2.12}
+\contentsline {subsubsection}{\numberline {4.3.2.13}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}set\_\discretionary {-}{}{}element}{14}{subsubsection.4.3.2.13}
+\contentsline {subsubsection}{\numberline {4.3.2.14}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}set\_\discretionary {-}{}{}size}{15}{subsubsection.4.3.2.14}
+\contentsline {subsubsection}{\numberline {4.3.2.15}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}size}{15}{subsubsection.4.3.2.15}
+\contentsline {subsubsection}{\numberline {4.3.2.16}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}split\_\discretionary {-}{}{}chunks}{15}{subsubsection.4.3.2.16}
+\contentsline {subsubsection}{\numberline {4.3.2.17}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}trans\_\discretionary {-}{}{}vector\_\discretionary {-}{}{}multiply}{16}{subsubsection.4.3.2.17}
+\contentsline {subsubsection}{\numberline {4.3.2.18}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}vector\_\discretionary {-}{}{}multiply}{16}{subsubsection.4.3.2.18}
+\contentsline {subsubsection}{\numberline {4.3.2.19}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}write}{16}{subsubsection.4.3.2.19}
+\contentsline {subsubsection}{\numberline {4.3.2.20}sisl\_\discretionary {-}{}{}mat\_\discretionary {-}{}{}write\_\discretionary {-}{}{}sparse}{16}{subsubsection.4.3.2.20}
+\contentsline {section}{\numberline {4.4}sisl-logging.c File Reference}{17}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{17}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Function Documentation}{17}{subsection.4.4.2}
+\contentsline {subsubsection}{\numberline {4.4.2.1}sisl\_\discretionary {-}{}{}logging\_\discretionary {-}{}{}init}{17}{subsubsection.4.4.2.1}

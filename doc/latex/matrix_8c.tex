@@ -1,0 +1,583 @@
+\hypertarget{matrix_8c}{
+\section{matrix.c File Reference}
+\label{matrix_8c}\index{matrix.c@{matrix.c}}
+}
+Public functions for matrix manipulation and arithmetic. 
+
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+sisl\_\-matrix\_\-t $\ast$ \hyperlink{matrix_8c_a0}{sisl\_\-mat\_\-new} (guint nrow, guint ncol, sisl\_\-mat\_\-layout\_\-t layout, sisl\_\-vector\_\-density\_\-t density, sisl\_\-complex\_\-t rc, sisl\_\-dist\_\-t dist)
+\item 
+gint \hyperlink{matrix_8c_a1}{sisl\_\-mat\_\-clear} (sisl\_\-matrix\_\-t $\ast$m)
+\item 
+gint \hyperlink{matrix_8c_a2}{sisl\_\-mat\_\-set\_\-size} (sisl\_\-matrix\_\-t $\ast$m, guint rows, guint cols)
+\item 
+gint \hyperlink{matrix_8c_a3}{sisl\_\-mat\_\-write} (sisl\_\-matrix\_\-t $\ast$m, FILE $\ast$f)
+\item 
+gint \hyperlink{matrix_8c_a4}{sisl\_\-mat\_\-write\_\-sparse} (sisl\_\-matrix\_\-t $\ast$m, FILE $\ast$f)
+\item 
+gint \hyperlink{matrix_8c_a5}{sisl\_\-mat\_\-add\_\-element} (sisl\_\-matrix\_\-t $\ast$m, guint i, guint j, gdouble x)
+\item 
+gint \hyperlink{matrix_8c_a6}{sisl\_\-mat\_\-addto\_\-element} (sisl\_\-matrix\_\-t $\ast$m, guint i, guint j, gdouble x)
+\item 
+gint \hyperlink{matrix_8c_a7}{sisl\_\-mat\_\-vector\_\-multiply} (sisl\_\-matrix\_\-t $\ast$m, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$w)
+\item 
+gint \hyperlink{matrix_8c_a8}{sisl\_\-mat\_\-trans\_\-vector\_\-multiply} (sisl\_\-matrix\_\-t $\ast$m, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$w)
+\item 
+gint \hyperlink{matrix_8c_a9}{sisl\_\-mat\_\-set\_\-element} (sisl\_\-matrix\_\-t $\ast$m, guint i, guint j, gdouble x)
+\item 
+gint \hyperlink{matrix_8c_a10}{sisl\_\-mat\_\-size} (sisl\_\-matrix\_\-t $\ast$m, guint $\ast$rows, guint $\ast$cols)
+\item 
+gdouble \hyperlink{matrix_8c_a11}{sisl\_\-mat\_\-get\_\-element} (sisl\_\-matrix\_\-t $\ast$m, guint i, guint j)
+\item 
+gint \hyperlink{matrix_8c_a12}{sisl\_\-mat\_\-compact} (sisl\_\-matrix\_\-t $\ast$m)
+\item 
+gint \hyperlink{matrix_8c_a13}{sisl\_\-mat\_\-set\_\-distribution} (sisl\_\-matrix\_\-t $\ast$m, sisl\_\-dist\_\-t dist)
+\item 
+gboolean \hyperlink{matrix_8c_a14}{sisl\_\-mat\_\-has\_\-row} (sisl\_\-matrix\_\-t $\ast$m, guint i)
+\item 
+sisl\_\-dist\_\-t \hyperlink{matrix_8c_a15}{sisl\_\-mat\_\-distribution} (sisl\_\-matrix\_\-t $\ast$m)
+\item 
+\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ \hyperlink{matrix_8c_a16}{sisl\_\-mat\_\-get\_\-row} (sisl\_\-matrix\_\-t $\ast$m, guint i)
+\item 
+gint \hyperlink{matrix_8c_a17}{sisl\_\-mat\_\-set\_\-all} (sisl\_\-matrix\_\-t $\ast$m, gdouble x)
+\item 
+gint \hyperlink{matrix_8c_a18}{sisl\_\-mat\_\-split\_\-chunks} (sisl\_\-matrix\_\-t $\ast$m)
+\item 
+gchar $\ast$ \hyperlink{matrix_8c_a19}{sisl\_\-mat\_\-file\_\-header\_\-string} (gint rows, gint cols, gchar fmt)
+\item 
+gint \hyperlink{matrix_8c_a20}{sisl\_\-mat\_\-dump\_\-write} (sisl\_\-matrix\_\-t $\ast$m, gchar fmt, gchar $\ast$file)
+\item 
+gint \hyperlink{matrix_8c_a21}{sisl\_\-mat\_\-file\_\-header\_\-string\_\-parse} (gchar $\ast$s, gint $\ast$bw, gchar $\ast$$\ast$v, gchar $\ast$fmt, gint $\ast$r, gint $\ast$c)
+\item 
+gint \hyperlink{matrix_8c_a22}{sisl\_\-mat\_\-dump\_\-read} (sisl\_\-matrix\_\-t $\ast$m, FILE $\ast$f)
+\item 
+gint \hyperlink{matrix_8c_a23}{sisl\_\-mat\_\-new\_\-dump\_\-read} (sisl\_\-matrix\_\-t $\ast$$\ast$m, FILE $\ast$f)
+\item 
+gint \hyperlink{matrix_8c_a24}{sisl\_\-mat\_\-get\_\-local\_\-rows} (sisl\_\-matrix\_\-t $\ast$m, gint $\ast$i, gint $\ast$j)
+\item 
+gint \hyperlink{matrix_8c_a25}{sisl\_\-mat\_\-set\_\-local\_\-rows} (sisl\_\-matrix\_\-t $\ast$m, gint i, gint j)
+\item 
+gint \hyperlink{matrix_8c_a26}{sisl\_\-mat\_\-free} (sisl\_\-matrix\_\-t $\ast$m)
+\item 
+gint \hyperlink{matrix_8c_a27}{sisl\_\-mat\_\-complex\_\-set\_\-element} (sisl\_\-matrix\_\-t $\ast$m, guint i, guint j, gsl\_\-complex x)
+\item 
+gsl\_\-complex \hyperlink{matrix_8c_a28}{sisl\_\-mat\_\-complex\_\-get\_\-element} (sisl\_\-matrix\_\-t $\ast$m, guint i, guint j)
+\item 
+gint \hyperlink{matrix_8c_a29}{sisl\_\-mat\_\-swap\_\-columns\_\-weighted} (sisl\_\-matrix\_\-t $\ast$m, gint cm, gdouble wm, sisl\_\-matrix\_\-t $\ast$n, gint cn, gdouble wn)
+\item 
+gint \hyperlink{matrix_8c_a30}{sisl\_\-mat\_\-complex\_\-addto\_\-element} (sisl\_\-matrix\_\-t $\ast$m, guint i, guint j, gsl\_\-complex x)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Public functions for matrix manipulation and arithmetic. 
+
+\begin{Desc}
+\item[Author:]Michael Carley \end{Desc}
+\begin{Desc}
+\item[Date:]Tue May 30 12:12:07 2006\end{Desc}
+
+
+Various functions for handling matrices and doing matrix arithmetic. This includes real and complex matrices and those on distributed systems using MPI. All internals are hidden from the user who can switch between serial and parallel systems at will and real and complex problems almost at will.
+
+\subsection{Function Documentation}
+\hypertarget{matrix_8c_a5}{
+\index{matrix.c@{matrix.c}!sisl_mat_add_element@{sisl\_\-mat\_\-add\_\-element}}
+\index{sisl_mat_add_element@{sisl\_\-mat\_\-add\_\-element}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-add\_\-element]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-add\_\-element (sisl\_\-matrix\_\-t $\ast$ {\em m}, guint {\em i}, guint {\em j}, gdouble {\em x})}}
+\label{matrix_8c_a5}
+
+
+Add an element to a matrix. For sparse matrices, this inserts an extra element; for dense matrices, the behaviour is the same as sisl\_\-mat\_\-set\_\-element. For complex matrices, this function sets the real part.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em i}]row index of element; \item[{\em j}]column index of element; \item[{\em x}]value to set.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a6}{
+\index{matrix.c@{matrix.c}!sisl_mat_addto_element@{sisl\_\-mat\_\-addto\_\-element}}
+\index{sisl_mat_addto_element@{sisl\_\-mat\_\-addto\_\-element}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-addto\_\-element]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-addto\_\-element (sisl\_\-matrix\_\-t $\ast$ {\em m}, guint {\em i}, guint {\em j}, gdouble {\em x})}}
+\label{matrix_8c_a6}
+
+
+Add a value to a matrix entry $A_{ij}=A_{ij}+x$.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em i}]row index of entry; \item[{\em j}]column index of entry; \item[{\em x}]value to add to entry.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a1}{
+\index{matrix.c@{matrix.c}!sisl_mat_clear@{sisl\_\-mat\_\-clear}}
+\index{sisl_mat_clear@{sisl\_\-mat\_\-clear}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-clear]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-clear (sisl\_\-matrix\_\-t $\ast$ {\em m})}}
+\label{matrix_8c_a1}
+
+
+Clear a matrix
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix to be cleared.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a12}{
+\index{matrix.c@{matrix.c}!sisl_mat_compact@{sisl\_\-mat\_\-compact}}
+\index{sisl_mat_compact@{sisl\_\-mat\_\-compact}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-compact]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-compact (sisl\_\-matrix\_\-t $\ast$ {\em m})}}
+\label{matrix_8c_a12}
+
+
+Compact a matrix, removing zero entries from sparse rows. This function has no effect on dense rows.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix to compact.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a30}{
+\index{matrix.c@{matrix.c}!sisl_mat_complex_addto_element@{sisl\_\-mat\_\-complex\_\-addto\_\-element}}
+\index{sisl_mat_complex_addto_element@{sisl\_\-mat\_\-complex\_\-addto\_\-element}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-complex\_\-addto\_\-element]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-complex\_\-addto\_\-element (sisl\_\-matrix\_\-t $\ast$ {\em m}, guint {\em i}, guint {\em j}, gsl\_\-complex {\em x})}}
+\label{matrix_8c_a30}
+
+
+Add a complex value to a matrix entry $A_{ij}=A_{ij}+x$. The function fails if the matrix is real.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em i}]row index of entry; \item[{\em j}]column index of entry; \item[{\em x}]value to add to entry.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a28}{
+\index{matrix.c@{matrix.c}!sisl_mat_complex_get_element@{sisl\_\-mat\_\-complex\_\-get\_\-element}}
+\index{sisl_mat_complex_get_element@{sisl\_\-mat\_\-complex\_\-get\_\-element}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-complex\_\-get\_\-element]{\setlength{\rightskip}{0pt plus 5cm}gsl\_\-complex sisl\_\-mat\_\-complex\_\-get\_\-element (sisl\_\-matrix\_\-t $\ast$ {\em m}, guint {\em i}, guint {\em j})}}
+\label{matrix_8c_a28}
+
+
+Get complex element of matrix. If matrix is real, the return value is $A_{ij}+j0$.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em i}]row index; \item[{\em j}]column index.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]value of entry. \end{Desc}
+\hypertarget{matrix_8c_a27}{
+\index{matrix.c@{matrix.c}!sisl_mat_complex_set_element@{sisl\_\-mat\_\-complex\_\-set\_\-element}}
+\index{sisl_mat_complex_set_element@{sisl\_\-mat\_\-complex\_\-set\_\-element}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-complex\_\-set\_\-element]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-complex\_\-set\_\-element (sisl\_\-matrix\_\-t $\ast$ {\em m}, guint {\em i}, guint {\em j}, gsl\_\-complex {\em x})}}
+\label{matrix_8c_a27}
+
+
+Set element of a complex matrix. This function fails if the matrix is real.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em i}]row index; \item[{\em j}]column index; \item[{\em x}]value to set.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a15}{
+\index{matrix.c@{matrix.c}!sisl_mat_distribution@{sisl\_\-mat\_\-distribution}}
+\index{sisl_mat_distribution@{sisl\_\-mat\_\-distribution}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-distribution]{\setlength{\rightskip}{0pt plus 5cm}sisl\_\-dist\_\-t sisl\_\-mat\_\-distribution (sisl\_\-matrix\_\-t $\ast$ {\em m})}}
+\label{matrix_8c_a15}
+
+
+Check distribution of matrix.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]SISL\_\-SINGLE or SISL\_\-MULTI. \end{Desc}
+\hypertarget{matrix_8c_a22}{
+\index{matrix.c@{matrix.c}!sisl_mat_dump_read@{sisl\_\-mat\_\-dump\_\-read}}
+\index{sisl_mat_dump_read@{sisl\_\-mat\_\-dump\_\-read}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-dump\_\-read]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-dump\_\-read (sisl\_\-matrix\_\-t $\ast$ {\em m}, FILE $\ast$ {\em f})}}
+\label{matrix_8c_a22}
+
+
+Read a matrix dump file.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix which should be pre-allocated; \item[{\em f}]pointer to file.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a20}{
+\index{matrix.c@{matrix.c}!sisl_mat_dump_write@{sisl\_\-mat\_\-dump\_\-write}}
+\index{sisl_mat_dump_write@{sisl\_\-mat\_\-dump\_\-write}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-dump\_\-write]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-dump\_\-write (sisl\_\-matrix\_\-t $\ast$ {\em m}, gchar {\em fmt}, gchar $\ast$ {\em file})}}
+\label{matrix_8c_a20}
+
+
+Dump a matrix to file. The same function is used for single-processor and distributed matrices.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em fmt}]'A' for ASCII; 'B' for binary; \item[{\em file}]pointer to file.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a19}{
+\index{matrix.c@{matrix.c}!sisl_mat_file_header_string@{sisl\_\-mat\_\-file\_\-header\_\-string}}
+\index{sisl_mat_file_header_string@{sisl\_\-mat\_\-file\_\-header\_\-string}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-file\_\-header\_\-string]{\setlength{\rightskip}{0pt plus 5cm}gchar$\ast$ sisl\_\-mat\_\-file\_\-header\_\-string (gint {\em rows}, gint {\em cols}, gchar {\em fmt})}}
+\label{matrix_8c_a19}
+
+
+Generate a header string for output file format, to be used in writing from non-SISL programs. The string format is:
+
+\mbox{[}MTXFILE\mbox{]}\mbox{[}block length\mbox{]}\mbox{[}version number\mbox{]}\mbox{[}A$|$B\mbox{]}\mbox{[}matrix size\mbox{]}
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em rows}]number of rows in matrix; \item[{\em cols}]number of columns in matrix; \item[{\em fmt}]format 'A' for ASCII, 'B' for binary.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to header string. \end{Desc}
+\hypertarget{matrix_8c_a21}{
+\index{matrix.c@{matrix.c}!sisl_mat_file_header_string_parse@{sisl\_\-mat\_\-file\_\-header\_\-string\_\-parse}}
+\index{sisl_mat_file_header_string_parse@{sisl\_\-mat\_\-file\_\-header\_\-string\_\-parse}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-file\_\-header\_\-string\_\-parse]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-file\_\-header\_\-string\_\-parse (gchar $\ast$ {\em s}, gint $\ast$ {\em bw}, gchar $\ast$$\ast$ {\em v}, gchar $\ast$ {\em fmt}, gint $\ast$ {\em r}, gint $\ast$ {\em c})}}
+\label{matrix_8c_a21}
+
+
+Parse a matrix file header string.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em s}]header string; \item[{\em bw}]block width; \item[{\em v}]version of file format; \item[{\em fmt}]ASCII ('A') or binary ('B'); \item[{\em r}]number of rows; \item[{\em c}]number of columns\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on succes. \end{Desc}
+\hypertarget{matrix_8c_a26}{
+\index{matrix.c@{matrix.c}!sisl_mat_free@{sisl\_\-mat\_\-free}}
+\index{sisl_mat_free@{sisl\_\-mat\_\-free}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-free]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-free (sisl\_\-matrix\_\-t $\ast$ {\em m})}}
+\label{matrix_8c_a26}
+
+
+Free matrix and all memory associated with it, including rows.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix to free.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a11}{
+\index{matrix.c@{matrix.c}!sisl_mat_get_element@{sisl\_\-mat\_\-get\_\-element}}
+\index{sisl_mat_get_element@{sisl\_\-mat\_\-get\_\-element}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-get\_\-element]{\setlength{\rightskip}{0pt plus 5cm}gdouble sisl\_\-mat\_\-get\_\-element (sisl\_\-matrix\_\-t $\ast$ {\em m}, guint {\em i}, guint {\em j})}}
+\label{matrix_8c_a11}
+
+
+Extract the value of a matrix element $A_{ij}$.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em i}]row index; \item[{\em j}]column index.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]value $A_{ij}$. \end{Desc}
+\hypertarget{matrix_8c_a24}{
+\index{matrix.c@{matrix.c}!sisl_mat_get_local_rows@{sisl\_\-mat\_\-get\_\-local\_\-rows}}
+\index{sisl_mat_get_local_rows@{sisl\_\-mat\_\-get\_\-local\_\-rows}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-get\_\-local\_\-rows]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-get\_\-local\_\-rows (sisl\_\-matrix\_\-t $\ast$ {\em m}, gint $\ast$ {\em i}, gint $\ast$ {\em j})}}
+\label{matrix_8c_a24}
+
+
+Find rows of matrix on this processor. Not presently implemented for sparse row layouts.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em i}]index of first row on processor; \item[{\em j}]index of last row on processor;\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a16}{
+\index{matrix.c@{matrix.c}!sisl_mat_get_row@{sisl\_\-mat\_\-get\_\-row}}
+\index{sisl_mat_get_row@{sisl\_\-mat\_\-get\_\-row}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-get\_\-row]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t}$\ast$ sisl\_\-mat\_\-get\_\-row (sisl\_\-matrix\_\-t $\ast$ {\em m}, guint {\em i})}}
+\label{matrix_8c_a16}
+
+
+Extract a pointer to a row of a matrix.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em i}]row index.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]vector containing row $i$ of matrix. \end{Desc}
+\hypertarget{matrix_8c_a14}{
+\index{matrix.c@{matrix.c}!sisl_mat_has_row@{sisl\_\-mat\_\-has\_\-row}}
+\index{sisl_mat_has_row@{sisl\_\-mat\_\-has\_\-row}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-has\_\-row]{\setlength{\rightskip}{0pt plus 5cm}gboolean sisl\_\-mat\_\-has\_\-row (sisl\_\-matrix\_\-t $\ast$ {\em m}, guint {\em i})}}
+\label{matrix_8c_a14}
+
+
+Check if matrix has row $i$, checking row indices explicitly for sparse matrices.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em i}]row index\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]TRUE if matrix has row $i$, FALSE otherwise. \end{Desc}
+\hypertarget{matrix_8c_a0}{
+\index{matrix.c@{matrix.c}!sisl_mat_new@{sisl\_\-mat\_\-new}}
+\index{sisl_mat_new@{sisl\_\-mat\_\-new}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-new]{\setlength{\rightskip}{0pt plus 5cm}sisl\_\-matrix\_\-t$\ast$ sisl\_\-mat\_\-new (guint {\em nrow}, guint {\em ncol}, sisl\_\-mat\_\-layout\_\-t {\em layout}, sisl\_\-vector\_\-density\_\-t {\em density}, sisl\_\-complex\_\-t {\em rc}, sisl\_\-dist\_\-t {\em dist})}}
+\label{matrix_8c_a0}
+
+
+Allocate space for a new matrix. Note that the maximum number of rows or columns refers to the number of entries allocated and not to the physical size of the matrix (to allow for sparse matrices and for distributed matrices on parallel systems).
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nrow}]maximum number of rows; \item[{\em ncol}]maximum number of columns; \item[{\em layout}]sparse or dense layout of rows; \item[{\em density}](SISL\_\-SPARSE, SISL\_\-DENSE\_\-ROWS, SISL\_\-DENSE\_\-BLOCK); \item[{\em rc}]real or complex; \item[{\em dist}]single- or multi-processor.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]the new matrix. \end{Desc}
+\hypertarget{matrix_8c_a23}{
+\index{matrix.c@{matrix.c}!sisl_mat_new_dump_read@{sisl\_\-mat\_\-new\_\-dump\_\-read}}
+\index{sisl_mat_new_dump_read@{sisl\_\-mat\_\-new\_\-dump\_\-read}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-new\_\-dump\_\-read]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-new\_\-dump\_\-read (sisl\_\-matrix\_\-t $\ast$$\ast$ {\em m}, FILE $\ast$ {\em f})}}
+\label{matrix_8c_a23}
+
+
+Read a matrix from file, allocating matrix to correct size and splitting across processors if necessary.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]pointer to matrix to allocate. \item[{\em f}]pointer to file\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a17}{
+\index{matrix.c@{matrix.c}!sisl_mat_set_all@{sisl\_\-mat\_\-set\_\-all}}
+\index{sisl_mat_set_all@{sisl\_\-mat\_\-set\_\-all}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-set\_\-all]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-set\_\-all (sisl\_\-matrix\_\-t $\ast$ {\em m}, gdouble {\em x})}}
+\label{matrix_8c_a17}
+
+
+Set all entries of a matrix to a given value. For complex matrices, this sets the real part.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em x}]value to set.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a13}{
+\index{matrix.c@{matrix.c}!sisl_mat_set_distribution@{sisl\_\-mat\_\-set\_\-distribution}}
+\index{sisl_mat_set_distribution@{sisl\_\-mat\_\-set\_\-distribution}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-set\_\-distribution]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-set\_\-distribution (sisl\_\-matrix\_\-t $\ast$ {\em m}, sisl\_\-dist\_\-t {\em dist})}}
+\label{matrix_8c_a13}
+
+
+Set the distribution of a matrix.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em dist}]distribution (SISL\_\-SINGLE for single processor; SISL\_\-MULTI for distributed matrix).\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a9}{
+\index{matrix.c@{matrix.c}!sisl_mat_set_element@{sisl\_\-mat\_\-set\_\-element}}
+\index{sisl_mat_set_element@{sisl\_\-mat\_\-set\_\-element}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-set\_\-element]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-set\_\-element (sisl\_\-matrix\_\-t $\ast$ {\em m}, guint {\em i}, guint {\em j}, gdouble {\em x})}}
+\label{matrix_8c_a9}
+
+
+Set an element of a matrix $A_{ij}=x$. For complex matrices, this sets the real part.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em i}]row index; \item[{\em j}]column index; \item[{\em x}]value.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a25}{
+\index{matrix.c@{matrix.c}!sisl_mat_set_local_rows@{sisl\_\-mat\_\-set\_\-local\_\-rows}}
+\index{sisl_mat_set_local_rows@{sisl\_\-mat\_\-set\_\-local\_\-rows}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-set\_\-local\_\-rows]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-set\_\-local\_\-rows (sisl\_\-matrix\_\-t $\ast$ {\em m}, gint {\em i}, gint {\em j})}}
+\label{matrix_8c_a25}
+
+
+Set the rows to occupy this processor.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em i}]index of first row on processor; \item[{\em j}]index of last row on processor;\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a2}{
+\index{matrix.c@{matrix.c}!sisl_mat_set_size@{sisl\_\-mat\_\-set\_\-size}}
+\index{sisl_mat_set_size@{sisl\_\-mat\_\-set\_\-size}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-set\_\-size]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-set\_\-size (sisl\_\-matrix\_\-t $\ast$ {\em m}, guint {\em rows}, guint {\em cols})}}
+\label{matrix_8c_a2}
+
+
+Set the size of a matrix. Note that the size is the real size of the matrix and not that part of it on a given processor.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em rows}]number of rows; \item[{\em cols}]numbers of columns.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a10}{
+\index{matrix.c@{matrix.c}!sisl_mat_size@{sisl\_\-mat\_\-size}}
+\index{sisl_mat_size@{sisl\_\-mat\_\-size}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-size]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-size (sisl\_\-matrix\_\-t $\ast$ {\em m}, guint $\ast$ {\em rows}, guint $\ast$ {\em cols})}}
+\label{matrix_8c_a10}
+
+
+Get the (real) size of a matrix.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em rows}]number of rows in whole matrix; \item[{\em cols}]number of columns in whole matrix;\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a18}{
+\index{matrix.c@{matrix.c}!sisl_mat_split_chunks@{sisl\_\-mat\_\-split\_\-chunks}}
+\index{sisl_mat_split_chunks@{sisl\_\-mat\_\-split\_\-chunks}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-split\_\-chunks]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-split\_\-chunks (sisl\_\-matrix\_\-t $\ast$ {\em m})}}
+\label{matrix_8c_a18}
+
+
+Split a matrix across multiple processors in blocks of rows.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix to split.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a29}{
+\index{matrix.c@{matrix.c}!sisl_mat_swap_columns_weighted@{sisl\_\-mat\_\-swap\_\-columns\_\-weighted}}
+\index{sisl_mat_swap_columns_weighted@{sisl\_\-mat\_\-swap\_\-columns\_\-weighted}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-swap\_\-columns\_\-weighted]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-swap\_\-columns\_\-weighted (sisl\_\-matrix\_\-t $\ast$ {\em m}, gint {\em cm}, gdouble {\em wm}, sisl\_\-matrix\_\-t $\ast$ {\em n}, gint {\em cn}, gdouble {\em wn})}}
+\label{matrix_8c_a29}
+
+
+Swap columns of matrices so that $A_{ij}=vB_{ik}$ and $B_{ij}=wA_{ik}$.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix $A$; \item[{\em cm}]column of m to swap; \item[{\em wm}]weight for column of m; \item[{\em n}]matrix $B$; \item[{\em cn}]column of n to swap; \item[{\em wn}]weight for column of n.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a8}{
+\index{matrix.c@{matrix.c}!sisl_mat_trans_vector_multiply@{sisl\_\-mat\_\-trans\_\-vector\_\-multiply}}
+\index{sisl_mat_trans_vector_multiply@{sisl\_\-mat\_\-trans\_\-vector\_\-multiply}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-trans\_\-vector\_\-multiply]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-trans\_\-vector\_\-multiply (sisl\_\-matrix\_\-t $\ast$ {\em m}, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em w})}}
+\label{matrix_8c_a8}
+
+
+Transpose matrix-vector multiply $w=A^{T}v$. This function works for real and complex matrices and vectors and for those distributed across multiple processors.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em v}]vector to multiply; \item[{\em w}]vector for result.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a7}{
+\index{matrix.c@{matrix.c}!sisl_mat_vector_multiply@{sisl\_\-mat\_\-vector\_\-multiply}}
+\index{sisl_mat_vector_multiply@{sisl\_\-mat\_\-vector\_\-multiply}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-vector\_\-multiply]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-vector\_\-multiply (sisl\_\-matrix\_\-t $\ast$ {\em m}, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em w})}}
+\label{matrix_8c_a7}
+
+
+Matrix-vector multiply $w=Av$. This function works for real and complex matrices and vectors and for those distributed across multiple processors.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em v}]vector to multiply; \item[{\em w}]vector for result.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a3}{
+\index{matrix.c@{matrix.c}!sisl_mat_write@{sisl\_\-mat\_\-write}}
+\index{sisl_mat_write@{sisl\_\-mat\_\-write}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-write]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-write (sisl\_\-matrix\_\-t $\ast$ {\em m}, FILE $\ast$ {\em f})}}
+\label{matrix_8c_a3}
+
+
+Write a matrix to file in dense matrix format.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em f}]file pointer.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{matrix_8c_a4}{
+\index{matrix.c@{matrix.c}!sisl_mat_write_sparse@{sisl\_\-mat\_\-write\_\-sparse}}
+\index{sisl_mat_write_sparse@{sisl\_\-mat\_\-write\_\-sparse}!matrix.c@{matrix.c}}
+\subsubsection[sisl\_\-mat\_\-write\_\-sparse]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-mat\_\-write\_\-sparse (sisl\_\-matrix\_\-t $\ast$ {\em m}, FILE $\ast$ {\em f})}}
+\label{matrix_8c_a4}
+
+
+Write a matrix to file in sparse matrix format.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em m}]matrix; \item[{\em f}]file pointer.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}

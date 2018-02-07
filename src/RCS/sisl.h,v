@@ -1,0 +1,204 @@
+head	1.1;
+access;
+symbols;
+locks
+	ensmjc:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	2009.01.28.16.30.17;	author ensmjc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* sisl.h
+ * 
+ * Copyright (C) 2009 Michael Carley
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#ifndef SISL_H_INCLUDED
+#define SISL_H_INCLUDED
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+#include <stdio.h>
+#include <math.h>
+#include <glib.h>
+#include <cblas.h>
+#include <gsl/gsl_complex.h>
+
+  typedef enum {
+    SISL_SUCCESS = 0,
+    SISL_ERROR = 1,
+    SISL_NULL_ARGUMENT = 2
+  } sisl_status_t ;
+
+  typedef enum {
+    SISL_NORM_1,
+    SISL_NORM_2,
+    SISL_NORM_INFINITY
+  } sisl_norm_t ;
+
+  typedef enum {
+    SISL_MATRIX_DENSE
+  } sisl_matrix_density_t ;
+
+  typedef enum {
+    SISL_REAL,
+    SISL_COMPLEX
+  } sisl_complex_t ;
+
+  typedef enum {
+    SISL_SINGLE,
+    SISL_DISTRIBUTED
+  } sisl_distribution_t ;
+
+/**
+ * @@ingroup vector
+ *
+ * Iterative solvers
+ * 
+ */
+typedef enum {
+  SISL_SOLVER_JACOBI,		
+  SISL_SOLVER_GAUSS_SEIDEL,	
+  SISL_SOLVER_SOR,
+  SISL_SOLVER_SSOR,
+  SISL_SOLVER_CG,			/**< Conjugate gradient */
+  SISL_SOLVER_MINRES,		
+  SISL_SOLVER_SYMMLQ,
+  SISL_SOLVER_GMRES,
+  SISL_SOLVER_BICG,		/**< Biconjugate gradient */
+  SISL_SOLVER_QMR,
+  SISL_SOLVER_CGS,		/**< Conjugate gradient squared */
+  SISL_SOLVER_BICGSTAB		/**< Stabilized biconjugate gradient */
+} sisl_solver_t ;
+
+#define SISL_ROW_NUMBER_OFFSET 0
+#define SISL_COL_NUMBER_OFFSET 1
+#define SISL_ROW_START_OFFSET  2
+#define SISL_ROW_END_OFFSET    3
+
+  typedef struct _sisl_matrix_t sisl_matrix_t ;
+  typedef struct _sisl_vector_t sisl_vector_t ;
+  typedef struct _sisl_solver_workspace_t sisl_solver_workspace_t ;
+  typedef struct _sisl_solver_performance_t sisl_solver_performance_t ;
+
+  struct _sisl_matrix_t {
+    sisl_matrix_density_t d ;
+    sisl_complex_t c ;
+    sisl_distribution_t dist ;
+    gpointer m ;
+  } ;
+
+  struct _sisl_vector_t {
+    sisl_complex_t c ;
+    GArray *x ;
+  } ;
+
+  struct _sisl_solver_workspace_t {
+    GPtrArray *v ;
+/*     sisl_vector_t *v1, *v2, *v3, *v4, *v5, *v6, *v7, *v8, *v9, *v10 ; */
+  } ;
+
+  struct _sisl_solver_performance_t {
+    gdouble r_1, r_2, r_inf, bnorm ;
+    gint niter ;
+  } ;
+
+#define sisl_complex_string(c)			\
+  (((c) == SISL_REAL) ? "real" : "complex")
+#define sisl_vector_data(v) ((gdouble *)(v->x->data))
+#define sisl_is_real(v) ((v)->c == SISL_REAL)
+#define sisl_vector_length(v)		\
+  (((sisl_is_real(v)) ? ((v)->x->len) : ((v)->x->len/2)))
+#define sisl_vector_set_length(v,n)		\
+  (((sisl_is_real(v)) ? (g_array_set_size((v)->x,(n))) :	\
+    (g_array_set_size((v)->x,(2*n)))))
+
+#define sisl_matrix_row_number(A) (((gint *)(A->m))[SISL_ROW_NUMBER_OFFSET])
+#define sisl_matrix_column_number(A) (((gint *)(A->m))[SISL_COL_NUMBER_OFFSET])
+#define sisl_matrix_local_row_start(A) \
+  (((gint *)(A->m))[SISL_ROW_START_OFFSET])
+#define sisl_matrix_local_row_end(A) \
+  (((gint *)(A->m))[SISL_ROW_END_OFFSET])
+#define sisl_matrix_has_local_row(A,i)		\
+  (((i)>=sisl_matrix_local_row_start((A)) &&	\
+    ((i)<sisl_matrix_local_row_end((A)))))
+
+#define sisl_matrix_density(m) (m->d)
+#define sisl_matrix_distribution(m) (m->dist)
+
+  sisl_vector_t *sisl_vector_new(sisl_complex_t c) ;
+  gint sisl_vector_free(sisl_vector_t *v) ;
+  gdouble sisl_vector_get(sisl_vector_t *v, gint i) ;
+  gsl_complex sisl_vector_get_complex(sisl_vector_t *v, gint i) ;
+  gint sisl_vector_set(sisl_vector_t *v, gint i, gdouble x) ;
+  gint sisl_vector_set_complex(sisl_vector_t *v, gint i, gsl_complex x) ;
+  gdouble sisl_vector_norm(sisl_vector_t *v, sisl_norm_t n) ;
+  gdouble sisl_vector_dot(sisl_vector_t *v, sisl_vector_t *w) ;
+  gsl_complex sisl_vector_dot_complex(sisl_vector_t *v, sisl_vector_t *w) ;
+  gint sisl_vector_clear(sisl_vector_t *v) ;
+  gint sisl_vector_copy(sisl_vector_t *v, sisl_vector_t *w) ;
+  gint sisl_vector_add(sisl_vector_t *v, sisl_vector_t *w) ;
+  gint sisl_vector_sub(sisl_vector_t *v, sisl_vector_t *w) ;
+  gint sisl_vector_scale(sisl_vector_t *v, gdouble x) ;
+  gint sisl_vector_scale_complex(sisl_vector_t *v, gsl_complex x) ;
+
+  sisl_matrix_t *sisl_matrix_new(sisl_complex_t c, sisl_matrix_density_t d) ;
+  gint sisl_matrix_free(sisl_matrix_t *m) ;
+  gint sisl_matrix_set_block_size(sisl_matrix_t *m, gint rows, gint columns) ;
+  gint sisl_matrix_vector_mul(sisl_matrix_t *m, sisl_vector_t *v,
+			      sisl_vector_t *w) ;
+  gint sisl_matrix_set(sisl_matrix_t *m, gint i, gint j, gdouble x) ;
+  gint sisl_matrix_set_complex(sisl_matrix_t *m, gint i, gint j, 
+			       gsl_complex x) ;
+  gdouble sisl_matrix_get(sisl_matrix_t *m, gint i, gint j) ;
+  gsl_complex sisl_matrix_get_complex(sisl_matrix_t *m, gint i, gint j) ;
+
+  sisl_solver_workspace_t *sisl_solver_workspace_new(void) ;
+  gint sisl_solver_workspace_size(sisl_solver_workspace_t *w, gint n) ;
+  gint sisl_solver_workspace_free(sisl_solver_workspace_t *w) ;
+  gint sisl_solve(sisl_solver_t solver,
+		  sisl_matrix_t *A, sisl_vector_t *x, 
+		  sisl_vector_t *b,
+		  gdouble tol, gint niter,
+		  sisl_solver_workspace_t *w,
+		  sisl_solver_performance_t *perf) ;
+
+gint sisl_logging_init(FILE *f, gchar *p, 
+		       GLogLevelFlags log_level,
+		       gpointer exit_func) ;
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+
+#endif /*SISL_H_INCLUDED*/
+@

@@ -1,0 +1,363 @@
+head	1.1;
+access;
+symbols;
+locks
+	ensmjc:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	2009.01.28.16.30.17;	author ensmjc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* vector.c
+ * 
+ * Copyright (C) 2009 Michael Carley
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif /*HAVE_CONFIG_H*/
+
+#include <sisl.h>
+#include <gsl/gsl_complex.h>
+#include <gsl/gsl_complex_math.h>
+
+#include "sisl_private.h"
+
+extern const gdouble zero[] ;
+extern const gdouble one[] ;
+extern const gdouble minus_one[] ;
+
+sisl_vector_t *sisl_vector_new(sisl_complex_t c)
+
+{
+  sisl_vector_t *v ;
+
+  v = g_malloc(sizeof(sisl_vector_t)) ;
+  v->c = c ;
+  v->x = g_array_new(TRUE, TRUE, sizeof(gdouble)) ;
+
+  return v ;
+}
+
+gint sisl_vector_free(sisl_vector_t *v)
+
+{
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+
+  g_array_free(v->x, TRUE) ;
+  g_free(v) ;
+
+  return SISL_SUCCESS ;
+}
+
+gdouble sisl_vector_get(sisl_vector_t *v, gint i) 
+
+{
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+
+  if ( (v->c == SISL_REAL) && (i >= 0) && (i < v->x->len) ) 
+    return g_array_index(v->x,gdouble,i) ;
+  g_error("%s: cannot get real element %d of length %d %s vector",
+	  __FUNCTION__, i, sisl_vector_length((v)), 
+	  sisl_complex_string((v)->c)) ;
+  return 0.0 ;
+}
+
+gsl_complex sisl_vector_get_complex(sisl_vector_t *v, gint i) 
+
+{
+  gsl_complex x ;
+  GSL_REAL(x) = GSL_IMAG(x) = 0.0 ;
+
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+
+  if ( (v->c == SISL_COMPLEX) && (i >= 0) && (i < v->x->len) ) {
+    GSL_REAL(x) = g_array_index(v->x,gdouble,2*i) ;
+    GSL_IMAG(x) = g_array_index(v->x,gdouble,2*i+1) ;
+    return x ;
+  }
+  g_error("%s: cannot get real element %d of length %d %s vector",
+	  __FUNCTION__, i, sisl_vector_length((v)), 
+	  sisl_complex_string((v)->c)) ;
+  return x ;
+}
+
+gint sisl_vector_set(sisl_vector_t *v, gint i, gdouble x) 
+
+{
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+
+  if ( sisl_is_real(v) && (i >= 0) && (i < v->x->len) ) {
+    g_array_index(v->x,gdouble,i) = x ;
+    return SISL_SUCCESS ;
+  }
+  g_error("%s: cannot set real element %d of length %d %s vector",
+	  __FUNCTION__, i, sisl_vector_length((v)), 
+	  sisl_complex_string((v)->c)) ;
+  return SISL_ERROR ;
+}
+
+gint sisl_vector_set_complex(sisl_vector_t *v, gint i, gsl_complex x)
+
+{
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+
+  if ( !sisl_is_real(v) && (i >= 0) && (i < v->x->len) ) {
+    g_array_index(v->x,gdouble,2*i) = GSL_REAL(x) ;
+    g_array_index(v->x,gdouble,2*i+1) = GSL_IMAG(x) ;
+    return SISL_SUCCESS ;
+  }
+  g_error("%s: cannot set complex element %d of length %d %s vector",
+	  __FUNCTION__, i, sisl_vector_length((v)), 
+	  sisl_complex_string((v)->c)) ;
+  return SISL_ERROR ;
+}
+
+gdouble sisl_vector_norm(sisl_vector_t *v, sisl_norm_t n) 
+
+{
+  gint j ;
+
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+
+  switch (n) {
+  default:
+    g_error("%s: unrecognized norm type %d", __FUNCTION__, n) ;
+    return 0.0 ;
+    break ;
+  case SISL_NORM_1:
+    if ( sisl_is_real(v) ) 
+      return cblas_dasum(v->x->len, (gdouble *)(v->x->data), 1) ;
+    else
+      return cblas_dzasum(v->x->len/2, v->x->data, 1) ;
+    break ;
+  case SISL_NORM_2:
+    if ( sisl_is_real(v) ) 
+      return cblas_dnrm2(v->x->len, (gdouble *)(v->x->data), 1) ;
+    else
+      return cblas_dznrm2(v->x->len/2, v->x->data, 1) ;
+    break ;
+  case SISL_NORM_INFINITY:
+    if ( sisl_is_real(v) ) {
+      j = cblas_idamax(v->x->len, (gdouble *)(v->x->data), 1) ;
+      return g_array_index(v->x,gdouble,j) ;
+    } else {
+      j = cblas_izamax(v->x->len/2, v->x->data, 1) ;
+      return sqrt(g_array_index(v->x,gdouble,2*j)*
+		  g_array_index(v->x,gdouble,2*j)+
+		  g_array_index(v->x,gdouble,2*j+1)*
+		  g_array_index(v->x,gdouble,2*j+1)) ;
+    }
+    break ;
+  }
+  return 0.0 ;
+}
+
+gdouble sisl_vector_dot(sisl_vector_t *v, sisl_vector_t *w)
+  
+{
+  gdouble d ;
+
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+  SISL_CHECK_ARGUMENT_NULL(w) ;
+
+  if ( !sisl_is_real(v) || !sisl_is_real(w) )
+    g_error("%s: vectors v and w must both be real", __FUNCTION__) ;
+
+  if ( sisl_vector_length(v) != sisl_vector_length(w) )
+    g_error("%s: vectors v and w are not the same length (%d and %d)", 
+	    __FUNCTION__, sisl_vector_length(v), sisl_vector_length(w)) ;
+
+  d = cblas_ddot(sisl_vector_length(v), 
+		 (gdouble *)(v->x->data), 1,
+		 (gdouble *)(w->x->data), 1) ;
+  return d ;
+}
+
+gsl_complex sisl_vector_dot_complex(sisl_vector_t *v, sisl_vector_t *w)
+		       
+{
+  gsl_complex d ;
+
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+  SISL_CHECK_ARGUMENT_NULL(w) ;
+
+  if ( sisl_is_real(v) || sisl_is_real(w) )
+    g_error("%s: vectors v and w must both be complex", __FUNCTION__) ;
+
+  if ( sisl_vector_length(v) != sisl_vector_length(w) )
+    g_error("%s: vectors v and w are not the same length (%d and %d)", 
+	    __FUNCTION__, sisl_vector_length(v), sisl_vector_length(w)) ;
+
+  GSL_SET_COMPLEX(&d,0,0) ;
+  cblas_zdotu_sub(sisl_vector_length(v), 
+		  (v->x->data), 1,
+		  (w->x->data), 1, &(GSL_REAL(d))) ;
+
+  return d ;
+}
+
+gint sisl_vector_copy(sisl_vector_t *v, sisl_vector_t *w) 
+  /* v := w */
+
+{
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+  SISL_CHECK_ARGUMENT_NULL(w) ;
+
+  g_array_set_size(v->x, w->x->len) ;
+  cblas_dcopy(v->x->len, (gdouble *)(w->x->data), 1,
+	      (gdouble *)(v->x->data), 1) ;
+  v->c = w->c ;
+
+  return SISL_SUCCESS ;  
+}
+
+gint sisl_vector_add(sisl_vector_t *v, sisl_vector_t *w) 
+
+/* v := v + w */
+
+{
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+  SISL_CHECK_ARGUMENT_NULL(w) ;
+
+  if ( sisl_is_real(v) && !sisl_is_real(w) )
+    g_error("%s: if w is complex, v must also be complex", __FUNCTION__) ;
+
+  if ( sisl_vector_length(v) != sisl_vector_length(w) )
+    g_error("%s: vectors v and w are not the same length (%d and %d)", 
+	    __FUNCTION__, sisl_vector_length(v), sisl_vector_length(w)) ;
+
+  if ( sisl_is_real(v) && sisl_is_real(w) ) {
+    catlas_daxpby(sisl_vector_length(v), 
+		 1.0, sisl_vector_data(w), 1,
+		 1.0, sisl_vector_data(v), 1) ;
+
+    return SISL_SUCCESS ;
+  }
+
+  if ( !sisl_is_real(v) && sisl_is_real(w) ) {
+    catlas_daxpby(sisl_vector_length(v), 
+		  1.0, sisl_vector_data(w), 1,
+		  1.0, sisl_vector_data(v), 2) ;
+
+    return SISL_SUCCESS ;
+  }
+
+  catlas_zaxpby(sisl_vector_length(v), 
+		one, sisl_vector_data(w), 1,
+		one, sisl_vector_data(v), 1) ;
+
+  return SISL_SUCCESS ;
+}
+
+gint sisl_vector_sub(sisl_vector_t *v, sisl_vector_t *w) 
+
+/* v := v - w */
+
+{
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+  SISL_CHECK_ARGUMENT_NULL(w) ;
+
+  if ( sisl_is_real(v) && !sisl_is_real(w) )
+    g_error("%s: if w is complex, v must also be complex", __FUNCTION__) ;
+
+  if ( sisl_vector_length(v) != sisl_vector_length(w) )
+    g_error("%s: vectors v and w are not the same length (%d and %d)", 
+	    __FUNCTION__, sisl_vector_length(v), sisl_vector_length(w)) ;
+
+  if ( sisl_is_real(v) && sisl_is_real(w) ) {
+    catlas_daxpby(sisl_vector_length(v), 
+		  -1.0, sisl_vector_data(w), 1,
+		  1.0, sisl_vector_data(v), 1) ;
+
+    return SISL_SUCCESS ;
+  }
+
+  if ( !sisl_is_real(v) && sisl_is_real(w) ) {
+    catlas_daxpby(sisl_vector_length(v), 
+		  -1.0, sisl_vector_data(w), 1,
+		  1.0, sisl_vector_data(v), 2) ;
+
+    return SISL_SUCCESS ;
+  }
+
+  catlas_zaxpby(sisl_vector_length(v), 
+		minus_one, sisl_vector_data(w), 1,
+		one, sisl_vector_data(v), 1) ;
+
+  return SISL_SUCCESS ;
+}
+
+gint sisl_vector_clear(sisl_vector_t *v)
+
+{
+  gint n ;
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+
+  n = v->x->len ;
+  g_array_set_size(v->x,0) ; g_array_set_size(v->x,n) ;
+  
+  return SISL_SUCCESS ;
+}
+
+gint sisl_vector_scale(sisl_vector_t *v, gdouble x)
+
+{
+  gint i ;
+
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+  if ( !sisl_is_real(v) ) 
+    g_error("%s: vector v must be real", __FUNCTION__) ;
+
+  /*there does not seem to be a compact BLAS function for this*/
+  for ( i = 0 ; i < v->x->len ; i ++ ) sisl_vector_data(v)[i] *= x ;
+
+  return SISL_SUCCESS ;
+}
+
+gint sisl_vector_scale_complex(sisl_vector_t *v, gsl_complex x)
+
+{
+  gint i ;
+
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+  if ( sisl_is_real(v) ) 
+    g_error("%s: vector v must be complex", __FUNCTION__) ;
+
+  /*there does not seem to be a compact BLAS function for this*/
+  for ( i = 0 ; i < v->x->len/2 ; i ++ ) {
+    *((gsl_complex *)(&(g_array_index(v->x,gdouble,2*i)))) =
+      gsl_complex_mul(*((gsl_complex *)(&(g_array_index(v->x,gdouble,2*i)))),
+		      x) ;
+  }
+
+  return SISL_SUCCESS ;
+}
+@

@@ -1,0 +1,34 @@
+2017-06-13  Michael Carley  <ensmjc@balena-02.cm.balena>
+
+	* src/matrix.c (sisl_matrix_vector_mul): added (2*...) to correct
+	parallel complex matrix-vector multiplication
+
+2012-05-28    <ensmjc@enpc-adm34.bath.ac.uk>
+
+	* src/vector.c (sisl_vector_sub): removed all use of CBLAS/CATLAS
+	in favour of direct interface with BLAS using Fortran to C style
+	bindings.
+
+2009-01-21    <ensmjc@enpc-adm34.bath.ac.uk>
+
+	* src/vector_private.c (_pvr_sparse_new): modified to accept new
+	definition of sparse vector type.
+
+	* src/vector_private.h (struct): modified sparse vector type to
+	use GArrays and remove limit on number of elements.
+
+2008-10-20    <ensmjc@enpc-adm34.bath.ac.uk>
+
+	* src/sisl-private.h (SISL_CHECK_NUMBER_IS_COMPLEX): Added checks
+	to catch NaN and Inf entries.
+
+2008-07-22    <ensmjc@enpc-adm34.bath.ac.uk>
+
+	* src/vector_arith.c (_pv_add_dense_dense): Added BLAS function
+	calls. 
+	(_pv_sub_dense_dense): Added BLAS function calls.
+
+	* src/vector.c (sisl_vector_sub): Added check on vector lengths
+	with error message and exit if not equal.
+	(sisl_vector_add): Vector length check added.
+

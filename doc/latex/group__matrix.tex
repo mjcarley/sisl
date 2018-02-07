@@ -1,0 +1,333 @@
+\hypertarget{group__matrix}{\section{S\-I\-S\-L matrices}
+\label{group__matrix}\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__matrix_ga1782032b02988b281e8362215abe2ecd}{sisl\-\_\-matrix\-\_\-row\-\_\-number}(A)
+\item 
+\#define \hyperlink{group__matrix_ga352f97fb2d44b57e23e129d860458eeb}{sisl\-\_\-matrix\-\_\-column\-\_\-number}(A)
+\item 
+\#define \hyperlink{group__matrix_ga339f27e10f6f6a964c752046b9853d13}{sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-start}(A)
+\item 
+\#define \hyperlink{group__matrix_ga79fd37b9c3f2702e7b8d861618cdff95}{sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-end}(A)
+\item 
+\#define \hyperlink{group__matrix_ga0aee03471325ddd2e3d2bc3a919a5b31}{sisl\-\_\-matrix\-\_\-has\-\_\-local\-\_\-row}(A, i)
+\item 
+\#define \hyperlink{group__matrix_ga1d52345552bdf4ca4bc3e7aed58750c4}{sisl\-\_\-matrix\-\_\-density}(m)
+\item 
+\#define \hyperlink{group__matrix_ga3edc5636c917a2ca398ee5449d6541d5}{sisl\-\_\-matrix\-\_\-distribution}(m)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \-\_\-sisl\-\_\-matrix\-\_\-t \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__matrix_gae50d4f05ed96de495bdd326c201c28ff}{sisl\-\_\-matrix\-\_\-density\-\_\-t} \{ \hyperlink{group__matrix_ggae50d4f05ed96de495bdd326c201c28ffaae029c486fdd12732f4655d184b0ed57}{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-D\-E\-N\-S\-E}, 
+\hyperlink{group__matrix_ggae50d4f05ed96de495bdd326c201c28ffa0c0ef4a4a8df53f64b9237c1fb4acc75}{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-S\-P\-A\-R\-S\-E}, 
+\hyperlink{group__matrix_ggae50d4f05ed96de495bdd326c201c28ffa64a3cff2469cac8f45575896e548611c}{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-U\-S\-E\-R\-\_\-\-D\-E\-F\-I\-N\-E\-D}
+ \}
+\item 
+enum \hyperlink{group__matrix_ga03fd8bd724705cd998bb37b51393c0d4}{sisl\-\_\-distribution\-\_\-t} \{ \hyperlink{group__matrix_gga03fd8bd724705cd998bb37b51393c0d4a2c7ad8cda72338a63fc48b67ba475e91}{S\-I\-S\-L\-\_\-\-S\-I\-N\-G\-L\-E} =  0, 
+\hyperlink{group__matrix_gga03fd8bd724705cd998bb37b51393c0d4a2719aa856008ad9e5b049874411dc69d}{S\-I\-S\-L\-\_\-\-D\-I\-S\-T\-R\-I\-B\-U\-T\-E\-D} =  1
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} $\ast$ \hyperlink{group__matrix_ga29ab0c52a1e38fc785031c5e93e4ca98}{sisl\-\_\-matrix\-\_\-new} (\hyperlink{group__vector_gadbf341f8965fc86dda28912ab5f04930}{sisl\-\_\-complex\-\_\-t} c, \hyperlink{group__matrix_gae50d4f05ed96de495bdd326c201c28ff}{sisl\-\_\-matrix\-\_\-density\-\_\-t} d)
+\item 
+gint \hyperlink{group__matrix_ga35de2cf4acfbe6e820f895a2ace8b328}{sisl\-\_\-matrix\-\_\-free} (\hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} $\ast$m)
+\item 
+gint \hyperlink{group__matrix_ga4dbf57c7f1ff8a417425b978b85ceefc}{sisl\-\_\-matrix\-\_\-set\-\_\-block\-\_\-size} (\hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} $\ast$m, gint rows, gint columns)
+\item 
+gint \hyperlink{group__matrix_ga67a577100e392546e9b3833415c739fd}{sisl\-\_\-matrix\-\_\-set} (\hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} $\ast$m, gint i, gint j, gdouble x)
+\item 
+gint \hyperlink{group__matrix_ga13808fa06a8b9d648152ae25ef7996d7}{sisl\-\_\-matrix\-\_\-set\-\_\-complex} (\hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} $\ast$m, gint i, gint j, gsl\-\_\-complex z)
+\item 
+gint \hyperlink{group__matrix_ga56825a47cadc80aa00795feedeb002bc}{sisl\-\_\-matrix\-\_\-vector\-\_\-mul} (\hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} $\ast$m, \hyperlink{group__vector_gacbac585492f5005f05f0c0b8463039be}{sisl\-\_\-vector\-\_\-t} $\ast$v, \hyperlink{group__vector_gacbac585492f5005f05f0c0b8463039be}{sisl\-\_\-vector\-\_\-t} $\ast$w)
+\item 
+gdouble \hyperlink{group__matrix_ga441d1109b3297e94b7c4fba2b618ea0c}{sisl\-\_\-matrix\-\_\-get} (\hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} $\ast$m, gint i, gint j)
+\item 
+gsl\-\_\-complex \hyperlink{group__matrix_ga0a0ea595d8beec73a6673101ad348add}{sisl\-\_\-matrix\-\_\-get\-\_\-complex} (\hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} $\ast$m, gint i, gint j)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The basic matrix type in S\-I\-S\-L is the \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}. This can be real or complex and have numerical values or be of a user-\/defined type, e.\-g. for matrix-\/free computations. It should only be accessed using the functions provided, with the possible exception of user-\/defined matrices (but if you know enough to be able to define your own matrix methods, you should know enough to handle them like an adult). Built-\/in matrix types will reallocate memory automatically when the user resizes them or adds elements to a sparse matrix. The matrix operations are actually wrappers for the corresponding B\-L\-A\-S types, so they should be fairly efficient. The underlying data type is a glib G\-Array, which allows for efficient allocation and resizing. 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{group__matrix_ga352f97fb2d44b57e23e129d860458eeb}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-column\-\_\-number@{sisl\-\_\-matrix\-\_\-column\-\_\-number}}
+\index{sisl\-\_\-matrix\-\_\-column\-\_\-number@{sisl\-\_\-matrix\-\_\-column\-\_\-number}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-column\-\_\-number}]{\setlength{\rightskip}{0pt plus 5cm}\#define sisl\-\_\-matrix\-\_\-column\-\_\-number(
+\begin{DoxyParamCaption}
+\item[{}]{A}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga352f97fb2d44b57e23e129d860458eeb}
+The number of columns in a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} \hypertarget{group__matrix_ga1d52345552bdf4ca4bc3e7aed58750c4}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-density@{sisl\-\_\-matrix\-\_\-density}}
+\index{sisl\-\_\-matrix\-\_\-density@{sisl\-\_\-matrix\-\_\-density}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-density}]{\setlength{\rightskip}{0pt plus 5cm}\#define sisl\-\_\-matrix\-\_\-density(
+\begin{DoxyParamCaption}
+\item[{}]{m}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga1d52345552bdf4ca4bc3e7aed58750c4}
+The density of a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}, a \hyperlink{group__matrix_gae50d4f05ed96de495bdd326c201c28ff}{sisl\-\_\-matrix\-\_\-density\-\_\-t} \hypertarget{group__matrix_ga3edc5636c917a2ca398ee5449d6541d5}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-distribution@{sisl\-\_\-matrix\-\_\-distribution}}
+\index{sisl\-\_\-matrix\-\_\-distribution@{sisl\-\_\-matrix\-\_\-distribution}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-distribution}]{\setlength{\rightskip}{0pt plus 5cm}\#define sisl\-\_\-matrix\-\_\-distribution(
+\begin{DoxyParamCaption}
+\item[{}]{m}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga3edc5636c917a2ca398ee5449d6541d5}
+The distribution of a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}, a \hyperlink{group__matrix_ga03fd8bd724705cd998bb37b51393c0d4}{sisl\-\_\-distribution\-\_\-t}. \hypertarget{group__matrix_ga0aee03471325ddd2e3d2bc3a919a5b31}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-has\-\_\-local\-\_\-row@{sisl\-\_\-matrix\-\_\-has\-\_\-local\-\_\-row}}
+\index{sisl\-\_\-matrix\-\_\-has\-\_\-local\-\_\-row@{sisl\-\_\-matrix\-\_\-has\-\_\-local\-\_\-row}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-has\-\_\-local\-\_\-row}]{\setlength{\rightskip}{0pt plus 5cm}\#define sisl\-\_\-matrix\-\_\-has\-\_\-local\-\_\-row(
+\begin{DoxyParamCaption}
+\item[{}]{A, }
+\item[{}]{i}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga0aee03471325ddd2e3d2bc3a919a5b31}
+Check if a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} stores row {\itshape i} locally. \hypertarget{group__matrix_ga79fd37b9c3f2702e7b8d861618cdff95}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-end@{sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-end}}
+\index{sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-end@{sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-end}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}\#define sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-end(
+\begin{DoxyParamCaption}
+\item[{}]{A}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga79fd37b9c3f2702e7b8d861618cdff95}
+The first locally held row of the next block of a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}. \hypertarget{group__matrix_ga339f27e10f6f6a964c752046b9853d13}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-start@{sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-start}}
+\index{sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-start@{sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-start}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-start}]{\setlength{\rightskip}{0pt plus 5cm}\#define sisl\-\_\-matrix\-\_\-local\-\_\-row\-\_\-start(
+\begin{DoxyParamCaption}
+\item[{}]{A}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga339f27e10f6f6a964c752046b9853d13}
+The first locally held row of a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} \hypertarget{group__matrix_ga1782032b02988b281e8362215abe2ecd}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-row\-\_\-number@{sisl\-\_\-matrix\-\_\-row\-\_\-number}}
+\index{sisl\-\_\-matrix\-\_\-row\-\_\-number@{sisl\-\_\-matrix\-\_\-row\-\_\-number}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-row\-\_\-number}]{\setlength{\rightskip}{0pt plus 5cm}\#define sisl\-\_\-matrix\-\_\-row\-\_\-number(
+\begin{DoxyParamCaption}
+\item[{}]{A}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga1782032b02988b281e8362215abe2ecd}
+The number of rows in a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}. 
+
+\subsection{Typedef Documentation}
+\hypertarget{group__matrix_gad147923587b355644defb9bfbf981740}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-t@{sisl\-\_\-matrix\-\_\-t}}
+\index{sisl\-\_\-matrix\-\_\-t@{sisl\-\_\-matrix\-\_\-t}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct \-\_\-sisl\-\_\-matrix\-\_\-t {\bf sisl\-\_\-matrix\-\_\-t}}}\label{group__matrix_gad147923587b355644defb9bfbf981740}
+The basic S\-I\-S\-L matrix type. This should only be accessed through the provided macros and functions. 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{group__matrix_ga03fd8bd724705cd998bb37b51393c0d4}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-distribution\-\_\-t@{sisl\-\_\-distribution\-\_\-t}}
+\index{sisl\-\_\-distribution\-\_\-t@{sisl\-\_\-distribution\-\_\-t}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-distribution\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf sisl\-\_\-distribution\-\_\-t}}}\label{group__matrix_ga03fd8bd724705cd998bb37b51393c0d4}
+Distribution of a matrix \begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{S\-I\-S\-L\-\_\-\-S\-I\-N\-G\-L\-E@{S\-I\-S\-L\-\_\-\-S\-I\-N\-G\-L\-E}!S\-I\-S\-L matrices@{S\-I\-S\-L matrices}}\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!S\-I\-S\-L\-\_\-\-S\-I\-N\-G\-L\-E@{S\-I\-S\-L\-\_\-\-S\-I\-N\-G\-L\-E}}\item[{\em 
+\hypertarget{group__matrix_gga03fd8bd724705cd998bb37b51393c0d4a2c7ad8cda72338a63fc48b67ba475e91}{S\-I\-S\-L\-\_\-\-S\-I\-N\-G\-L\-E}\label{group__matrix_gga03fd8bd724705cd998bb37b51393c0d4a2c7ad8cda72338a63fc48b67ba475e91}
+}]single processor holds the whole matrix \index{S\-I\-S\-L\-\_\-\-D\-I\-S\-T\-R\-I\-B\-U\-T\-E\-D@{S\-I\-S\-L\-\_\-\-D\-I\-S\-T\-R\-I\-B\-U\-T\-E\-D}!S\-I\-S\-L matrices@{S\-I\-S\-L matrices}}\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!S\-I\-S\-L\-\_\-\-D\-I\-S\-T\-R\-I\-B\-U\-T\-E\-D@{S\-I\-S\-L\-\_\-\-D\-I\-S\-T\-R\-I\-B\-U\-T\-E\-D}}\item[{\em 
+\hypertarget{group__matrix_gga03fd8bd724705cd998bb37b51393c0d4a2719aa856008ad9e5b049874411dc69d}{S\-I\-S\-L\-\_\-\-D\-I\-S\-T\-R\-I\-B\-U\-T\-E\-D}\label{group__matrix_gga03fd8bd724705cd998bb37b51393c0d4a2719aa856008ad9e5b049874411dc69d}
+}]matrix is distributed over more than one processor \end{description}
+\end{Desc}
+
+\hypertarget{group__matrix_gae50d4f05ed96de495bdd326c201c28ff}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-density\-\_\-t@{sisl\-\_\-matrix\-\_\-density\-\_\-t}}
+\index{sisl\-\_\-matrix\-\_\-density\-\_\-t@{sisl\-\_\-matrix\-\_\-density\-\_\-t}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-density\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf sisl\-\_\-matrix\-\_\-density\-\_\-t}}}\label{group__matrix_gae50d4f05ed96de495bdd326c201c28ff}
+Matrix types, currently sparse matrices are not supported. \begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-D\-E\-N\-S\-E@{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-D\-E\-N\-S\-E}!S\-I\-S\-L matrices@{S\-I\-S\-L matrices}}\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-D\-E\-N\-S\-E@{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-D\-E\-N\-S\-E}}\item[{\em 
+\hypertarget{group__matrix_ggae50d4f05ed96de495bdd326c201c28ffaae029c486fdd12732f4655d184b0ed57}{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-D\-E\-N\-S\-E}\label{group__matrix_ggae50d4f05ed96de495bdd326c201c28ffaae029c486fdd12732f4655d184b0ed57}
+}]dense matrix \index{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-S\-P\-A\-R\-S\-E@{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-S\-P\-A\-R\-S\-E}!S\-I\-S\-L matrices@{S\-I\-S\-L matrices}}\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-S\-P\-A\-R\-S\-E@{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-S\-P\-A\-R\-S\-E}}\item[{\em 
+\hypertarget{group__matrix_ggae50d4f05ed96de495bdd326c201c28ffa0c0ef4a4a8df53f64b9237c1fb4acc75}{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-S\-P\-A\-R\-S\-E}\label{group__matrix_ggae50d4f05ed96de495bdd326c201c28ffa0c0ef4a4a8df53f64b9237c1fb4acc75}
+}]sparse matrix \index{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-U\-S\-E\-R\-\_\-\-D\-E\-F\-I\-N\-E\-D@{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-U\-S\-E\-R\-\_\-\-D\-E\-F\-I\-N\-E\-D}!S\-I\-S\-L matrices@{S\-I\-S\-L matrices}}\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-U\-S\-E\-R\-\_\-\-D\-E\-F\-I\-N\-E\-D@{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-U\-S\-E\-R\-\_\-\-D\-E\-F\-I\-N\-E\-D}}\item[{\em 
+\hypertarget{group__matrix_ggae50d4f05ed96de495bdd326c201c28ffa64a3cff2469cac8f45575896e548611c}{S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-U\-S\-E\-R\-\_\-\-D\-E\-F\-I\-N\-E\-D}\label{group__matrix_ggae50d4f05ed96de495bdd326c201c28ffa64a3cff2469cac8f45575896e548611c}
+}]user-\/defined matrix (e.\-g. for matrix-\/free methods) \end{description}
+\end{Desc}
+
+
+
+\subsection{Function Documentation}
+\hypertarget{group__matrix_ga35de2cf4acfbe6e820f895a2ace8b328}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-free@{sisl\-\_\-matrix\-\_\-free}}
+\index{sisl\-\_\-matrix\-\_\-free@{sisl\-\_\-matrix\-\_\-free}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\-\_\-matrix\-\_\-free (
+\begin{DoxyParamCaption}
+\item[{{\bf sisl\-\_\-matrix\-\_\-t} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga35de2cf4acfbe6e820f895a2ace8b328}
+Free a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} and the underlying memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\-I\-S\-L\-\_\-\-S\-U\-C\-C\-E\-S\-S on success. 
+\end{DoxyReturn}
+\hypertarget{group__matrix_ga441d1109b3297e94b7c4fba2b618ea0c}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-get@{sisl\-\_\-matrix\-\_\-get}}
+\index{sisl\-\_\-matrix\-\_\-get@{sisl\-\_\-matrix\-\_\-get}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}gdouble sisl\-\_\-matrix\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{{\bf sisl\-\_\-matrix\-\_\-t} $\ast$}]{m, }
+\item[{gint}]{i, }
+\item[{gint}]{j}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga441d1109b3297e94b7c4fba2b618ea0c}
+Get an element of a a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}; \\
+\hline
+{\em i} & row index; \\
+\hline
+{\em j} & column index.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+element ({\itshape i}, {\itshape j}) of {\itshape m}. 
+\end{DoxyReturn}
+\hypertarget{group__matrix_ga0a0ea595d8beec73a6673101ad348add}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-get\-\_\-complex@{sisl\-\_\-matrix\-\_\-get\-\_\-complex}}
+\index{sisl\-\_\-matrix\-\_\-get\-\_\-complex@{sisl\-\_\-matrix\-\_\-get\-\_\-complex}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-get\-\_\-complex}]{\setlength{\rightskip}{0pt plus 5cm}gsl\-\_\-complex sisl\-\_\-matrix\-\_\-get\-\_\-complex (
+\begin{DoxyParamCaption}
+\item[{{\bf sisl\-\_\-matrix\-\_\-t} $\ast$}]{m, }
+\item[{gint}]{i, }
+\item[{gint}]{j}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga0a0ea595d8beec73a6673101ad348add}
+Get an element of a complex \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}; \\
+\hline
+{\em i} & row index; \\
+\hline
+{\em j} & column index.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the complex element ({\itshape i}, {\itshape j}) of {\itshape m}. 
+\end{DoxyReturn}
+\hypertarget{group__matrix_ga29ab0c52a1e38fc785031c5e93e4ca98}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-new@{sisl\-\_\-matrix\-\_\-new}}
+\index{sisl\-\_\-matrix\-\_\-new@{sisl\-\_\-matrix\-\_\-new}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}{\bf sisl\-\_\-matrix\-\_\-t}$\ast$ sisl\-\_\-matrix\-\_\-new (
+\begin{DoxyParamCaption}
+\item[{{\bf sisl\-\_\-complex\-\_\-t}}]{c, }
+\item[{{\bf sisl\-\_\-matrix\-\_\-density\-\_\-t}}]{d}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga29ab0c52a1e38fc785031c5e93e4ca98}
+Allocate a new \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}, by default with distribution \hyperlink{group__matrix_gga03fd8bd724705cd998bb37b51393c0d4a2c7ad8cda72338a63fc48b67ba475e91}{S\-I\-S\-L\-\_\-\-S\-I\-N\-G\-L\-E}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & S\-I\-S\-L\-\_\-\-R\-E\-A\-L or S\-I\-S\-L\-\_\-\-C\-O\-M\-P\-L\-E\-X; \\
+\hline
+{\em d} & S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-D\-E\-N\-S\-E or S\-I\-S\-L\-\_\-\-M\-A\-T\-R\-I\-X\-\_\-\-U\-S\-E\-R\-\_\-\-D\-E\-F\-I\-N\-E\-D.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a newly allocated \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}. You will need to set its size and, possibly allocate its data block (\hyperlink{group__matrix_ga4dbf57c7f1ff8a417425b978b85ceefc}{sisl\-\_\-matrix\-\_\-set\-\_\-block\-\_\-size}) before you can use it. 
+\end{DoxyReturn}
+\hypertarget{group__matrix_ga67a577100e392546e9b3833415c739fd}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-set@{sisl\-\_\-matrix\-\_\-set}}
+\index{sisl\-\_\-matrix\-\_\-set@{sisl\-\_\-matrix\-\_\-set}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\-\_\-matrix\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{{\bf sisl\-\_\-matrix\-\_\-t} $\ast$}]{m, }
+\item[{gint}]{i, }
+\item[{gint}]{j, }
+\item[{gdouble}]{x}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga67a577100e392546e9b3833415c739fd}
+Set an element of a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}, $m_{ij}=x$. If the indices $(i,j)$ do not lie in the data block of the matrix, the function returns silently without setting any element.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}; \\
+\hline
+{\em i} & row index; \\
+\hline
+{\em j} & column index; \\
+\hline
+{\em x} & value for $m_{ij}$.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\-I\-S\-L\-\_\-\-S\-U\-C\-C\-E\-S\-S on success, an error code if the indices are not valid for the matrix as a whole. 
+\end{DoxyReturn}
+\hypertarget{group__matrix_ga4dbf57c7f1ff8a417425b978b85ceefc}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-set\-\_\-block\-\_\-size@{sisl\-\_\-matrix\-\_\-set\-\_\-block\-\_\-size}}
+\index{sisl\-\_\-matrix\-\_\-set\-\_\-block\-\_\-size@{sisl\-\_\-matrix\-\_\-set\-\_\-block\-\_\-size}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-set\-\_\-block\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\-\_\-matrix\-\_\-set\-\_\-block\-\_\-size (
+\begin{DoxyParamCaption}
+\item[{{\bf sisl\-\_\-matrix\-\_\-t} $\ast$}]{m, }
+\item[{gint}]{rows, }
+\item[{gint}]{columns}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga4dbf57c7f1ff8a417425b978b85ceefc}
+Allocate the data block for a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}. On a single processor, this will be the same as the size of the matrix itself; on a distributed system, this will be the size of the locally held part of the matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}; \\
+\hline
+{\em rows} & the number of rows to allocate; \\
+\hline
+{\em columns} & the number of columns to allocate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\-I\-S\-L\-\_\-\-S\-U\-C\-C\-E\-S\-S on success. 
+\end{DoxyReturn}
+\hypertarget{group__matrix_ga13808fa06a8b9d648152ae25ef7996d7}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-set\-\_\-complex@{sisl\-\_\-matrix\-\_\-set\-\_\-complex}}
+\index{sisl\-\_\-matrix\-\_\-set\-\_\-complex@{sisl\-\_\-matrix\-\_\-set\-\_\-complex}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-set\-\_\-complex}]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\-\_\-matrix\-\_\-set\-\_\-complex (
+\begin{DoxyParamCaption}
+\item[{{\bf sisl\-\_\-matrix\-\_\-t} $\ast$}]{m, }
+\item[{gint}]{i, }
+\item[{gint}]{j, }
+\item[{gsl\-\_\-complex}]{z}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga13808fa06a8b9d648152ae25ef7996d7}
+Set an element of a complex \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}, $m_{ij}=z$. If the indices $(i,j)$ do not lie in the data block of the matrix, the function returns silently without setting any element.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}; \\
+\hline
+{\em i} & row index; \\
+\hline
+{\em j} & column index; \\
+\hline
+{\em z} & a \-::gsl\-\_\-complex number.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\-I\-S\-L\-\_\-\-S\-U\-C\-C\-E\-S\-S on success, an error code if the indices are not valid for the matrix as a whole. 
+\end{DoxyReturn}
+\hypertarget{group__matrix_ga56825a47cadc80aa00795feedeb002bc}{\index{S\-I\-S\-L matrices@{S\-I\-S\-L matrices}!sisl\-\_\-matrix\-\_\-vector\-\_\-mul@{sisl\-\_\-matrix\-\_\-vector\-\_\-mul}}
+\index{sisl\-\_\-matrix\-\_\-vector\-\_\-mul@{sisl\-\_\-matrix\-\_\-vector\-\_\-mul}!SISL matrices@{S\-I\-S\-L matrices}}
+\subsubsection[{sisl\-\_\-matrix\-\_\-vector\-\_\-mul}]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\-\_\-matrix\-\_\-vector\-\_\-mul (
+\begin{DoxyParamCaption}
+\item[{{\bf sisl\-\_\-matrix\-\_\-t} $\ast$}]{m, }
+\item[{{\bf sisl\-\_\-vector\-\_\-t} $\ast$}]{v, }
+\item[{{\bf sisl\-\_\-vector\-\_\-t} $\ast$}]{w}
+\end{DoxyParamCaption}
+)}}\label{group__matrix_ga56825a47cadc80aa00795feedeb002bc}
+Multiply a vector by a matrix, $w=mv$. The result vector is automatically sized to hold the result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & a \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t}; \\
+\hline
+{\em v} & a \hyperlink{group__vector_gacbac585492f5005f05f0c0b8463039be}{sisl\-\_\-vector\-\_\-t}; \\
+\hline
+{\em w} & a \hyperlink{group__vector_gacbac585492f5005f05f0c0b8463039be}{sisl\-\_\-vector\-\_\-t}, to contain the result of the multiplication.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\-I\-S\-L\-\_\-\-S\-U\-C\-C\-E\-S\-S on success 
+\end{DoxyReturn}

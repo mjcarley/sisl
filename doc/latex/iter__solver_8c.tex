@@ -1,0 +1,59 @@
+\hypertarget{iter__solver_8c}{
+\section{iter\_\-solver.c File Reference}
+\label{iter__solver_8c}\index{iter_solver.c@{iter\_\-solver.c}}
+}
+Various iterative solvers for linear systems. 
+
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+sisl\_\-solver\_\-workspace\_\-t $\ast$ \hyperlink{iter__solver_8c_a1}{sisl\_\-solver\_\-workspace\_\-new} (guint n, sisl\_\-complex\_\-t rc, sisl\_\-dist\_\-t d)
+\item 
+gint \hyperlink{iter__solver_8c_a7}{sisl\_\-solve} (sisl\_\-solver\_\-t solver, sisl\_\-matrix\_\-t $\ast$A, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$x, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$b, gdouble tol, guint niter, sisl\_\-solver\_\-workspace\_\-t $\ast$w, sisl\_\-solver\_\-performance\_\-t $\ast$perf)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Various iterative solvers for linear systems. 
+
+\begin{Desc}
+\item[Author:]Michael Carley \end{Desc}
+\begin{Desc}
+\item[Date:]Fri Mar 17 11:49:21 2006\end{Desc}
+
+
+Functions implementing (some of) the iterative solvers in Barrett, R. et al, `Templates for the solution of linear systems: Building blocks for iterative methods', SIAM, 1994.
+
+\subsection{Function Documentation}
+\hypertarget{iter__solver_8c_a7}{
+\index{iter_solver.c@{iter\_\-solver.c}!sisl_solve@{sisl\_\-solve}}
+\index{sisl_solve@{sisl\_\-solve}!iter_solver.c@{iter\_\-solver.c}}
+\subsubsection[sisl\_\-solve]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-solve (sisl\_\-solver\_\-t {\em solver}, sisl\_\-matrix\_\-t $\ast$ {\em A}, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em x}, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em b}, gdouble {\em tol}, guint {\em niter}, sisl\_\-solver\_\-workspace\_\-t $\ast$ {\em w}, sisl\_\-solver\_\-performance\_\-t $\ast$ {\em perf})}}
+\label{iter__solver_8c_a7}
+
+
+Iterative solution of a real or complex linear system using one of the methods in Barrett, R. et al, `Templates for the solution of linear systems: Building blocks for iterative methods', SIAM, 1994. Currently implemented methods are: ::SISL\_\-ITER\_\-CG, ::SISL\_\-ITER\_\-BICG, ::SISL\_\-ITER\_\-CGS, ::SISL\_\-ITER\_\-BICGSTAB.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em solver}]iterative solver to use (::sisl\_\-solver\_\-t) \item[{\em A}]left hand side matrix \item[{\em x}]solution \item[{\em b}]right hand side \item[{\em tol}]tolerance for solution \item[{\em niter}]maximum number of iterations \item[{\em w}]workspace allocated with \hyperlink{iter__solver_8c_a1}{sisl\_\-solver\_\-workspace\_\-new} \item[{\em perf}]solution performance data (convergence tolerance, etc.)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success \end{Desc}
+\hypertarget{iter__solver_8c_a1}{
+\index{iter_solver.c@{iter\_\-solver.c}!sisl_solver_workspace_new@{sisl\_\-solver\_\-workspace\_\-new}}
+\index{sisl_solver_workspace_new@{sisl\_\-solver\_\-workspace\_\-new}!iter_solver.c@{iter\_\-solver.c}}
+\subsubsection[sisl\_\-solver\_\-workspace\_\-new]{\setlength{\rightskip}{0pt plus 5cm}sisl\_\-solver\_\-workspace\_\-t$\ast$ sisl\_\-solver\_\-workspace\_\-new (guint {\em n}, sisl\_\-complex\_\-t {\em rc}, sisl\_\-dist\_\-t {\em d})}}
+\label{iter__solver_8c_a1}
+
+
+Allocate a workspace for iterative solution of linear systems
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em n}]maximum size of problem \item[{\em rc}]SISL\_\-REAL or SISL\_\-COMPLEX \item[{\em d}]SISL\_\-SINGLE or SISL\_\-MULTI (single or multi-processor)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to newly allocated workspace \end{Desc}

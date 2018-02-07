@@ -1,0 +1,545 @@
+\hypertarget{vector_8c}{
+\section{vector.c File Reference}
+\label{vector_8c}\index{vector.c@{vector.c}}
+}
+Functions for handling vectors. 
+
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ \hyperlink{vector_8c_a0}{sisl\_\-vector\_\-new} (guint nmax, sisl\_\-vector\_\-density\_\-t density, sisl\_\-complex\_\-t rc, sisl\_\-dist\_\-t dist)
+\item 
+gint \hyperlink{vector_8c_a1}{sisl\_\-vector\_\-clear} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v)
+\item 
+gint \hyperlink{vector_8c_a2}{sisl\_\-vector\_\-inner\_\-product} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$w, gdouble $\ast$ip)
+\item 
+gint \hyperlink{vector_8c_a3}{sisl\_\-vector\_\-add\_\-element} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, guint i, gdouble x)
+\item 
+gint \hyperlink{vector_8c_a4}{sisl\_\-vector\_\-complex\_\-add\_\-element} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, guint i, gsl\_\-complex x)
+\item 
+gint \hyperlink{vector_8c_a5}{sisl\_\-vector\_\-set\_\-length} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, guint len)
+\item 
+gint \hyperlink{vector_8c_a6}{sisl\_\-vector\_\-write} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, FILE $\ast$f)
+\item 
+gint \hyperlink{vector_8c_a7}{sisl\_\-vector\_\-write\_\-sparse} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, guint i, FILE $\ast$f)
+\item 
+gint \hyperlink{vector_8c_a8}{sisl\_\-vector\_\-scale} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, gdouble x)
+\item 
+gint \hyperlink{vector_8c_a9}{sisl\_\-vector\_\-complex\_\-scale} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, gsl\_\-complex x)
+\item 
+gint \hyperlink{vector_8c_a10}{sisl\_\-vector\_\-set\_\-all} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, gdouble x)
+\item 
+gint \hyperlink{vector_8c_a11}{sisl\_\-vector\_\-complex\_\-set\_\-all} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, gsl\_\-complex x)
+\item 
+gint \hyperlink{vector_8c_a12}{sisl\_\-vector\_\-sub} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$w)
+\item 
+gint \hyperlink{vector_8c_a13}{sisl\_\-vector\_\-add} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$w)
+\item 
+gint \hyperlink{vector_8c_a14}{sisl\_\-vector\_\-add\_\-weighted} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$w, gdouble wt)
+\item 
+gint \hyperlink{vector_8c_a15}{sisl\_\-vector\_\-copy} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$w)
+\item 
+gint \hyperlink{vector_8c_a16}{sisl\_\-vector\_\-norm} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, sisl\_\-norm\_\-t nt, gdouble $\ast$n)
+\item 
+gint \hyperlink{vector_8c_a17}{sisl\_\-vector\_\-set\_\-element} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, guint i, gdouble x)
+\item 
+gint \hyperlink{vector_8c_a18}{sisl\_\-vector\_\-add\_\-element\_\-indexed} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, guint i, guint idx, gdouble x)
+\item 
+gdouble \hyperlink{vector_8c_a19}{sisl\_\-vector\_\-get\_\-element} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, guint i)
+\item 
+gdouble \hyperlink{vector_8c_a20}{sisl\_\-vector\_\-get\_\-element\_\-indexed} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, guint i, guint idx)
+\item 
+gint \hyperlink{vector_8c_a21}{sisl\_\-vector\_\-set\_\-element\_\-indexed} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, guint i, guint idx, gdouble x)
+\item 
+guint \hyperlink{vector_8c_a22}{sisl\_\-vector\_\-length} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v)
+\item 
+gint \hyperlink{vector_8c_a23}{sisl\_\-vector\_\-compact} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v)
+\item 
+gint \hyperlink{vector_8c_a24}{sisl\_\-vector\_\-addto\_\-element} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, guint i, gdouble x)
+\item 
+gint \hyperlink{vector_8c_a25}{sisl\_\-vector\_\-addto\_\-element\_\-indexed} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, guint i, guint idx, gdouble x)
+\item 
+guint \hyperlink{vector_8c_a26}{sisl\_\-vector\_\-longest} (guint n)
+\item 
+gpointer \hyperlink{vector_8c_a27}{sisl\_\-vector\_\-operation\_\-buffer} (guint n)
+\item 
+gint \hyperlink{vector_8c_a28}{sisl\_\-vector\_\-wrap\_\-array} (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$v, gdouble $\ast$x, guint n)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Functions for handling vectors. 
+
+\begin{Desc}
+\item[Author:]Michael Carley \end{Desc}
+\begin{Desc}
+\item[Date:]Tue May 30 17:37:53 2006\end{Desc}
+
+
+Various functions for allocating and manipulating vectors and performing vector arithmetic.
+
+\subsection{Function Documentation}
+\hypertarget{vector_8c_a13}{
+\index{vector.c@{vector.c}!sisl_vector_add@{sisl\_\-vector\_\-add}}
+\index{sisl_vector_add@{sisl\_\-vector\_\-add}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-add]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-add (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em w})}}
+\label{vector_8c_a13}
+
+
+Add one vector to another, storing the result in the first vector, i.e. $v=v+w$. The function fails if the first vector is real and the second is complex.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]real or complex vector; \item[{\em w}]real (in any case) or complex (if v is complex) vector.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a3}{
+\index{vector.c@{vector.c}!sisl_vector_add_element@{sisl\_\-vector\_\-add\_\-element}}
+\index{sisl_vector_add_element@{sisl\_\-vector\_\-add\_\-element}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-add\_\-element]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-add\_\-element (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, guint {\em i}, gdouble {\em x})}}
+\label{vector_8c_a3}
+
+
+Add an element to a vector. For dense vectors, this is identical to \hyperlink{vector_8c_a17}{sisl\_\-vector\_\-set\_\-element}. If the vector is complex, this sets the real part of the entry.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em i}]index of element; \item[{\em x}]value of element.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]\end{Desc}
+\hypertarget{vector_8c_a18}{
+\index{vector.c@{vector.c}!sisl_vector_add_element_indexed@{sisl\_\-vector\_\-add\_\-element\_\-indexed}}
+\index{sisl_vector_add_element_indexed@{sisl\_\-vector\_\-add\_\-element\_\-indexed}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-add\_\-element\_\-indexed]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-add\_\-element\_\-indexed (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, guint {\em i}, guint {\em idx}, gdouble {\em x})}}
+\label{vector_8c_a18}
+
+
+Add an indexed element to a vector. For a sparse vector, the idx'th entry should be the i'th element of the vector. For a dense vector, the function fails if idx is not equal to i. This function is intended to speed access to sparse vectors when the sparsity pattern is known as it avoids searching the indices for i. For complex vectors, this sets the real part.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em i}]index of element in vector; \item[{\em idx}]index of element in list of non-zero elements; \item[{\em x}]value to set.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a14}{
+\index{vector.c@{vector.c}!sisl_vector_add_weighted@{sisl\_\-vector\_\-add\_\-weighted}}
+\index{sisl_vector_add_weighted@{sisl\_\-vector\_\-add\_\-weighted}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-add\_\-weighted]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-add\_\-weighted (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em w}, gdouble {\em wt})}}
+\label{vector_8c_a14}
+
+
+Weighted sum of one vector with another, storing the result in the first vector, i.e. $v=v+\alpha w$. The function fails if the first vector is real and the second is complex.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]real or complex vector; \item[{\em w}]real (in any case) or complex (if v is complex) vector; \item[{\em wt}]weighting factor $\alpha$.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a24}{
+\index{vector.c@{vector.c}!sisl_vector_addto_element@{sisl\_\-vector\_\-addto\_\-element}}
+\index{sisl_vector_addto_element@{sisl\_\-vector\_\-addto\_\-element}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-addto\_\-element]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-addto\_\-element (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, guint {\em i}, gdouble {\em x})}}
+\label{vector_8c_a24}
+
+
+Add a number to an entry of a real or complex vector. If the vector is complex, the value is added to the real part.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em i}]index of element; \item[{\em x}]value to add.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a25}{
+\index{vector.c@{vector.c}!sisl_vector_addto_element_indexed@{sisl\_\-vector\_\-addto\_\-element\_\-indexed}}
+\index{sisl_vector_addto_element_indexed@{sisl\_\-vector\_\-addto\_\-element\_\-indexed}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-addto\_\-element\_\-indexed]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-addto\_\-element\_\-indexed (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, guint {\em i}, guint {\em idx}, gdouble {\em x})}}
+\label{vector_8c_a25}
+
+
+Add a number to an indexed entry of a real or complex vector. If the vector is complex, the value is added to the real part. If the vector is dense, idx must be equal to i. This function is intended to speed access to sparse vectors with known sparsity pattern, by
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em i}]index of element in vector; \item[{\em idx}]index of element in sparse element list; \item[{\em x}]value to add.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a1}{
+\index{vector.c@{vector.c}!sisl_vector_clear@{sisl\_\-vector\_\-clear}}
+\index{sisl_vector_clear@{sisl\_\-vector\_\-clear}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-clear]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-clear (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v})}}
+\label{vector_8c_a1}
+
+
+Clear a vector, setting its length and all of its entries to zero.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a23}{
+\index{vector.c@{vector.c}!sisl_vector_compact@{sisl\_\-vector\_\-compact}}
+\index{sisl_vector_compact@{sisl\_\-vector\_\-compact}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-compact]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-compact (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v})}}
+\label{vector_8c_a23}
+
+
+Compact a sparse vector to remove zero entries. This function has no effect on dense vectors.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector to compact.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a4}{
+\index{vector.c@{vector.c}!sisl_vector_complex_add_element@{sisl\_\-vector\_\-complex\_\-add\_\-element}}
+\index{sisl_vector_complex_add_element@{sisl\_\-vector\_\-complex\_\-add\_\-element}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-complex\_\-add\_\-element]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-complex\_\-add\_\-element (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, guint {\em i}, gsl\_\-complex {\em x})}}
+\label{vector_8c_a4}
+
+
+Add a complex element to a vector. For dense vectors, this is identical to ::sisl\_\-vector\_\-complex\_\-set\_\-element. The function fails if the vector is not complex.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em i}]index of element; \item[{\em x}]value of element.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]\end{Desc}
+\hypertarget{vector_8c_a9}{
+\index{vector.c@{vector.c}!sisl_vector_complex_scale@{sisl\_\-vector\_\-complex\_\-scale}}
+\index{sisl_vector_complex_scale@{sisl\_\-vector\_\-complex\_\-scale}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-complex\_\-scale]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-complex\_\-scale (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, gsl\_\-complex {\em x})}}
+\label{vector_8c_a9}
+
+
+Scale a complex vector by a complex factor. The function will fail if the vector is not complex.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em x}]complex scaling factor.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a11}{
+\index{vector.c@{vector.c}!sisl_vector_complex_set_all@{sisl\_\-vector\_\-complex\_\-set\_\-all}}
+\index{sisl_vector_complex_set_all@{sisl\_\-vector\_\-complex\_\-set\_\-all}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-complex\_\-set\_\-all]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-complex\_\-set\_\-all (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, gsl\_\-complex {\em x})}}
+\label{vector_8c_a11}
+
+
+Set all of the entries of a complex vector to the same (complex) value. The function fails if the vector is real.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em x}]complex value.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a15}{
+\index{vector.c@{vector.c}!sisl_vector_copy@{sisl\_\-vector\_\-copy}}
+\index{sisl_vector_copy@{sisl\_\-vector\_\-copy}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-copy]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-copy (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em w})}}
+\label{vector_8c_a15}
+
+
+Copy one real or complex vector into another $v=w$. The function fails if the first vector is real and the second complex, but works for all combinations otherwise.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector to hold result; \item[{\em w}]vector to copy.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a19}{
+\index{vector.c@{vector.c}!sisl_vector_get_element@{sisl\_\-vector\_\-get\_\-element}}
+\index{sisl_vector_get_element@{sisl\_\-vector\_\-get\_\-element}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-get\_\-element]{\setlength{\rightskip}{0pt plus 5cm}gdouble sisl\_\-vector\_\-get\_\-element (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, guint {\em i})}}
+\label{vector_8c_a19}
+
+
+Extract an element of a vector. The function fails if the vector is complex.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em i}]index of entry.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a20}{
+\index{vector.c@{vector.c}!sisl_vector_get_element_indexed@{sisl\_\-vector\_\-get\_\-element\_\-indexed}}
+\index{sisl_vector_get_element_indexed@{sisl\_\-vector\_\-get\_\-element\_\-indexed}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-get\_\-element\_\-indexed]{\setlength{\rightskip}{0pt plus 5cm}gdouble sisl\_\-vector\_\-get\_\-element\_\-indexed (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, guint {\em i}, guint {\em idx})}}
+\label{vector_8c_a20}
+
+
+Get an indexed element of a vector. For a sparse vector, the idx'th entry should be the i'th element of the vector. For a dense vector, the function fails if idx is not equal to i. This function is intended to speed access to sparse vectors when the sparsity pattern is known as it avoids searching the indices for i. The function fails if the vector is complex.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em i}]index of element in vector; \item[{\em idx}]index of element in list of non-zero elements;\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]the ith element of the vector. \end{Desc}
+\hypertarget{vector_8c_a2}{
+\index{vector.c@{vector.c}!sisl_vector_inner_product@{sisl\_\-vector\_\-inner\_\-product}}
+\index{sisl_vector_inner_product@{sisl\_\-vector\_\-inner\_\-product}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-inner\_\-product]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-inner\_\-product (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em w}, gdouble $\ast$ {\em ip})}}
+\label{vector_8c_a2}
+
+
+Compute the inner product of two vectors. This function fails if one or both vectors is complex.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em w}]vector; \item[{\em ip}]result\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a22}{
+\index{vector.c@{vector.c}!sisl_vector_length@{sisl\_\-vector\_\-length}}
+\index{sisl_vector_length@{sisl\_\-vector\_\-length}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-length]{\setlength{\rightskip}{0pt plus 5cm}guint sisl\_\-vector\_\-length (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v})}}
+\label{vector_8c_a22}
+
+
+Find the length of a vector.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]the length of the vector. \end{Desc}
+\hypertarget{vector_8c_a26}{
+\index{vector.c@{vector.c}!sisl_vector_longest@{sisl\_\-vector\_\-longest}}
+\index{sisl_vector_longest@{sisl\_\-vector\_\-longest}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-longest]{\setlength{\rightskip}{0pt plus 5cm}guint sisl\_\-vector\_\-longest (guint {\em n})}}
+\label{vector_8c_a26}
+
+
+Find the size (in number of entries) of the longest vector allocated.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em n}]if greater than the longest vector to date, sets the greatest length.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]the greatest number of elements so far allocated for a vector. \end{Desc}
+\hypertarget{vector_8c_a0}{
+\index{vector.c@{vector.c}!sisl_vector_new@{sisl\_\-vector\_\-new}}
+\index{sisl_vector_new@{sisl\_\-vector\_\-new}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-new]{\setlength{\rightskip}{0pt plus 5cm}\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t}$\ast$ sisl\_\-vector\_\-new (guint {\em nmax}, sisl\_\-vector\_\-density\_\-t {\em density}, sisl\_\-complex\_\-t {\em rc}, sisl\_\-dist\_\-t {\em dist})}}
+\label{vector_8c_a0}
+
+
+Allocate a new vector. Note that the length is initially set to 0 so you will need to call \hyperlink{vector_8c_a5}{sisl\_\-vector\_\-set\_\-length} to size the vector. The extra memory needed to handle complex vectors is automatically allocated.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nmax}]maximum number of elements in the vector; \item[{\em density}]SISL\_\-VECTOR\_\-DENSE or SISL\_\-VECTOR\_\-SPARSE; \item[{\em rc}]SISL\_\-REAL or SISL\_\-COMPLEX; \item[{\em dist}]SISL\_\-SINGLE or SISL\_\-MULTI.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]pointer to new vector. \end{Desc}
+\hypertarget{vector_8c_a16}{
+\index{vector.c@{vector.c}!sisl_vector_norm@{sisl\_\-vector\_\-norm}}
+\index{sisl_vector_norm@{sisl\_\-vector\_\-norm}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-norm]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-norm (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, sisl\_\-norm\_\-t {\em nt}, gdouble $\ast$ {\em n})}}
+\label{vector_8c_a16}
+
+
+Compute norm of real or complex vector.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em nt}]::sisl\_\-norm\_\-t; \item[{\em n}]result.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a27}{
+\index{vector.c@{vector.c}!sisl_vector_operation_buffer@{sisl\_\-vector\_\-operation\_\-buffer}}
+\index{sisl_vector_operation_buffer@{sisl\_\-vector\_\-operation\_\-buffer}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-operation\_\-buffer]{\setlength{\rightskip}{0pt plus 5cm}gpointer sisl\_\-vector\_\-operation\_\-buffer (guint {\em n})}}
+\label{vector_8c_a27}
+
+
+Get a buffer at least as long as the longest vector so far allocated.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em n}]if 0, allocate and return a buffer at least as long as the longest vector so far allocated; if non-zero, allocate or re-allocate a buffer as long as the longest vector so far allocated, or of length n, which ever is greater.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer to the gdouble buffer. \end{Desc}
+\hypertarget{vector_8c_a8}{
+\index{vector.c@{vector.c}!sisl_vector_scale@{sisl\_\-vector\_\-scale}}
+\index{sisl_vector_scale@{sisl\_\-vector\_\-scale}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-scale]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-scale (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, gdouble {\em x})}}
+\label{vector_8c_a8}
+
+
+Scale a real or complex vector.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector \item[{\em x}]scaling factor.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a10}{
+\index{vector.c@{vector.c}!sisl_vector_set_all@{sisl\_\-vector\_\-set\_\-all}}
+\index{sisl_vector_set_all@{sisl\_\-vector\_\-set\_\-all}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-set\_\-all]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-set\_\-all (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, gdouble {\em x})}}
+\label{vector_8c_a10}
+
+
+Set all of the entries of a real or complex vector to the same (real) value.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em x}]value to set.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]\end{Desc}
+\hypertarget{vector_8c_a17}{
+\index{vector.c@{vector.c}!sisl_vector_set_element@{sisl\_\-vector\_\-set\_\-element}}
+\index{sisl_vector_set_element@{sisl\_\-vector\_\-set\_\-element}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-set\_\-element]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-set\_\-element (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, guint {\em i}, gdouble {\em x})}}
+\label{vector_8c_a17}
+
+
+Set an element of a vector. If the vector is complex, this sets the real part.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em i}]element index; \item[{\em x}]value.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a21}{
+\index{vector.c@{vector.c}!sisl_vector_set_element_indexed@{sisl\_\-vector\_\-set\_\-element\_\-indexed}}
+\index{sisl_vector_set_element_indexed@{sisl\_\-vector\_\-set\_\-element\_\-indexed}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-set\_\-element\_\-indexed]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-set\_\-element\_\-indexed (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, guint {\em i}, guint {\em idx}, gdouble {\em x})}}
+\label{vector_8c_a21}
+
+
+Set an indexed element of a vector. For a sparse vector, the idx'th entry should be the i'th element of the vector. For a dense vector, the function fails if idx is not equal to i. This function is intended to speed access to sparse vectors when the sparsity pattern is known as it avoids searching the indices for i. For complex vectors, this sets the real part.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em i}]index of element in vector; \item[{\em idx}]index of element in list of non-zero elements; \item[{\em x}]value to set.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a5}{
+\index{vector.c@{vector.c}!sisl_vector_set_length@{sisl\_\-vector\_\-set\_\-length}}
+\index{sisl_vector_set_length@{sisl\_\-vector\_\-set\_\-length}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-set\_\-length]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-set\_\-length (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, guint {\em len})}}
+\label{vector_8c_a5}
+
+
+Set the length of a real or complex vector, checking that sufficient memory has been allocated.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em len}]length of vector.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a12}{
+\index{vector.c@{vector.c}!sisl_vector_sub@{sisl\_\-vector\_\-sub}}
+\index{sisl_vector_sub@{sisl\_\-vector\_\-sub}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-sub]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-sub (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, \hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em w})}}
+\label{vector_8c_a12}
+
+
+Subtract one vector from another, storing the result in the first vector, i.e. $v=v-w$. The function fails if the first vector is real and the second is complex.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]real or complex vector; \item[{\em w}]real (in any case) or complex (if v is complex) vector.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a28}{
+\index{vector.c@{vector.c}!sisl_vector_wrap_array@{sisl\_\-vector\_\-wrap\_\-array}}
+\index{sisl_vector_wrap_array@{sisl\_\-vector\_\-wrap\_\-array}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-wrap\_\-array]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-wrap\_\-array (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, gdouble $\ast$ {\em x}, guint {\em n})}}
+\label{vector_8c_a28}
+
+
+Wrap a double array in a vector.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector to wrap around array. This must already have been allocated as a dense vector, real or complex; \item[{\em x}]array to wrap; \item[{\em n}]number of elements in x.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a6}{
+\index{vector.c@{vector.c}!sisl_vector_write@{sisl\_\-vector\_\-write}}
+\index{sisl_vector_write@{sisl\_\-vector\_\-write}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-write]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-write (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, FILE $\ast$ {\em f})}}
+\label{vector_8c_a6}
+
+
+Write a real or complex vector to file.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em f}]pointer to file.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}
+\hypertarget{vector_8c_a7}{
+\index{vector.c@{vector.c}!sisl_vector_write_sparse@{sisl\_\-vector\_\-write\_\-sparse}}
+\index{sisl_vector_write_sparse@{sisl\_\-vector\_\-write\_\-sparse}!vector.c@{vector.c}}
+\subsubsection[sisl\_\-vector\_\-write\_\-sparse]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-vector\_\-write\_\-sparse (\hyperlink{structsisl__vector__t}{sisl\_\-vector\_\-t} $\ast$ {\em v}, guint {\em i}, FILE $\ast$ {\em f})}}
+\label{vector_8c_a7}
+
+
+Write a vector to file in sparse format. This function is intended for use in writing sparse matrices.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em v}]vector; \item[{\em i}]row index (from sparse matrix); \item[{\em f}]file pointer.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success. \end{Desc}

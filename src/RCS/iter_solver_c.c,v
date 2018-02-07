@@ -1,0 +1,376 @@
+head	1.1;
+access;
+symbols;
+locks
+	ensmjc:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	2009.01.28.16.30.17;	author ensmjc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* iter_solver_c.c
+ * 
+ * Copyright (C) 2006 Michael Carley
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <glib.h>
+
+#include <wmpi.h>
+
+#include "iter_solver.h"
+
+#include "sisl_private.h"
+
+#include <gsl/gsl_complex.h>
+#include <gsl/gsl_complex_math.h>
+
+gint sisl_solve_bicgstab_c(sisl_matrix_t *A, sisl_vector_t *x, 
+			   sisl_vector_t *b,
+			   gdouble tol, gint niter,
+			   sisl_solver_workspace_t *w,
+			   sisl_solver_performance_t *perf)
+
+     /*
+       Stabilized biconjugate gradient solution of Ax=b,
+       from Barrett, R. et al, `Templates for the solution of
+       linear systems: Building blocks for iterative methods', 
+       SIAM, 1994, figure 2.10, but without preconditioning.
+     */
+
+{
+  sisl_vector_t *v, *r, *rt, *p, *ph, *s, *sh ;
+  sisl_norm_t error_norm ;
+  gsl_complex rho, rho_old, alpha, beta, omega, rnorm_2 ;
+  gdouble bnorm, rnorm_inf ;
+  gint i, j ;
+  gsl_complex minus_one ;
+
+  GSL_SET_COMPLEX(&minus_one, -1.0, 0.0) ;
+
+  error_norm = SISL_NORM_2 ;
+
+  /*unpack the workspace*/
+  sisl_solver_workspace_size(w, 7) ;
+  v  = SISL_WORKSPACE_VECTOR(w,0) ;
+  r  = SISL_WORKSPACE_VECTOR(w,1) ;
+  rt = SISL_WORKSPACE_VECTOR(w,2) ;
+  p  = SISL_WORKSPACE_VECTOR(w,3) ;
+  ph = SISL_WORKSPACE_VECTOR(w,4) ;
+  s  = SISL_WORKSPACE_VECTOR(w,5) ;
+  sh = SISL_WORKSPACE_VECTOR(w,6) ;
+
+  v->c = r->c = rt->c = p->c = ph->c = s->c = sh->c = A->c ;
+
+  sisl_vector_clear(v) ; 
+  sisl_vector_clear(r) ; sisl_vector_clear(rt) ;
+  sisl_vector_clear(p) ; sisl_vector_clear(ph) ; 
+  sisl_vector_clear(s) ; sisl_vector_clear(sh) ;
+
+  /*size the vectors*/
+  i = sisl_matrix_row_number(A) ;
+  j = sisl_matrix_column_number(A) ;
+  if ( i != j ) 
+    g_error("%s: %dx%d matrix A must be square", __FUNCTION__, i, j) ;
+  if ( sisl_vector_length(x) != j) 
+    g_error("%s: length %d vector x not compatible with %dx%d matrix A",
+	    __FUNCTION__, sisl_vector_length(x), i, j) ;
+  if ( sisl_vector_length(b) != i) 
+    g_error("%s: length %d vector b not compatible with %dx%d matrix A",
+	    __FUNCTION__, sisl_vector_length(b), i, j) ;
+  
+  sisl_vector_set_length(v, i) ; 
+  sisl_vector_set_length(r, i) ; sisl_vector_set_length(rt, i) ;
+  sisl_vector_set_length(p, i) ; sisl_vector_set_length(ph, i) ;
+  sisl_vector_set_length(s, i) ; sisl_vector_set_length(sh, i) ;
+
+  /* initial residual r = b - Ax */
+  sisl_matrix_vector_mul(A, x, r) ;
+
+  sisl_vector_sub(r, b) ; 
+  sisl_vector_scale_complex(r, minus_one) ;
+  sisl_vector_copy(rt, r) ;
+
+  bnorm = sisl_vector_norm(b, SISL_NORM_2) ; 
+  GSL_SET_COMPLEX(&rho, 0.0, 0.0) ;
+  GSL_SET_COMPLEX(&alpha, 0.0, 0.0) ;
+  GSL_SET_COMPLEX(&beta, 0.0, 0.0) ;
+  GSL_SET_COMPLEX(&omega, 0.0, 0.0) ;
+  if ( wmpi_rank() == 0 )
+    g_log(G_LOG_DOMAIN, G_LOG_LEVEL_MESSAGE, "bnorm: %1.16e", bnorm) ;
+  perf->niter = 0 ;
+
+  rnorm_inf = G_MAXDOUBLE ;
+  GSL_SET_COMPLEX(&rnorm_2, G_MAXDOUBLE, 0.0) ;
+  for ( i = 0 ; i < niter ; i ++ ) {
+    GSL_SET_REAL(&rho_old, GSL_REAL(rho)) ;
+    GSL_SET_IMAG(&rho_old, GSL_IMAG(rho)) ;
+    rho = sisl_vector_dot_complex(rt, r) ;
+
+    if ( GSL_REAL(rho) == 0.0 && GSL_IMAG(rho) == 0.0 ) { 
+      if ( wmpi_rank() == 0 )
+	g_log(G_LOG_DOMAIN, G_LOG_LEVEL_MESSAGE, 
+	      "%s failure: rho=0.0", __FUNCTION__) ;
+      return -1 ; 
+    }
+
+    if ( i == 0 ) sisl_vector_copy(p, r) ;
+    else {
+/*       beta = (rho/rho_old)*(alpha/omega) ; */
+      beta = gsl_complex_div(rho,rho_old) ;
+      beta = gsl_complex_mul(beta,gsl_complex_div(alpha,omega)) ;
+      /* p = r + beta*(p-omega*v) */
+      GSL_SET_REAL(&omega, -GSL_REAL(omega)) ;
+      GSL_SET_IMAG(&omega, -GSL_IMAG(omega)) ;
+      sisl_vector_scale_complex(v, omega) ;
+      GSL_SET_REAL(&omega, -GSL_REAL(omega)) ;
+      GSL_SET_IMAG(&omega, -GSL_IMAG(omega)) ;
+      sisl_vector_add(p, v) ;
+      sisl_vector_scale_complex(p, beta) ; 
+      sisl_vector_add(p, r) ;
+    }
+
+    /* preconditioner point */
+    sisl_vector_copy(ph, p) ;
+    
+    sisl_matrix_vector_mul(A, ph, v) ;
+
+    alpha = sisl_vector_dot_complex(rt, v) ;
+/*     alpha = rho/alpha ; */
+    alpha = gsl_complex_div(rho,alpha) ;
+
+    sisl_vector_copy(s, v) ; 
+    alpha = gsl_complex_mul_real(alpha, -1.0) ;
+    sisl_vector_scale_complex(s, alpha) ;
+    alpha = gsl_complex_mul_real(alpha, -1.0) ;
+    sisl_vector_add(s, r) ;
+
+    GSL_SET_IMAG(&omega, 0.0) ;
+    GSL_REAL(omega) = sisl_vector_norm(s, error_norm) ;
+    if ( GSL_REAL(omega) < tol ) {
+      sisl_vector_scale_complex(ph, alpha) ; 
+      sisl_vector_add(x, ph) ;
+      if ( wmpi_rank() == 0 )
+	g_log(G_LOG_DOMAIN, G_LOG_LEVEL_MESSAGE, "norm: %e", 
+	      GSL_REAL(omega)) ;
+      break ;
+    }
+
+    /* preconditioner point */
+    sisl_vector_copy(sh, s) ;
+
+    /* use r to store t for a few lines */
+    sisl_matrix_vector_mul(A, sh, r) ;
+  
+    GSL_REAL(omega) = sisl_vector_norm(r, error_norm) ;
+    rnorm_2 = sisl_vector_dot_complex(r, s) ;
+/*     omega = rnorm_2/omega/omega ; */
+    omega = gsl_complex_mul(omega, omega) ;
+    omega = gsl_complex_div(rnorm_2, omega) ;
+
+    sisl_vector_scale_complex(sh, omega) ; sisl_vector_add(x, sh) ;
+    sisl_vector_scale_complex(ph, alpha) ; sisl_vector_add(x, ph) ;
+
+    /* r = s - omega t */
+    GSL_SET_REAL(&omega, -GSL_REAL(omega)) ;
+    GSL_SET_IMAG(&omega, -GSL_IMAG(omega)) ;
+    sisl_vector_scale_complex(r, omega) ; sisl_vector_add(r, s) ;
+    GSL_SET_REAL(&omega, -GSL_REAL(omega)) ;
+    GSL_SET_IMAG(&omega, -GSL_IMAG(omega)) ;
+
+    GSL_SET_COMPLEX(&rnorm_2, 0.0, 0.0) ;
+    GSL_REAL(rnorm_2) = sisl_vector_norm(r, error_norm) ;
+    rnorm_inf = sisl_vector_norm(r, SISL_NORM_INFINITY) ;
+    if ( wmpi_rank() == 0 )
+      g_log(G_LOG_DOMAIN, G_LOG_LEVEL_MESSAGE, 
+	    "iter: %u; |r|_2/|b|_2: %1.4e; |r_|_inf=%1.4e", 
+	    i, GSL_REAL(rnorm_2)/bnorm, rnorm_inf) ;
+    if ( gsl_complex_abs(omega) == 0.0 ) break ;
+    if ( GSL_REAL(rnorm_2) < tol*bnorm ) break ;
+  }
+
+  perf->r_1 = sisl_vector_norm(r, SISL_NORM_1) ;
+  perf->r_2 = sisl_vector_norm(r, SISL_NORM_2) ;
+  perf->r_inf = sisl_vector_norm(r, SISL_NORM_INFINITY) ;
+  perf->niter = i ;
+  perf->bnorm = bnorm ;
+
+  if ( (GSL_REAL(rnorm_2) < tol*bnorm) || (rnorm_inf < tol) ) return 0 ;
+
+  return -1 ;
+}
+
+gint sisl_solve_cgs_c(sisl_matrix_t *A, sisl_vector_t *x, 
+		    sisl_vector_t *b,
+		    gdouble tol, gint niter,
+		    sisl_solver_workspace_t *w,
+		    sisl_solver_performance_t *perf)
+
+     /*
+       Conjugate gradient squared solution of Ax=b, from Barrett,
+       R. et al, `Templates for the solution of linear systems:
+       Building blocks for iterative methods', SIAM, 1994, figure 2.9,
+       but without preconditioning.  
+     */
+
+{
+  sisl_vector_t *u, *uh, *v, *vh, *r, *rt, *p, *ph, *q, *qh ;
+  sisl_norm_t error_norm ;
+  gdouble bnorm, rnorm_2, rnorm_inf ;
+  gsl_complex rho, rho_old, alpha, beta ;
+  gint i, j ;
+  gsl_complex minus_one ;
+
+  GSL_SET_COMPLEX(&minus_one, -1.0, 0.0) ;
+
+  error_norm = SISL_NORM_2 ;
+
+  /*unpack the workspace*/
+  sisl_solver_workspace_size(w, 10) ;
+  v  = SISL_WORKSPACE_VECTOR(w,0) ;
+  r  = SISL_WORKSPACE_VECTOR(w,1) ;
+  rt = SISL_WORKSPACE_VECTOR(w,2) ;
+  p  = SISL_WORKSPACE_VECTOR(w,3) ;
+  ph = SISL_WORKSPACE_VECTOR(w,4) ;
+  u  = SISL_WORKSPACE_VECTOR(w,5) ;
+  uh = SISL_WORKSPACE_VECTOR(w,6) ;
+  q  = SISL_WORKSPACE_VECTOR(w,7) ;
+  qh = SISL_WORKSPACE_VECTOR(w,8) ;
+  vh = SISL_WORKSPACE_VECTOR(w,9) ;
+
+  v->c = r->c = rt->c = p->c = ph->c = u->c = uh->c = q->c = qh->c = vh->c
+    = A->c ;
+
+  sisl_vector_clear(v) ; sisl_vector_clear(vh) ;
+  sisl_vector_clear(r) ; sisl_vector_clear(rt) ;
+  sisl_vector_clear(p) ; sisl_vector_clear(ph) ; 
+  sisl_vector_clear(u) ; sisl_vector_clear(uh) ;
+  sisl_vector_clear(q) ; sisl_vector_clear(qh) ;
+
+  /*size the vectors*/
+  i = sisl_matrix_row_number(A) ;
+  j = sisl_matrix_column_number(A) ;
+  g_assert(sisl_vector_length(x) == i) ; 
+  g_assert(sisl_vector_length(b) == i) ;
+  
+  sisl_vector_set_length(v, i) ; sisl_vector_set_length(vh, i) ; 
+  sisl_vector_set_length(r, i) ; sisl_vector_set_length(rt, i) ;
+  sisl_vector_set_length(p, i) ; sisl_vector_set_length(ph, i) ;
+  sisl_vector_set_length(u, i) ; sisl_vector_set_length(uh, i) ;
+
+  /* initial residual r = b - Ax */
+  sisl_matrix_vector_mul(A, x, r) ;
+
+  sisl_vector_sub(r, b) ; sisl_vector_scale_complex(r, minus_one) ;
+  sisl_vector_copy(rt, r) ;
+
+  bnorm = sisl_vector_norm(b, SISL_NORM_2) ; 
+  GSL_SET_COMPLEX(&rho, 0.0, 0.0) ;
+  GSL_SET_COMPLEX(&alpha, 0.0, 0.0) ;
+  GSL_SET_COMPLEX(&beta, 0.0, 0.0) ;
+  
+  g_log(G_LOG_DOMAIN, G_LOG_LEVEL_MESSAGE, "bnorm: %1.16e", bnorm) ;
+  perf->niter = 0 ;
+
+  rnorm_2 = rnorm_inf = G_MAXDOUBLE ;
+  for ( i = 0 ; i < niter ; i ++ ) {
+/*     rho_old = rho ; rho = sisl_vector_dot(rt, r) ; */
+    GSL_SET_REAL(&rho_old, GSL_REAL(rho)) ;
+    GSL_SET_IMAG(&rho_old, GSL_IMAG(rho)) ;
+    rho = sisl_vector_dot_complex(rt, r) ;
+
+    if ( GSL_REAL(rho) == 0.0 && GSL_IMAG(rho) == 0.0 ) { 
+      if ( wmpi_rank() == 0 )
+	g_log(G_LOG_DOMAIN, G_LOG_LEVEL_MESSAGE, "failure: rho=0.0") ;
+      return -1 ; 
+    }
+
+    if ( i == 0 ) {
+      sisl_vector_copy(u, r) ;
+      sisl_vector_copy(p, u) ;
+    } else {
+/*       beta = rho/rho_old ; */
+      beta = gsl_complex_div(rho,rho_old) ;
+      /* p = res + beta*(p-omega) */
+      sisl_vector_copy(u, q) ; sisl_vector_scale_complex(u, beta) ;
+      sisl_vector_add(u, r) ;
+
+      sisl_vector_scale_complex(p, beta) ; sisl_vector_add(p, q) ;
+      sisl_vector_scale_complex(p, beta) ; sisl_vector_add(p, u) ;
+    }
+
+    /* preconditioner point */
+    sisl_vector_copy(ph, p) ;
+    
+    sisl_matrix_vector_mul(A, ph, vh) ;
+
+    alpha = sisl_vector_dot_complex(rt, vh) ;
+/*     alpha = rho/alpha ; */
+    alpha = gsl_complex_div(rho,alpha) ;
+
+    sisl_vector_copy(q, vh) ; 
+    alpha = gsl_complex_mul_real(alpha, -1.0) ;
+    sisl_vector_scale_complex(q, alpha) ;
+    alpha = gsl_complex_mul_real(alpha, -1.0) ;
+    sisl_vector_add(q, u) ;
+
+    /* preconditioner point */
+    sisl_vector_copy(uh,u) ; sisl_vector_add(uh,q) ;
+
+    sisl_vector_copy(qh, uh) ; sisl_vector_scale_complex(qh, alpha) ;
+    sisl_vector_add(x, qh) ;
+
+    sisl_matrix_vector_mul(A, uh, qh) ;
+    alpha = gsl_complex_mul_real(alpha, -1.0) ;
+    sisl_vector_scale_complex(qh, alpha) ;
+    alpha = gsl_complex_mul_real(alpha, -1.0) ;
+    sisl_vector_add(r, qh) ;
+
+    rnorm_2 = sisl_vector_norm(r, error_norm) ;
+    rnorm_inf = sisl_vector_norm(r, SISL_NORM_INFINITY) ;
+    g_log(G_LOG_DOMAIN, G_LOG_LEVEL_MESSAGE, 
+	  "iter: %4u; |r|_2/|b|_2: %1.2e; |r|_inf=%1.2e", 
+	  i, rnorm_2/bnorm, rnorm_inf) ;
+    if ( rnorm_2 < tol*bnorm ) break ;
+  }
+
+  perf->r_1 = sisl_vector_norm(r, SISL_NORM_1) ;
+  perf->r_2 = sisl_vector_norm(r, SISL_NORM_2) ;
+  perf->r_inf = sisl_vector_norm(r, SISL_NORM_INFINITY) ;
+  perf->niter = i ;
+  perf->bnorm = bnorm ;
+
+  if ( (rnorm_2 < tol*bnorm) || (rnorm_inf < tol) ) return 0 ;
+
+  return -1 ;
+}
+@

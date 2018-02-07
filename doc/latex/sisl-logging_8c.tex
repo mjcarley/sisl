@@ -1,0 +1,75 @@
+\hypertarget{sisl-logging_8c}{
+\section{sisl-logging.c File Reference}
+\label{sisl-logging_8c}\index{sisl-logging.c@{sisl-logging.c}}
+}
+Logging functions for use with GLIB logging facilities. 
+
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+const gchar $\ast$ \hyperlink{sisl-logging_8c_a0}{sisl\_\-logging\_\-string} (GLog\-Level\-Flags level)
+\item 
+void \hyperlink{sisl-logging_8c_a1}{sisl\_\-logging\_\-func} (const gchar $\ast$log\_\-domain, GLog\-Level\-Flags log\_\-level, const gchar $\ast$message, gpointer data\mbox{[}$\,$\mbox{]})
+\item 
+gint \hyperlink{sisl-logging_8c_a2}{sisl\_\-logging\_\-init} (FILE $\ast$f, gchar $\ast$p, GLog\-Level\-Flags log\_\-level, gpointer exit\_\-func)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+Logging functions for use with GLIB logging facilities. 
+
+\begin{Desc}
+\item[Author:]Michael Carley \end{Desc}
+\begin{Desc}
+\item[Date:]Fri Mar 17 09:33:52 2006\end{Desc}
+
+
+The logging functions provide control over the messages logged by SISL, to ease debugging and to give access to messages from specific processors during parallel execution.
+
+\subsection{Function Documentation}
+\hypertarget{sisl-logging_8c_a1}{
+\index{sisl-logging.c@{sisl-logging.c}!sisl_logging_func@{sisl\_\-logging\_\-func}}
+\index{sisl_logging_func@{sisl\_\-logging\_\-func}!sisl-logging.c@{sisl-logging.c}}
+\subsubsection[sisl\_\-logging\_\-func]{\setlength{\rightskip}{0pt plus 5cm}void sisl\_\-logging\_\-func (const gchar $\ast$ {\em log\_\-domain}, GLog\-Level\-Flags {\em log\_\-level}, const gchar $\ast$ {\em message}, gpointer {\em data}\mbox{[}$\,$\mbox{]})}}
+\label{sisl-logging_8c_a1}
+
+
+Logging function for SISL.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em log\_\-domain}]default log domain (see glib documentation); \item[{\em log\_\-level}]logging level (see glib documentation); \item[{\em message}]logging message; \item[{\em data}]array containing logging data, set by \hyperlink{sisl-logging_8c_a2}{sisl\_\-logging\_\-init}. \end{description}
+\end{Desc}
+\hypertarget{sisl-logging_8c_a2}{
+\index{sisl-logging.c@{sisl-logging.c}!sisl_logging_init@{sisl\_\-logging\_\-init}}
+\index{sisl_logging_init@{sisl\_\-logging\_\-init}!sisl-logging.c@{sisl-logging.c}}
+\subsubsection[sisl\_\-logging\_\-init]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\_\-logging\_\-init (FILE $\ast$ {\em f}, gchar $\ast$ {\em p}, GLog\-Level\-Flags {\em log\_\-level}, gpointer {\em exit\_\-func})}}
+\label{sisl-logging_8c_a2}
+
+
+Initialize SISL logging
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em f}]file stream for messages; \item[{\em p}]string to prepend to messages; \item[{\em log\_\-level}]maximum logging level to handle (see gts\_\-log); \item[{\em exit\_\-func}]function to call if exiting on an error.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]0 on success \end{Desc}
+\hypertarget{sisl-logging_8c_a0}{
+\index{sisl-logging.c@{sisl-logging.c}!sisl_logging_string@{sisl\_\-logging\_\-string}}
+\index{sisl_logging_string@{sisl\_\-logging\_\-string}!sisl-logging.c@{sisl-logging.c}}
+\subsubsection[sisl\_\-logging\_\-string]{\setlength{\rightskip}{0pt plus 5cm}const gchar$\ast$ sisl\_\-logging\_\-string (GLog\-Level\-Flags {\em level})}}
+\label{sisl-logging_8c_a0}
+
+
+Return a string describing the log level of the message.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em level}]log level.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]string describing level. \end{Desc}

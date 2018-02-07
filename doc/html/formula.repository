@@ -1,0 +1,30 @@
+\form#0:$A_{ij}=A_{ij}+x$
+\form#1:$w=Av$
+\form#2:$w=A^{T}v$
+\form#3:$A_{ij}=x$
+\form#4:$A_{ij}$
+\form#5:$i$
+\form#6:$A_{ij}+j0$
+\form#7:$A_{ij}=vB_{ik}$
+\form#8:$B_{ij}=wA_{ik}$
+\form#9:$A$
+\form#10:$B$
+\form#11:$v=v-w$
+\form#12:$v=v+w$
+\form#13:$v=v+\alpha w$
+\form#14:$\alpha$
+\form#15:$v=w$
+\form#16:$L_{\infty}$
+\form#17:$L_{1}$
+\form#18:$L_{2}$
+\form#19:$\infty$
+\form#20:$m_{ij}=x$
+\form#21:$m_{ij}$
+\form#22:$m_{ij}=z$
+\form#23:$w=mv$
+\form#24:$\sum_{i}v_{i}w_{i}$
+\form#25:$v_{i} += x$
+\form#26:$v_{i} += z$
+\form#27:$v_{i} -= x$
+\form#28:$v_{i} -= z$
+\form#29:$(i,j)$

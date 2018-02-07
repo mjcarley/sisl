@@ -1,0 +1,38 @@
+\begin{theindex}
+
+  \item {iter\_\discretionary {-}{}{}solver.c}, \hyperpage{3}
+    \subitem {sisl\_\discretionary {-}{}{}solve}, \hyperpage{3}
+    \subitem {sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}workspace\_\discretionary {-}{}{}new}, 
+		\hyperpage{4}
+  \item {iter\_\-solver.h}
+    \subitem {SISL\_\-ITER\_\-BICG}, \hyperpage{5}
+    \subitem {SISL\_\-ITER\_\-BICGSTAB}, \hyperpage{5}
+    \subitem {SISL\_\-ITER\_\-CG}, \hyperpage{5}
+    \subitem {SISL\_\-ITER\_\-CGS}, \hyperpage{5}
+  \item {iter\_\discretionary {-}{}{}solver.h}, \hyperpage{5}
+    \subitem {sisl\_\discretionary {-}{}{}solve}, \hyperpage{5}
+    \subitem {sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}t}, 
+		\hyperpage{5}
+    \subitem {sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}workspace\_\discretionary {-}{}{}new}, 
+		\hyperpage{6}
+
+  \indexspace
+
+  \item {SISL\_\-ITER\_\-BICG}
+    \subitem {iter\_\-solver.h}, \hyperpage{5}
+  \item {SISL\_\-ITER\_\-BICGSTAB}
+    \subitem {iter\_\-solver.h}, \hyperpage{5}
+  \item {SISL\_\-ITER\_\-CG}
+    \subitem {iter\_\-solver.h}, \hyperpage{5}
+  \item {SISL\_\-ITER\_\-CGS}
+    \subitem {iter\_\-solver.h}, \hyperpage{5}
+  \item {sisl\_\discretionary {-}{}{}solve}
+    \subitem {iter\_\discretionary {-}{}{}solver.c}, \hyperpage{3}
+    \subitem {iter\_\discretionary {-}{}{}solver.h}, \hyperpage{5}
+  \item {sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}t}
+    \subitem {iter\_\discretionary {-}{}{}solver.h}, \hyperpage{5}
+  \item {sisl\_\discretionary {-}{}{}solver\_\discretionary {-}{}{}workspace\_\discretionary {-}{}{}new}
+    \subitem {iter\_\discretionary {-}{}{}solver.c}, \hyperpage{4}
+    \subitem {iter\_\discretionary {-}{}{}solver.h}, \hyperpage{6}
+
+\end{theindex}

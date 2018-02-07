@@ -1,0 +1,38 @@
+make  all-recursive
+make[1]: Entering directory `/home/ensmjc/Codes/C/SISL'
+Making all in src
+make[2]: Entering directory `/home/ensmjc/Codes/C/SISL/src'
+make  all-am
+make[3]: Entering directory `/home/ensmjc/Codes/C/SISL/src'
+/bin/sh ../libtool --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I.. -I.. -I/home/ensmjc/Codes/include -DG_LOG_DOMAIN=\"SISL\"    -g -O2 -Wall -Werror-implicit-function-declaration -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -I/usr/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/home/ensmjc/Codes/include -MT vector.lo -MD -MP -MF .deps/vector.Tpo -c -o vector.lo vector.c
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I.. -I.. -I/home/ensmjc/Codes/include -DG_LOG_DOMAIN=\"SISL\" -g -O2 -Wall -Werror-implicit-function-declaration -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -I/usr/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/home/ensmjc/Codes/include -MT vector.lo -MD -MP -MF .deps/vector.Tpo -c vector.c  -fPIC -DPIC -o .libs/vector.o
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I.. -I.. -I/home/ensmjc/Codes/include -DG_LOG_DOMAIN=\"SISL\" -g -O2 -Wall -Werror-implicit-function-declaration -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -I/usr/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/home/ensmjc/Codes/include -MT vector.lo -MD -MP -MF .deps/vector.Tpo -c vector.c -o vector.o >/dev/null 2>&1
+mv -f .deps/vector.Tpo .deps/vector.Plo
+/bin/sh ../libtool --tag=CC   --mode=link gcc  -g -O2 -Wall -Werror-implicit-function-declaration -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -I/usr/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/home/ensmjc/Codes/include -version-info 0:1:0 -release 0.1 -export-dynamic -L/usr/lib -lgsl -lm -o libsisl.la -rpath /home/ensmjc/Codes/lib vector.lo matrix.lo sparse.lo iter_solver.lo iter_solver_c.lo sisl-logging.lo  -L/usr/lib -lgsl -lm -lcblas -lf77blas -latlas -lm   -L/usr/lib/gcc/i486-slackware-linux/4.5.1 -L/usr/lib/gcc/i486-slackware-linux/4.5.1/../../../../i486-slackware-linux/lib -L/usr/lib/gcc/i486-slackware-linux/4.5.1/../../.. -lgfortran -lm
+libtool: link: rm -fr  .libs/libsisl-0.1.so.0 .libs/libsisl-0.1.so.0.0.1 .libs/libsisl.a .libs/libsisl.la .libs/libsisl.lai .libs/libsisl.so
+libtool: link: gcc -shared  -fPIC -DPIC  .libs/vector.o .libs/matrix.o .libs/sparse.o .libs/iter_solver.o .libs/iter_solver_c.o .libs/sisl-logging.o   -L/usr/lib /usr/lib/libgsl.so -lcblas -lf77blas -latlas -L/usr/lib/gcc/i486-slackware-linux/4.5.1 -L/usr/lib/gcc/i486-slackware-linux/4.5.1/../../../../i486-slackware-linux/lib -L/usr/lib/gcc/i486-slackware-linux/4.5.1/../../.. /usr/lib/libgfortran.so -lm  -O2   -Wl,-soname -Wl,libsisl-0.1.so.0 -o .libs/libsisl-0.1.so.0.0.1
+libtool: link: (cd ".libs" && rm -f "libsisl-0.1.so.0" && ln -s "libsisl-0.1.so.0.0.1" "libsisl-0.1.so.0")
+libtool: link: (cd ".libs" && rm -f "libsisl.so" && ln -s "libsisl-0.1.so.0.0.1" "libsisl.so")
+libtool: link: ar cru .libs/libsisl.a  vector.o matrix.o sparse.o iter_solver.o iter_solver_c.o sisl-logging.o
+libtool: link: ranlib .libs/libsisl.a
+libtool: link: ( cd ".libs" && rm -f "libsisl.la" && ln -s "../libsisl.la" "libsisl.la" )
+make[3]: Leaving directory `/home/ensmjc/Codes/C/SISL/src'
+make[2]: Leaving directory `/home/ensmjc/Codes/C/SISL/src'
+Making all in doc
+make[2]: Entering directory `/home/ensmjc/Codes/C/SISL/doc'
+Making all in html
+make[3]: Entering directory `/home/ensmjc/Codes/C/SISL/doc/html'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/home/ensmjc/Codes/C/SISL/doc/html'
+make[3]: Entering directory `/home/ensmjc/Codes/C/SISL/doc'
+make[3]: Nothing to be done for `all-am'.
+make[3]: Leaving directory `/home/ensmjc/Codes/C/SISL/doc'
+make[2]: Leaving directory `/home/ensmjc/Codes/C/SISL/doc'
+Making all in tests
+make[2]: Entering directory `/home/ensmjc/Codes/C/SISL/tests'
+/bin/sh ../libtool --tag=CC   --mode=link `wmpi-config --cc` -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/home/ensmjc/Codes/include -g -O2 -Wall -Werror-implicit-function-declaration -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -I/usr/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/home/ensmjc/Codes/include -L/home/ensmjc/Codes/lib -lwmpi_s -lglib-2.0 -L/usr/lib -lgsl -lm -o sisl-test sisl-test.o ../src/.libs/libsisl.a  -L/usr/lib -lgsl -lm -lcblas -lf77blas -latlas -lm   -L/usr/lib/gcc/i486-slackware-linux/4.5.1 -L/usr/lib/gcc/i486-slackware-linux/4.5.1/../../../../i486-slackware-linux/lib -L/usr/lib/gcc/i486-slackware-linux/4.5.1/../../.. -lgfortran -lm
+libtool: link: gcc -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/home/ensmjc/Codes/include -g -O2 -Wall -Werror-implicit-function-declaration -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -I/usr/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/home/ensmjc/Codes/include -o sisl-test sisl-test.o  -L/home/ensmjc/Codes/lib /home/ensmjc/Codes/lib/libwmpi_s.so /usr/lib/libglib-2.0.so -L/usr/lib ../src/.libs/libsisl.a /usr/lib/libgsl.so -lcblas -lf77blas -latlas -L/usr/lib/gcc/i486-slackware-linux/4.5.1 -L/usr/lib/gcc/i486-slackware-linux/4.5.1/../../../../i486-slackware-linux/lib -L/usr/lib/gcc/i486-slackware-linux/4.5.1/../../.. /usr/lib/libgfortran.so -lm -Wl,-rpath -Wl,/home/ensmjc/Codes/lib -Wl,-rpath -Wl,/home/ensmjc/Codes/lib
+make[2]: Leaving directory `/home/ensmjc/Codes/C/SISL/tests'
+make[2]: Entering directory `/home/ensmjc/Codes/C/SISL'
+make[2]: Leaving directory `/home/ensmjc/Codes/C/SISL'
+make[1]: Leaving directory `/home/ensmjc/Codes/C/SISL'

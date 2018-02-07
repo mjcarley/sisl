@@ -1,0 +1,89 @@
+\hypertarget{group__logging}{\section{Logging functions}
+\label{group__logging}\index{Logging functions@{Logging functions}}
+}
+
+
+Logging functions for use with G\-L\-I\-B logging facilities.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__logging_ga723c3602e397154cb8ec8de6b4e5199a}{sisl\-\_\-logging\-\_\-func} (const gchar $\ast$log\-\_\-domain, G\-Log\-Level\-Flags log\-\_\-level, const gchar $\ast$message, gpointer data\mbox{[}$\,$\mbox{]})
+\item 
+const gchar $\ast$ \hyperlink{group__logging_ga57df9dc0bb01da0f0d992349b5f895e1}{sisl\-\_\-logging\-\_\-string} (G\-Log\-Level\-Flags level)
+\item 
+gint \hyperlink{group__logging_gae1950640d392b09eeac5a171b4754e17}{sisl\-\_\-logging\-\_\-init} (F\-I\-L\-E $\ast$f, gchar $\ast$p, G\-Log\-Level\-Flags log\-\_\-level, gpointer exit\-\_\-func)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Logging functions for use with G\-L\-I\-B logging facilities. The logging functions provide control over the messages logged by S\-I\-S\-L, to ease debugging and to give access to messages from specific processors during parallel execution. 
+
+\subsection{Function Documentation}
+\hypertarget{group__logging_ga723c3602e397154cb8ec8de6b4e5199a}{\index{Logging functions@{Logging functions}!sisl\-\_\-logging\-\_\-func@{sisl\-\_\-logging\-\_\-func}}
+\index{sisl\-\_\-logging\-\_\-func@{sisl\-\_\-logging\-\_\-func}!Logging functions@{Logging functions}}
+\subsubsection[{sisl\-\_\-logging\-\_\-func}]{\setlength{\rightskip}{0pt plus 5cm}void sisl\-\_\-logging\-\_\-func (
+\begin{DoxyParamCaption}
+\item[{const gchar $\ast$}]{log\-\_\-domain, }
+\item[{G\-Log\-Level\-Flags}]{log\-\_\-level, }
+\item[{const gchar $\ast$}]{message, }
+\item[{gpointer}]{data\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{group__logging_ga723c3602e397154cb8ec8de6b4e5199a}
+Logging function for S\-I\-S\-L.
+
+
+\begin{DoxyParams}{Parameters}
+{\em log\-\_\-domain} & default log domain (see glib documentation); \\
+\hline
+{\em log\-\_\-level} & logging level (see glib documentation); \\
+\hline
+{\em message} & logging message; \\
+\hline
+{\em data} & array containing logging data, set by \hyperlink{group__logging_gae1950640d392b09eeac5a171b4754e17}{sisl\-\_\-logging\-\_\-init}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__logging_gae1950640d392b09eeac5a171b4754e17}{\index{Logging functions@{Logging functions}!sisl\-\_\-logging\-\_\-init@{sisl\-\_\-logging\-\_\-init}}
+\index{sisl\-\_\-logging\-\_\-init@{sisl\-\_\-logging\-\_\-init}!Logging functions@{Logging functions}}
+\subsubsection[{sisl\-\_\-logging\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\-\_\-logging\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{f, }
+\item[{gchar $\ast$}]{p, }
+\item[{G\-Log\-Level\-Flags}]{log\-\_\-level, }
+\item[{gpointer}]{exit\-\_\-func}
+\end{DoxyParamCaption}
+)}}\label{group__logging_gae1950640d392b09eeac5a171b4754e17}
+Initialize S\-I\-S\-L logging
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & file stream for messages; \\
+\hline
+{\em p} & string to prepend to messages; \\
+\hline
+{\em log\-\_\-level} & maximum logging level to handle (see gts\-\_\-log); \\
+\hline
+{\em exit\-\_\-func} & function to call if exiting on an error.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success 
+\end{DoxyReturn}
+\hypertarget{group__logging_ga57df9dc0bb01da0f0d992349b5f895e1}{\index{Logging functions@{Logging functions}!sisl\-\_\-logging\-\_\-string@{sisl\-\_\-logging\-\_\-string}}
+\index{sisl\-\_\-logging\-\_\-string@{sisl\-\_\-logging\-\_\-string}!Logging functions@{Logging functions}}
+\subsubsection[{sisl\-\_\-logging\-\_\-string}]{\setlength{\rightskip}{0pt plus 5cm}const gchar $\ast$ sisl\-\_\-logging\-\_\-string (
+\begin{DoxyParamCaption}
+\item[{G\-Log\-Level\-Flags}]{level}
+\end{DoxyParamCaption}
+)}}\label{group__logging_ga57df9dc0bb01da0f0d992349b5f895e1}
+Return a string describing the log level of the message.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & log level.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string describing level. 
+\end{DoxyReturn}

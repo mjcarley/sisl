@@ -1,0 +1,320 @@
+head	1.1;
+access;
+symbols;
+locks
+	ensmjc:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	2009.01.28.16.30.17;	author ensmjc;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* matrix.c
+ * 
+ * Copyright (C) 2009 Michael Carley
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif /*HAVE_CONFIG_H*/
+
+#include <sisl.h>
+#include <gsl/gsl_complex.h>
+
+#include "sisl_private.h"
+
+const gdouble zero[] = {0.0, 0.0} ;
+const gdouble one[] = {1.0, 0.0} ;
+const gdouble minus_one[] = {-1.0, 0.0} ;
+
+sisl_matrix_t *sisl_matrix_new(sisl_complex_t c, sisl_matrix_density_t d)
+
+{
+  sisl_matrix_t *m ;
+
+  m = g_malloc(sizeof(sisl_matrix_t)) ;
+  m->c = c ;
+  m->d = d ;
+  switch (d) {
+  default: 
+    g_error("%s: unrecognized matrix density type %d", __FUNCTION__, d) ;
+    break ;
+  case SISL_MATRIX_DENSE:
+    m->m = g_malloc(sizeof(sisl_matrix_dense_t)) ;
+    ((sisl_matrix_dense_t *)(m->m))->x = 
+      g_array_new(TRUE, TRUE, sizeof(gdouble)) ;
+    sisl_matrix_row_number(m) = 0 ;
+    sisl_matrix_column_number(m) = 0 ;
+    sisl_matrix_local_row_start(m) = 0 ;
+    sisl_matrix_local_row_end(m) = 0 ;
+    break ;
+  }
+
+  return m ;
+}
+
+gint sisl_matrix_free(sisl_matrix_t *m)
+
+{
+  SISL_CHECK_ARGUMENT_NULL(m) ;
+
+  switch (sisl_matrix_density(m)) {
+  default: 
+    g_error("%s: unrecognized matrix density type %d", __FUNCTION__, 
+	    sisl_matrix_density(m)) ;
+    break ;
+  case SISL_MATRIX_DENSE:
+    g_array_free(SISL_MATRIX_DENSE_DATA(m)->x, TRUE) ;
+    g_free(m->m) ;
+    g_free(m) ;
+    break ;
+  }
+
+  return SISL_SUCCESS ;
+}
+
+gint sisl_matrix_set_block_size(sisl_matrix_t *m, gint rows, gint columns)
+
+{
+  SISL_CHECK_ARGUMENT_NULL(m) ;
+
+  if ( (rows < 0) || (columns < 0) ) 
+    g_error("%s: invalid matrix size (%dx%d) requested",
+	    __FUNCTION__, rows, columns) ;
+
+  switch ( sisl_matrix_density(m) ) {
+  default:
+    g_error("%s: unrecognized matrix density type %d in matrix m", 
+	    __FUNCTION__, sisl_matrix_density(m)) ;
+    break ;
+  case SISL_MATRIX_DENSE:
+    if ( sisl_is_real(m) )
+      g_array_set_size(SISL_MATRIX_DENSE_DATA(m)->x, rows*columns) ;
+    else
+      g_array_set_size(SISL_MATRIX_DENSE_DATA(m)->x, 2*rows*columns) ;
+    break ;
+  }
+
+  return SISL_SUCCESS ;
+}
+
+gint sisl_matrix_set(sisl_matrix_t *m, gint i, gint j, gdouble x)
+
+{
+  SISL_CHECK_ARGUMENT_NULL(m) ;
+
+  if ( (i < 0) || (i > sisl_matrix_row_number(m)) ||
+       (j < 0) || (j > sisl_matrix_column_number(m)) ) 
+    g_error("%s: element (%d,%d) is out of range for %dx%d matrix",
+	    __FUNCTION__, i, j, 
+	    sisl_matrix_row_number(m),
+	    sisl_matrix_column_number(m)) ;
+
+  switch ( sisl_matrix_density(m) ) {
+  default:
+    g_error("%s: unrecognized matrix density type %d in matrix m", 
+	    __FUNCTION__, sisl_matrix_density(m)) ;
+    break ;
+  case SISL_MATRIX_DENSE:
+    if ( (i >= sisl_matrix_local_row_end(m)) ||
+	 (i < sisl_matrix_local_row_start(m)) ) return SISL_SUCCESS ;
+    g_array_index(SISL_MATRIX_DENSE_DATA(m)->x,
+		  gdouble,
+		  ((i-sisl_matrix_local_row_start(m))*
+		   sisl_matrix_column_number(m)+j)) = x ;
+    break ;
+  }
+
+  return SISL_SUCCESS ;
+}
+
+gint sisl_matrix_set_complex(sisl_matrix_t *m, gint i, gint j, 
+			     gsl_complex x)
+  
+{
+  SISL_CHECK_ARGUMENT_NULL(m) ;
+
+  if ( sisl_is_real(m) ) 
+    g_error("%s: matrix m must be be complex", __FUNCTION__) ;
+
+  if ( (i < 0) || (i > sisl_matrix_row_number(m)) ||
+       (j < 0) || (j > sisl_matrix_column_number(m)) ) 
+    g_error("%s: element (%d,%d) is out of range for %dx%d matrix",
+	    __FUNCTION__, i, j, 
+	    sisl_matrix_row_number(m),
+	    sisl_matrix_column_number(m)) ;
+
+  switch ( sisl_matrix_density(m) ) {
+  default:
+    g_error("%s: unrecognized matrix density type %d in matrix m", 
+	    __FUNCTION__, sisl_matrix_density(m)) ;
+    break ;
+  case SISL_MATRIX_DENSE:
+    if ( (i >= sisl_matrix_local_row_end(m)) ||
+	 (i < sisl_matrix_local_row_start(m)) ) return SISL_SUCCESS ;
+    g_array_index(SISL_MATRIX_DENSE_DATA(m)->x,
+		  gdouble,
+		  (2*((i-sisl_matrix_local_row_start(m))*
+		      sisl_matrix_column_number(m)+j)+0)) = GSL_REAL(x) ;
+    g_array_index(SISL_MATRIX_DENSE_DATA(m)->x,
+		  gdouble,
+		  (2*((i-sisl_matrix_local_row_start(m))*
+		      sisl_matrix_column_number(m)+j)+1)) = GSL_IMAG(x) ;
+    break ;
+  }
+
+  return SISL_SUCCESS ;
+}
+
+gint sisl_matrix_vector_mul(sisl_matrix_t *m, sisl_vector_t *v,
+			    sisl_vector_t *w)
+
+{
+  gint nr, nc ;
+
+  SISL_CHECK_ARGUMENT_NULL(m) ;
+  SISL_CHECK_ARGUMENT_NULL(v) ;
+  SISL_CHECK_ARGUMENT_NULL(w) ;
+
+  if ( sisl_matrix_column_number(m) != sisl_vector_length(v) )
+    g_error("%s: cannot multiply length %d vector v by %dx%d matrix m",
+	    __FUNCTION__, sisl_vector_length(v), 
+	    sisl_matrix_row_number(m), sisl_matrix_column_number(m)) ;
+
+  if ( (sisl_matrix_local_row_start(m) < 0) ||
+       (sisl_matrix_local_row_start(m) >= sisl_matrix_local_row_end(m)) ||
+       (sisl_matrix_local_row_end(m) > sisl_matrix_row_number(m)) )
+    g_error("%s: local row indices %d--%d are invalid for %dx%d matrix", 
+	    __FUNCTION__,
+	    sisl_matrix_local_row_start(m), sisl_matrix_local_row_end(m),
+	    sisl_matrix_row_number(m), sisl_matrix_column_number(m)) ;
+
+  if ( m->c != v->c ) 
+    g_error("%s: matrix m and vector v must be both real or both complex",
+	    __FUNCTION__) ;
+
+  w->c = v->c ; sisl_vector_clear(w) ;
+  sisl_vector_set_length(w, sisl_matrix_row_number(m)) ;
+  nr = sisl_matrix_local_row_end(m) - sisl_matrix_local_row_start(m) ;
+  nc = sisl_matrix_column_number(m) ;
+
+  switch ( sisl_matrix_density(m) ) {
+  default:
+    g_error("%s: unrecognized matrix density type %d in matrix m", 
+	    __FUNCTION__, sisl_matrix_density(m)) ;
+    break ;
+  case SISL_MATRIX_DENSE:
+    if ( sisl_is_real(m) ) 
+      cblas_dgemv(CblasRowMajor, CblasNoTrans, nr, nc, 1.0, 
+		  (gdouble *)(SISL_MATRIX_DENSE_DATA(m)->x->data), 
+		  nc, sisl_vector_data(v), 1, 
+		  0.0, 
+		  &((sisl_vector_data(w))[sisl_matrix_local_row_start(m)]), 
+		  1) ;
+    else 
+      cblas_zgemv(CblasRowMajor, CblasNoTrans, nr, nc, one, 
+		  (SISL_MATRIX_DENSE_DATA(m)->x->data), 
+		  nc, (gpointer)sisl_vector_data(v), 1, 
+		  zero, 
+		  &((sisl_vector_data(w))[2*sisl_matrix_local_row_start(m)]), 
+		  1) ;
+    break ;
+  }
+
+  return SISL_SUCCESS ;
+}
+
+gdouble sisl_matrix_get(sisl_matrix_t *m, gint i, gint j)
+
+{
+  SISL_CHECK_ARGUMENT_NULL(m) ;
+
+  if ( (i < 0) || (i > sisl_matrix_row_number(m)) ||
+       (j < 0) || (j > sisl_matrix_column_number(m)) ) 
+    g_error("%s: element (%d,%d) is out of range for %dx%d matrix",
+	    __FUNCTION__, i, j, 
+	    sisl_matrix_row_number(m),
+	    sisl_matrix_column_number(m)) ;
+
+  switch ( sisl_matrix_density(m) ) {
+  default:
+    g_error("%s: unrecognized matrix density type %d in matrix m", 
+	    __FUNCTION__, sisl_matrix_density(m)) ;
+    break ;
+  case SISL_MATRIX_DENSE:
+    if ( (i >= sisl_matrix_local_row_end(m)) ||
+	 (i < sisl_matrix_local_row_start(m)) ) return 0.0 ;
+    return g_array_index(SISL_MATRIX_DENSE_DATA(m)->x,
+			 gdouble,
+			 ((i-sisl_matrix_local_row_start(m))*
+			  sisl_matrix_column_number(m)+j)) ;
+    break ;
+  }
+
+  return 0.0 ;
+}
+
+gsl_complex sisl_matrix_get_complex(sisl_matrix_t *m, gint i, gint j)
+
+{
+  gsl_complex x ;
+
+  SISL_CHECK_ARGUMENT_NULL(m) ;
+  GSL_SET_COMPLEX(&x,0,0) ;
+
+  if ( (i < 0) || (i > sisl_matrix_row_number(m)) ||
+       (j < 0) || (j > sisl_matrix_column_number(m)) ) 
+    g_error("%s: element (%d,%d) is out of range for %dx%d matrix",
+	    __FUNCTION__, i, j, 
+	    sisl_matrix_row_number(m),
+	    sisl_matrix_column_number(m)) ;
+
+  switch ( sisl_matrix_density(m) ) {
+  default:
+    g_error("%s: unrecognized matrix density type %d in matrix m", 
+	    __FUNCTION__, sisl_matrix_density(m)) ;
+    break ;
+  case SISL_MATRIX_DENSE:
+    if ( (i >= sisl_matrix_local_row_end(m)) ||
+	 (i < sisl_matrix_local_row_start(m)) ) return x ;
+    GSL_REAL(x) = g_array_index(SISL_MATRIX_DENSE_DATA(m)->x,
+				gdouble,
+				(2*((i-sisl_matrix_local_row_start(m))*
+				    sisl_matrix_column_number(m)+j)+0)) ;
+    GSL_IMAG(x) = g_array_index(SISL_MATRIX_DENSE_DATA(m)->x,
+				gdouble,
+				(2*((i-sisl_matrix_local_row_start(m))*
+				    sisl_matrix_column_number(m)+j)+1)) ;
+    return x ;
+    break ;
+  }  
+
+  return x ;
+}
+@
