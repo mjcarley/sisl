@@ -64,13 +64,15 @@ extern "C" {
   } sisl_norm_t ;
 
   /**
-   * Matrix types, currently sparse matrices are not supported.
+   * Matrix types
    * @ingroup matrix
    */
 
   typedef enum {
     SISL_MATRIX_DENSE,        /**< dense matrix*/
     SISL_MATRIX_SPARSE,	      /**< sparse matrix */
+    SISL_MATRIX_DIAGONAL,     /**< diagonal matrix defined by main
+				 diagonal entries*/
     SISL_MATRIX_USER_DEFINED  /**< user-defined matrix (e.g. for matrix-free
 				 methods)*/
   } sisl_matrix_density_t ;
@@ -174,11 +176,16 @@ typedef enum {
     gint niter ;
   } ;
 
-#define sisl_complex_string(c)			\
-  (((c) == SISL_REAL) ? "real" : "complex")
+#define sisl_complex_string(_c)			\
+  (((_c) == SISL_REAL) ? "real" : "complex")
+#define sisl_density_string(_d)				\
+  (((_d) == SISL_MATRIX_DENSE ? "dense" :		\
+    (((_d) == SISL_MATRIX_DIAGONAL ? "diagonal" :	\
+      (((_d) == SISL_MATRIX_SPARSE ? "sparse" : "undefined"))))))
+  
 #define sisl_vector_data(_v)				\
   ((gdouble *)(&(g_array_index(((_v)->x),gdouble,0))))
-#define sisl_vector_data_length(v) (((v)->x->len))
+#define sisl_vector_data_length(_v) (((_v)->x->len))
 
   /**
    * @addtogroup vector
@@ -310,6 +317,7 @@ typedef enum {
 				       gsl_complex x) ;
   gint sisl_vector_set_length(sisl_vector_t *v, gint n) ;
   gint sisl_vector_multiprocessor_sum(sisl_vector_t *v) ;
+  gint sisl_vector_random(sisl_vector_t *v, gint n) ;
 
   gdouble sisl_vector_norm(sisl_vector_t *v, sisl_norm_t n) ;
   gdouble sisl_vector_dot(sisl_vector_t *v, sisl_vector_t *w) ;
@@ -325,14 +333,34 @@ typedef enum {
 
   sisl_matrix_t *sisl_matrix_new(sisl_complex_t c, sisl_matrix_density_t d) ;
   gint sisl_matrix_free(sisl_matrix_t *m) ;
+  gint sisl_matrix_copy(sisl_matrix_t *B, sisl_matrix_t *A) ;
+  gint sisl_matrix_set_all(sisl_matrix_t *m, gdouble x) ;
+  gint sisl_matrix_set_all_complex(sisl_matrix_t *m, gsl_complex x) ;
   gint sisl_matrix_set_block_size(sisl_matrix_t *m, gint rows, gint columns) ;
   gint sisl_matrix_vector_mul(sisl_matrix_t *m, sisl_vector_t *v,
 			      sisl_vector_t *w) ;
+
+  gint sisl_matrix_matrix_mul(sisl_matrix_t *A, sisl_matrix_t *B,
+			      sisl_matrix_t *C) ;
+  gint sisl_matrix_matrix_mul_w(sisl_matrix_t *A, sisl_matrix_t *B,
+				sisl_matrix_t *C, gdouble a, gdouble c) ;
+  gint sisl_matrix_matrix_mul_w_complex(sisl_matrix_t *A, sisl_matrix_t *B,
+				  sisl_matrix_t *C,
+				  gsl_complex a, gsl_complex c) ;
+  gint sisl_matrix_triple_mul_w(sisl_matrix_t *A, sisl_matrix_t *B,
+				sisl_matrix_t *C, sisl_matrix_t *D,
+				gdouble a, gdouble d) ;
+  gint sisl_matrix_triple_mul_w_complex(sisl_matrix_t *A, sisl_matrix_t *B,
+				  sisl_matrix_t *C, sisl_matrix_t *D,
+				  gsl_complex a, gsl_complex d) ;
+  
+  gint sisl_matrix_invert(sisl_matrix_t *A) ;
   gint sisl_matrix_set(sisl_matrix_t *m, gint i, gint j, gdouble x) ;
   gint sisl_matrix_set_complex(sisl_matrix_t *m, gint i, gint j, 
 			       gsl_complex x) ;
   gdouble sisl_matrix_get(sisl_matrix_t *m, gint i, gint j) ;
   gsl_complex sisl_matrix_get_complex(sisl_matrix_t *m, gint i, gint j) ;
+  gint sisl_matrix_random(sisl_matrix_t *A, gint nr, gint nc) ;
 
   sisl_solver_workspace_t *sisl_solver_workspace_new(void) ;
   gint sisl_solver_workspace_size(sisl_solver_workspace_t *w, gint n) ;

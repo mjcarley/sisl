@@ -3,9 +3,10 @@
 
 wmpi_libs="@wmpi_libs@"
 wmpi_cflags="@wmpi_cflags@"
-gsl_libs="@gsl_libs@"
-gsl_cflags="@gsl_cflags@"
+gsl_libs="@GSL_LIBS@"
+gsl_cflags="@GSL_CFLAGS@"
 blas_libs="@blas_libs@"
+lapack_libs="@lapack_libs@"
 sisl_cppflags="@CPPFLAGS@"
 
 prefix=@prefix@

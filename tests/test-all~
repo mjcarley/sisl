@@ -1,0 +1,18 @@
+#!/bin/bash
+
+nrows=33
+ncol=19
+
+TEST=./sisl-test
+
+#${TEST} -t matrix_vector_mul < multiply.dat
+${TEST} -t matrix_matrix_mul  multiply.dat
+
+for testcase in  inverse
+    matrix_vector_mul_diag
+    matrix_matrix_mul_weighted
+    matrix_triple_mul
+    matrix_triple_mul_diag
+    matrix_dense_sparse_mul
+    matrix_triple_mul_diag_sparse ;
+    				  do	

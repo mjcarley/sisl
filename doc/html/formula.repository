@@ -28,3 +28,7 @@
 \form#27:$v_{i} -= x$
 \form#28:$v_{i} -= z$
 \form#29:$(i,j)$
+\form#30:$A=B$
+\form#31:$C=AB$
+\form#32:$C=aAB + cC$
+\form#33:$D=aABC + dD$

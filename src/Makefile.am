@@ -19,11 +19,12 @@ libsisl_la_SOURCES = \
 	vector.c \
 	matrix.c \
 	sparse.c \
-	iter_solver.c \
-	iter_solver_c.c \
-	iter_solver.h \
+	iter-solver.c \
+	iter-solver-c.c \
+	iter-solver.h \
 	sisl-logging.c \
-	sisl_private.h
+	sisl-private.h \
+	diagonal.c
 
 include_HEADERS = \
 	sisl.h \

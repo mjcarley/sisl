@@ -1,6 +1,5 @@
-\hypertarget{group__solver}{\section{Iterative solvers}
+\hypertarget{group__solver}{}\section{Iterative solvers}
 \label{group__solver}\index{Iterative solvers@{Iterative solvers}}
-}
 
 
 Various iterative solvers for linear systems.  
@@ -9,64 +8,65 @@ Various iterative solvers for linear systems.
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{group__solver_ga1db83bd06f9de0d0a3375f66a57d8f7b}{sisl\-\_\-solver\-\_\-t} \{ , \hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7ba6369fa024759d2fe43e445d21418f800}{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G}
-, \hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad4691ec8750fb37804dc951a10f9f478}{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G}
-, \hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad357eb5b0c150fd54e80fb3ea5377c62}{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G\-S}, 
-\hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7baeb12981af5f7a411ef4bce95839a490e}{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G\-S\-T\-A\-B}
+enum \mbox{\hyperlink{group__solver_ga1db83bd06f9de0d0a3375f66a57d8f7b}{sisl\+\_\+solver\+\_\+t}} \{ , \mbox{\hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7ba6369fa024759d2fe43e445d21418f800}{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+CG}}
+, \mbox{\hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad4691ec8750fb37804dc951a10f9f478}{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+CG}}
+, \mbox{\hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad357eb5b0c150fd54e80fb3ea5377c62}{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+C\+GS}}, 
+\mbox{\hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7baeb12981af5f7a411ef4bce95839a490e}{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+C\+G\+S\+T\+AB}}
  \}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-sisl\-\_\-solver\-\_\-workspace\-\_\-t $\ast$ \hyperlink{group__solver_ga469572d659cc75b4f8aa372035ea9a4e}{sisl\-\_\-solver\-\_\-workspace\-\_\-new} (void)
+sisl\+\_\+solver\+\_\+workspace\+\_\+t $\ast$ \mbox{\hyperlink{group__solver_ga469572d659cc75b4f8aa372035ea9a4e}{sisl\+\_\+solver\+\_\+workspace\+\_\+new}} (void)
 \item 
-gint \hyperlink{group__solver_gaf061c27d5085f572fe1701570cf3bac9}{sisl\-\_\-solve} (\hyperlink{group__solver_ga1db83bd06f9de0d0a3375f66a57d8f7b}{sisl\-\_\-solver\-\_\-t} solver, \hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\-\_\-matrix\-\_\-t} $\ast$A, \hyperlink{group__vector_gacbac585492f5005f05f0c0b8463039be}{sisl\-\_\-vector\-\_\-t} $\ast$x, \hyperlink{group__vector_gacbac585492f5005f05f0c0b8463039be}{sisl\-\_\-vector\-\_\-t} $\ast$b, gdouble tol, gint niter, sisl\-\_\-solver\-\_\-workspace\-\_\-t $\ast$w, sisl\-\_\-solver\-\_\-performance\-\_\-t $\ast$perf)
+gint \mbox{\hyperlink{group__solver_gaf061c27d5085f572fe1701570cf3bac9}{sisl\+\_\+solve}} (\mbox{\hyperlink{group__solver_ga1db83bd06f9de0d0a3375f66a57d8f7b}{sisl\+\_\+solver\+\_\+t}} solver, \mbox{\hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\+\_\+matrix\+\_\+t}} $\ast$A, \mbox{\hyperlink{group__vector_gacbac585492f5005f05f0c0b8463039be}{sisl\+\_\+vector\+\_\+t}} $\ast$x, \mbox{\hyperlink{group__vector_gacbac585492f5005f05f0c0b8463039be}{sisl\+\_\+vector\+\_\+t}} $\ast$b, gdouble tol, gint niter, sisl\+\_\+solver\+\_\+workspace\+\_\+t $\ast$w, sisl\+\_\+solver\+\_\+performance\+\_\+t $\ast$perf)
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Various iterative solvers for linear systems. Functions implementing (some of) the iterative solvers in Barrett, R. et al, `\-Templates for the solution of linear systems\-: Building blocks for iterative methods', S\-I\-A\-M, 1994. 
+Various iterative solvers for linear systems. 
+
+Functions implementing (some of) the iterative solvers in Barrett, R. et al, `Templates for the solution of linear systems\+: Building blocks for iterative methods', S\+I\+AM, 1994. 
 
 \subsection{Enumeration Type Documentation}
-\hypertarget{group__solver_ga1db83bd06f9de0d0a3375f66a57d8f7b}{\index{Iterative solvers@{Iterative solvers}!sisl\-\_\-solver\-\_\-t@{sisl\-\_\-solver\-\_\-t}}
-\index{sisl\-\_\-solver\-\_\-t@{sisl\-\_\-solver\-\_\-t}!Iterative solvers@{Iterative solvers}}
-\subsubsection[{sisl\-\_\-solver\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf sisl\-\_\-solver\-\_\-t}}}\label{group__solver_ga1db83bd06f9de0d0a3375f66a57d8f7b}
-Iterative solvers \begin{Desc}
-\item[Enumerator\-: ]\par
-\begin{description}
-\index{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G@{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G}!Iterative solvers@{Iterative solvers}}\index{Iterative solvers@{Iterative solvers}!S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G@{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G}}\item[{\em 
-\hypertarget{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7ba6369fa024759d2fe43e445d21418f800}{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G}\label{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7ba6369fa024759d2fe43e445d21418f800}
-}]Conjugate gradient \index{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G@{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G}!Iterative solvers@{Iterative solvers}}\index{Iterative solvers@{Iterative solvers}!S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G@{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G}}\item[{\em 
-\hypertarget{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad4691ec8750fb37804dc951a10f9f478}{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G}\label{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad4691ec8750fb37804dc951a10f9f478}
-}]Biconjugate gradient \index{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G\-S@{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G\-S}!Iterative solvers@{Iterative solvers}}\index{Iterative solvers@{Iterative solvers}!S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G\-S@{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G\-S}}\item[{\em 
-\hypertarget{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad357eb5b0c150fd54e80fb3ea5377c62}{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G\-S}\label{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad357eb5b0c150fd54e80fb3ea5377c62}
-}]Conjugate gradient squared \index{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G\-S\-T\-A\-B@{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G\-S\-T\-A\-B}!Iterative solvers@{Iterative solvers}}\index{Iterative solvers@{Iterative solvers}!S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G\-S\-T\-A\-B@{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G\-S\-T\-A\-B}}\item[{\em 
-\hypertarget{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7baeb12981af5f7a411ef4bce95839a490e}{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G\-S\-T\-A\-B}\label{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7baeb12981af5f7a411ef4bce95839a490e}
-}]Stabilized biconjugate gradient \end{description}
-\end{Desc}
+\mbox{\Hypertarget{group__solver_ga1db83bd06f9de0d0a3375f66a57d8f7b}\label{group__solver_ga1db83bd06f9de0d0a3375f66a57d8f7b}} 
+\index{Iterative solvers@{Iterative solvers}!sisl\+\_\+solver\+\_\+t@{sisl\+\_\+solver\+\_\+t}}
+\index{sisl\+\_\+solver\+\_\+t@{sisl\+\_\+solver\+\_\+t}!Iterative solvers@{Iterative solvers}}
+\subsubsection{\texorpdfstring{sisl\+\_\+solver\+\_\+t}{sisl\_solver\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__solver_ga1db83bd06f9de0d0a3375f66a57d8f7b}{sisl\+\_\+solver\+\_\+t}}}
 
+Iterative solvers \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+CG@{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+CG}!Iterative solvers@{Iterative solvers}}\index{Iterative solvers@{Iterative solvers}!S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+CG@{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+CG}}}\mbox{\Hypertarget{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7ba6369fa024759d2fe43e445d21418f800}\label{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7ba6369fa024759d2fe43e445d21418f800}} 
+S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+CG&Conjugate gradient \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+CG@{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+CG}!Iterative solvers@{Iterative solvers}}\index{Iterative solvers@{Iterative solvers}!S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+CG@{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+CG}}}\mbox{\Hypertarget{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad4691ec8750fb37804dc951a10f9f478}\label{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad4691ec8750fb37804dc951a10f9f478}} 
+S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+CG&Biconjugate gradient \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+C\+GS@{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+C\+GS}!Iterative solvers@{Iterative solvers}}\index{Iterative solvers@{Iterative solvers}!S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+C\+GS@{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+C\+GS}}}\mbox{\Hypertarget{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad357eb5b0c150fd54e80fb3ea5377c62}\label{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad357eb5b0c150fd54e80fb3ea5377c62}} 
+S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+C\+GS&Conjugate gradient squared \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+C\+G\+S\+T\+AB@{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+C\+G\+S\+T\+AB}!Iterative solvers@{Iterative solvers}}\index{Iterative solvers@{Iterative solvers}!S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+C\+G\+S\+T\+AB@{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+C\+G\+S\+T\+AB}}}\mbox{\Hypertarget{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7baeb12981af5f7a411ef4bce95839a490e}\label{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7baeb12981af5f7a411ef4bce95839a490e}} 
+S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+C\+G\+S\+T\+AB&Stabilized biconjugate gradient \\
+\hline
+
+\end{DoxyEnumFields}
 
 
 \subsection{Function Documentation}
-\hypertarget{group__solver_gaf061c27d5085f572fe1701570cf3bac9}{\index{Iterative solvers@{Iterative solvers}!sisl\-\_\-solve@{sisl\-\_\-solve}}
-\index{sisl\-\_\-solve@{sisl\-\_\-solve}!Iterative solvers@{Iterative solvers}}
-\subsubsection[{sisl\-\_\-solve}]{\setlength{\rightskip}{0pt plus 5cm}gint sisl\-\_\-solve (
-\begin{DoxyParamCaption}
-\item[{{\bf sisl\-\_\-solver\-\_\-t}}]{solver, }
-\item[{{\bf sisl\-\_\-matrix\-\_\-t} $\ast$}]{A, }
-\item[{{\bf sisl\-\_\-vector\-\_\-t} $\ast$}]{x, }
-\item[{{\bf sisl\-\_\-vector\-\_\-t} $\ast$}]{b, }
-\item[{gdouble}]{tol, }
-\item[{gint}]{niter, }
-\item[{sisl\-\_\-solver\-\_\-workspace\-\_\-t $\ast$}]{w, }
-\item[{sisl\-\_\-solver\-\_\-performance\-\_\-t $\ast$}]{perf}
-\end{DoxyParamCaption}
-)}}\label{group__solver_gaf061c27d5085f572fe1701570cf3bac9}
-Iterative solution of a real or complex linear system using one of the methods in Barrett, R. et al, `\-Templates for the solution of linear systems\-: Building blocks for iterative methods', S\-I\-A\-M, 1994. Currently implemented methods are\-: \hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7ba6369fa024759d2fe43e445d21418f800}{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G}, \hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad4691ec8750fb37804dc951a10f9f478}{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G}, \hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad357eb5b0c150fd54e80fb3ea5377c62}{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-C\-G\-S}, \hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7baeb12981af5f7a411ef4bce95839a490e}{S\-I\-S\-L\-\_\-\-S\-O\-L\-V\-E\-R\-\_\-\-B\-I\-C\-G\-S\-T\-A\-B}.
+\mbox{\Hypertarget{group__solver_gaf061c27d5085f572fe1701570cf3bac9}\label{group__solver_gaf061c27d5085f572fe1701570cf3bac9}} 
+\index{Iterative solvers@{Iterative solvers}!sisl\+\_\+solve@{sisl\+\_\+solve}}
+\index{sisl\+\_\+solve@{sisl\+\_\+solve}!Iterative solvers@{Iterative solvers}}
+\subsubsection{\texorpdfstring{sisl\+\_\+solve()}{sisl\_solve()}}
+{\footnotesize\ttfamily gint sisl\+\_\+solve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__solver_ga1db83bd06f9de0d0a3375f66a57d8f7b}{sisl\+\_\+solver\+\_\+t}}}]{solver,  }\item[{\mbox{\hyperlink{group__matrix_gad147923587b355644defb9bfbf981740}{sisl\+\_\+matrix\+\_\+t}} $\ast$}]{A,  }\item[{\mbox{\hyperlink{group__vector_gacbac585492f5005f05f0c0b8463039be}{sisl\+\_\+vector\+\_\+t}} $\ast$}]{x,  }\item[{\mbox{\hyperlink{group__vector_gacbac585492f5005f05f0c0b8463039be}{sisl\+\_\+vector\+\_\+t}} $\ast$}]{b,  }\item[{gdouble}]{tol,  }\item[{gint}]{niter,  }\item[{sisl\+\_\+solver\+\_\+workspace\+\_\+t $\ast$}]{w,  }\item[{sisl\+\_\+solver\+\_\+performance\+\_\+t $\ast$}]{perf }\end{DoxyParamCaption})}
+
+Iterative solution of a real or complex linear system using one of the methods in Barrett, R. et al, `Templates for the solution of linear systems\+: Building blocks for iterative methods', S\+I\+AM, 1994. Currently implemented methods are\+: \mbox{\hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7ba6369fa024759d2fe43e445d21418f800}{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+CG}}, \mbox{\hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad4691ec8750fb37804dc951a10f9f478}{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+CG}}, \mbox{\hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7bad357eb5b0c150fd54e80fb3ea5377c62}{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+C\+GS}}, \mbox{\hyperlink{group__solver_gga1db83bd06f9de0d0a3375f66a57d8f7baeb12981af5f7a411ef4bce95839a490e}{S\+I\+S\+L\+\_\+\+S\+O\+L\+V\+E\+R\+\_\+\+B\+I\+C\+G\+S\+T\+AB}}.
 
 
 \begin{DoxyParams}{Parameters}
-{\em solver} & iterative solver to use (\hyperlink{group__solver_ga1db83bd06f9de0d0a3375f66a57d8f7b}{sisl\-\_\-solver\-\_\-t}); \\
+{\em solver} & iterative solver to use (\mbox{\hyperlink{group__solver_ga1db83bd06f9de0d0a3375f66a57d8f7b}{sisl\+\_\+solver\+\_\+t}}); \\
 \hline
 {\em A} & left hand side matrix; \\
 \hline
@@ -78,7 +78,7 @@ Iterative solution of a real or complex linear system using one of the methods i
 \hline
 {\em niter} & maximum number of iterations; \\
 \hline
-{\em w} & workspace allocated with \hyperlink{group__solver_ga469572d659cc75b4f8aa372035ea9a4e}{sisl\-\_\-solver\-\_\-workspace\-\_\-new}; \\
+{\em w} & workspace allocated with \mbox{\hyperlink{group__solver_ga469572d659cc75b4f8aa372035ea9a4e}{sisl\+\_\+solver\+\_\+workspace\+\_\+new}}; \\
 \hline
 {\em perf} & solution performance data (convergence tolerance, etc.);\\
 \hline
@@ -86,13 +86,12 @@ Iterative solution of a real or complex linear system using one of the methods i
 \begin{DoxyReturn}{Returns}
 0 on success 
 \end{DoxyReturn}
-\hypertarget{group__solver_ga469572d659cc75b4f8aa372035ea9a4e}{\index{Iterative solvers@{Iterative solvers}!sisl\-\_\-solver\-\_\-workspace\-\_\-new@{sisl\-\_\-solver\-\_\-workspace\-\_\-new}}
-\index{sisl\-\_\-solver\-\_\-workspace\-\_\-new@{sisl\-\_\-solver\-\_\-workspace\-\_\-new}!Iterative solvers@{Iterative solvers}}
-\subsubsection[{sisl\-\_\-solver\-\_\-workspace\-\_\-new}]{\setlength{\rightskip}{0pt plus 5cm}sisl\-\_\-solver\-\_\-workspace\-\_\-t$\ast$ sisl\-\_\-solver\-\_\-workspace\-\_\-new (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}}\label{group__solver_ga469572d659cc75b4f8aa372035ea9a4e}
+\mbox{\Hypertarget{group__solver_ga469572d659cc75b4f8aa372035ea9a4e}\label{group__solver_ga469572d659cc75b4f8aa372035ea9a4e}} 
+\index{Iterative solvers@{Iterative solvers}!sisl\+\_\+solver\+\_\+workspace\+\_\+new@{sisl\+\_\+solver\+\_\+workspace\+\_\+new}}
+\index{sisl\+\_\+solver\+\_\+workspace\+\_\+new@{sisl\+\_\+solver\+\_\+workspace\+\_\+new}!Iterative solvers@{Iterative solvers}}
+\subsubsection{\texorpdfstring{sisl\+\_\+solver\+\_\+workspace\+\_\+new()}{sisl\_solver\_workspace\_new()}}
+{\footnotesize\ttfamily sisl\+\_\+solver\+\_\+workspace\+\_\+t$\ast$ sisl\+\_\+solver\+\_\+workspace\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
 Allocate a workspace for iterative solution of linear systems
 
 \begin{DoxyReturn}{Returns}

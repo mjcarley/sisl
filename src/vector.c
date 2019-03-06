@@ -25,12 +25,14 @@
 #include <string.h>
 #endif /*HAVE_STRING_H*/
 
+#include <stdlib.h>
+
 #include <sisl.h>
 #include <gsl/gsl_complex.h>
 #include <gsl/gsl_complex_math.h>
 #include <wmpi.h>
 
-#include "sisl_private.h"
+#include "sisl-private.h"
 
 /**
  * @defgroup vector SISL vectors
@@ -676,6 +678,19 @@ gint sisl_vector_multiprocessor_sum(sisl_vector_t *v)
 	    sisl_vector_data_length(v)*sizeof(gdouble)) ;
 
   return SISL_SUCCESS ;
+}
+
+gint sisl_vector_random(sisl_vector_t *v, gint n)
+
+{
+  gint i ;
+  
+  sisl_vector_set_length(v, n) ; 
+
+  for ( i = 0 ; i < v->x->len ; i ++ )
+    g_array_index(v->x, gdouble, i) = drand48() ;
+  
+  return 0 ;
 }
 
 /**

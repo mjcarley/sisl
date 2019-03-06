@@ -1,0 +1,85 @@
+/* Copyright (C) 2009, 2018 Michael Carley
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif /*HAVE_CONFIG_H*/
+
+#include <sisl.h>
+#include <gsl/gsl_complex.h>
+
+#include "sisl-private.h"
+
+gint sisl_diagonal_mul(sisl_matrix_diagonal_t *m, gdouble *v,
+		       gdouble *w)
+
+{
+  gint k ;
+
+  for ( k = 0 ; k < m->x->len ; k ++ ) {
+    w[k] += v[k]*g_array_index(m->x,gdouble,k) ;
+  }
+
+  return 0 ;
+}
+
+gint sisl_diagonal_mul_complex(sisl_matrix_diagonal_t *m, gdouble *v,
+			       gdouble *w)
+
+{
+  gint k ;
+
+  for ( k = 0 ; k < m->x->len/2 ; k ++ ) {
+    w[2*k+0] += 
+      v[2*k+0]*g_array_index(m->x,gdouble,2*k+0) -
+      v[2*k+1]*g_array_index(m->x,gdouble,2*k+1) ;      
+    w[2*k+1] += 
+      v[2*k+1]*g_array_index(m->x,gdouble,2*k+0) +
+      v[2*k+0]*g_array_index(m->x,gdouble,2*k+1) ;      
+  }
+
+  return 0 ;
+}
+
+gint sisl_diagonal_invert(sisl_matrix_diagonal_t *m)
+
+{
+  gint k ;
+
+  for ( k = 0 ; k < m->x->len ; k ++ ) {
+    g_array_index(m->x,gdouble,k) = 1.0/g_array_index(m->x,gdouble,k) ;
+  }
+  
+  return 0 ;
+}
+
+gint sisl_diagonal_invert_complex(sisl_matrix_diagonal_t *m)
+
+{
+  gint k ;
+  gdouble zr, zi, z2 ;
+  
+  for ( k = 0 ; k < m->x->len/2 ; k ++ ) {
+    zr = g_array_index(m->x,gdouble,2*k+0) ;
+    zi = g_array_index(m->x,gdouble,2*k+1) ;
+    z2 = zr*zr + zi*zi ;
+    g_array_index(m->x,gdouble,2*k+0) /=  z2 ;    
+    g_array_index(m->x,gdouble,2*k+1) /= -z2 ;
+  }
+
+  return 0 ;
+}

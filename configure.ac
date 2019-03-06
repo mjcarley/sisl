@@ -1,4 +1,4 @@
-AC_INIT([sisl], 1.1.1)
+AC_INIT([sisl], 0.1.1)
 AC_CONFIG_SRCDIR([src/sisl.h])
 
 # Making releases:
@@ -70,23 +70,12 @@ AC_F77_LIBRARY_LDFLAGS
 AC_F77_DUMMY_MAIN
 AC_F77_WRAPPERS
 ACX_BLAS
+ACX_LAPACK
 
 blas_libs="$BLAS_LIBS"
+lapack_libs="$LAPACK_LIBS"
 
-AC_CHECK_PROG(GSL, gsl-config, yes, no)
-if test x$GSL = xyes ; then
-   gsl_cflags=`gsl-config --cflags`
-   gsl_libs=`gsl-config --libs-without-cblas`
-else
-  echo \#################################################################
-  echo \#
-  echo \# GNU Scientific Library not available or not properly installed.
-  echo \# You can get the most recent version from 
-  echo \#      http://www.gnu.org/software/gsl/
-  echo \#
-  echo \#################################################################
-  exit
-fi
+PKG_CHECK_MODULES([GSL], [gsl]) 
 
 AC_CHECK_PROG(WMPI, wmpi-config, yes, no)
 if test x$WMPI = xyes ; then
@@ -123,16 +112,17 @@ AC_SUBST(gsl_libs)
 AC_SUBST(wmpi_cflags)
 AC_SUBST(wmpi_libs)
 AC_SUBST(blas_libs)
+AC_SUBST(lapack_libs)
 AC_SUBST(mpi_tests)
 
-CFLAGS="$CFLAGS $gsl_cflags $wmpi_cflags"
-LDFLAGS="$LDFLAGS $gsl_libs"
+CFLAGS="$CFLAGS $GSL_CFLAGS $wmpi_cflags"
+LDFLAGS="$LDFLAGS $GSL_LIBS"
 
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
-LIBS="$gsl_libs $BLAS_LIBS $LIBS $FLIBS"
+LIBS="$GSL_LIBS $LAPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
 
 dnl generate `src/sislconfig.h'
 AC_CONFIG_COMMANDS([default-1],[[

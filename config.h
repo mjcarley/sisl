@@ -27,6 +27,9 @@
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
 
+/* Define if you have LAPACK library. */
+#define HAVE_LAPACK 1
+
 /* Define to 1 if you have the `m' library (-lm). */
 #define HAVE_LIBM 1
 
@@ -70,7 +73,7 @@
 #define PACKAGE_NAME "sisl"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "sisl 1.1.1"
+#define PACKAGE_STRING "sisl 0.1.1"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "sisl"
@@ -79,7 +82,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.1.1"
+#define PACKAGE_VERSION "0.1.1"
 
 /* Binary age */
 #define SISL_BINARY_AGE 1
@@ -100,4 +103,4 @@
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "1.1.1"
+#define VERSION "0.1.1"
