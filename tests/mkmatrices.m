@@ -1,6 +1,8 @@
-nr = 13 ; nc = 15 ; cm = 2 ;
+nr = 13 ; nc = 15 ;
 
-A = randn(nr,nc) ;
+for cm = 1:2 ;
+
+A = randn(nr, nc) ;
 B = randn(nc, nr) ;
 
 if ( cm == 2 ) 
@@ -10,7 +12,7 @@ end
 
 D = A*B ;
 
-fid = fopen("matrices.dat", "w") ;
+fid = fopen(["matrices-" int2str(cm) ".dat"], "w") ;
 
 fprintf(fid, "%d %d %d\n", nr, nc, cm) ;
 dat = A.' ;
@@ -35,3 +37,4 @@ fprintf(fid, "%1.16e\n", dat) ;
 
 fclose(fid) ;
 
+endfor

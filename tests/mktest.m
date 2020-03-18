@@ -1,5 +1,6 @@
-nr = 18 ; nc = 64 ; cm = 1 ;
+nr = 13 ; nc = 22 ; cm = 1 ;
 
+for cm=1:2
 A = randn(nr,nc) ;
 x = randn(nc,1) ;
 if ( cm == 2 ) 
@@ -9,7 +10,7 @@ end
 
 b = A*x ;
 
-fid = fopen("test.dat", "w") ;
+fid = fopen(["vectors-" int2str(cm) ".dat"], "w") ;
 
 fprintf(fid, "%d %d %d\n", nr, nc, cm) ;
 dat = A.' ;
@@ -34,3 +35,4 @@ fprintf(fid, "%1.16e\n", dat) ;
 
 fclose(fid) ;
 
+endfor

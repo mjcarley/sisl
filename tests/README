@@ -1,16 +1,21 @@
-Tests should be done in this order, for real and complex cases:
+The easiest way to run the tests is to use the test-all script.
+
+Otherwise, tests should be done in this order, for real and complex
+cases:
 
 Matrix-vector multiplication;
 
-Matrix-matrix multiplication (dense-dense);
+Matrix-matrix multiplication;
 
-Matrix-matrix multiplications (sparse-dense, and v.v.), checked
+[these two use external data to check the dense matrix multiplication
+routines, so that the dense routines can be used thereafter to check
+the other functions, using internally-generated random matrices]
+
+Matrix inversion, checked by computing the product of the matrix and
+its inverse
+
+Matrix-matrix multiplications (sparse/dense/diagonal), checked
 against dense-dense method;
 
-Matrix-matrix multiplications (diagonal-dense, and v.v.), checked
+Matrix-matrix triple multiplications (sparse/dense/diagonal), checked
 against dense-dense method;
-
-Matrix-matrix multiplications (diagonal-sparse, and v.v.), checked
-against sparse-dense method;
-
-Repeat for combinations of transpositions

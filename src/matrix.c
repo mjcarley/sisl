@@ -822,7 +822,9 @@ gint sisl_matrix_copy(sisl_matrix_t *A, sisl_matrix_t *B)
 }
 
 /** 
- * Matrix-matrix multiplication, \f$C=AB\f$
+ * Matrix-matrix multiplication, \f$C=AB\f$. This is actually a
+ * wrapper to call ::sisl_matrix_matrix_mul_w, with \a a=1 and \a
+ * c=0. The matrices may be complex or real.
  * 
  * @param A a ::sisl_matrix_t
  * @param B a ::sisl_matrix_t
@@ -835,60 +837,8 @@ gint sisl_matrix_matrix_mul(sisl_matrix_t *A, sisl_matrix_t *B,
 			    sisl_matrix_t *C)
 
 {
-  gint nra, nca, nrb, ncb ;
-  
-  SISL_CHECK_ARGUMENT_NULL(A) ;
-  SISL_CHECK_ARGUMENT_NULL(B) ;
-  SISL_CHECK_ARGUMENT_NULL(C) ;
+  sisl_matrix_matrix_mul_w(A, B, C, 1.0, 0.0) ;
 
-  nra = sisl_matrix_row_number(A) ;
-  nca = sisl_matrix_column_number(A) ;
-  nrb = sisl_matrix_row_number(B) ;
-  ncb = sisl_matrix_column_number(B) ;
-
-  if ( sisl_is_real(A) && !sisl_is_real(B) )
-    g_error("%s: cannot multiply real matrix A and complex matrix B",
-	    __FUNCTION__) ;
-
-  if ( !sisl_is_real(A) && sisl_is_real(B) )
-    g_error("%s: cannot multiply complex matrix A and real matrix B",
-	    __FUNCTION__) ;
-  
-  if ( nca != nrb )
-    g_error("%s: cannot multiply %dx%d and %dx%d matrix",
-	    __FUNCTION__, nra, nca, nrb, ncb) ;
-  
-  if ( wmpi_process_number() != 1 )
-    g_error("%s: only implemented for single-process calculations",
-	    __FUNCTION__) ;
-
-  /*for multiplication using the Fortran ordering, swap the matrices:
-   C^{T} = B^{T}xA^{T}*/
-  if ( sisl_matrix_density(A) == SISL_MATRIX_DENSE &&
-       sisl_matrix_density(B) == SISL_MATRIX_DENSE ) {
-    sisl_matrix_set_block_size(C, nra, ncb) ;
-    sisl_matrix_row_number(C) = nra ; 
-    sisl_matrix_column_number(C) = ncb ;
-    sisl_matrix_local_row_start(C) = 0 ;
-    sisl_matrix_local_row_end(C) = nra ;
-    if ( sisl_is_real(A) ) 
-      dgemm_("N", "N", &ncb, &nra, &nrb, &d_1,
-	     (gdouble *)(SISL_MATRIX_DENSE_DATA(B)->x->data), &ncb,
-	     (gdouble *)(SISL_MATRIX_DENSE_DATA(A)->x->data), &nca,
-	     &d_0,
-	     (gdouble *)(SISL_MATRIX_DENSE_DATA(C)->x->data), &ncb) ;
-    else
-      zgemm_("N", "N", &ncb, &nra, &nrb, one,
-	     (gdouble *)(SISL_MATRIX_DENSE_DATA(B)->x->data), &ncb,
-	     (gdouble *)(SISL_MATRIX_DENSE_DATA(A)->x->data), &nca,
-	     zero,
-	     (gdouble *)(SISL_MATRIX_DENSE_DATA(C)->x->data), &ncb) ;      
-
-    return 0 ;
-  }
-  
-  g_assert_not_reached() ;
-  
   return 0 ;
 }
 
@@ -933,6 +883,23 @@ gint sisl_matrix_matrix_mul_w(sisl_matrix_t *A, sisl_matrix_t *B,
   if ( nca != nrb )
     g_error("%s: cannot multiply %dx%d and %dx%d matrix",
 	    __FUNCTION__, nra, nca, nrb, ncb) ;
+
+  if ( c == 0.0 ) {
+    sisl_matrix_set_block_size(C,
+			       sisl_matrix_row_number(A),
+			       sisl_matrix_column_number(B)) ;
+  } else {
+    if ( sisl_matrix_row_number(C) != sisl_matrix_row_number(A) ||
+	 sisl_matrix_column_number(C) != sisl_matrix_column_number(B) ) {
+      g_error("%s: cannot perform weighted sum of (%dx%d) matrix "
+	      "and (%dx%d)x(%dx%d) product",
+	      __FUNCTION__,
+	      sisl_matrix_row_number(C), sisl_matrix_column_number(C),
+	      sisl_matrix_row_number(A), sisl_matrix_column_number(A), 
+	      sisl_matrix_row_number(B), sisl_matrix_column_number(B)
+	      ) ;
+    }
+  }
   
   if ( wmpi_process_number() != 1 )
     g_error("%s: only implemented for single-process calculations",
@@ -1086,8 +1053,10 @@ gint sisl_matrix_matrix_mul_w_complex(sisl_matrix_t *A, sisl_matrix_t *B,
 
 /** 
  * Weighted triple matrix multiplication, \f$D=aABC + dD\f$, currently
- * only implemented for: A and C dense, B diagonal; A dense, B and C
- * diagonal; A dense, B diagonal, C sparse.
+ * implemented for: A dense, B diagonal, C dense; A dense, B diagonal,
+ * C diagonal; A dense, B diagonal, C sparse. If weight \a d is
+ * non-zero, the output matrix \a D must be appropriately sized for
+ * the multiplication.
  *
  * @param A a ::sisl_matrix_t
  * @param B a ::sisl_matrix_t
@@ -1167,6 +1136,7 @@ gint sisl_matrix_triple_mul_w(sisl_matrix_t *A, sisl_matrix_t *B,
   nca = sisl_matrix_column_number(A) ;
   ncc = sisl_matrix_column_number(C) ;
 
+  /*scale D if required*/
   for ( n = 0 ; n < nra*ncc ; n ++ ) dD[n] *= d ;
   
   if ( sisl_matrix_density(B) == SISL_MATRIX_DIAGONAL &&

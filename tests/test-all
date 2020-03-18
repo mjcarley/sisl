@@ -5,16 +5,23 @@ ncol=19
 complex=-C
 TEST=./sisl-test
 
-#${TEST} -t matrix_vector_mul < multiply.dat
-${TEST} -t matrix_matrix_mul  multiply.dat
-#	    matrix_vector_mul_diag \
+${TEST} -t matrix_matrix_mul  matrices-1.dat
+echo
+${TEST} -t matrix_matrix_mul  matrices-2.dat
+echo
+${TEST} -t matrix_vector_mul  vectors-1.dat
+echo
+${TEST} -t matrix_vector_mul  vectors-2.dat
+echo
 
 for testcase in inverse \
     matrix_matrix_mul_weighted \
     matrix_triple_mul \
-    matrix_dense_sparse_mul \
     ; do	
 
     echo ${testcase}
     ${TEST} -t ${testcase} -r ${nrows} -c ${ncol} ${complex}
+    echo
+    ${TEST} -t ${testcase} -r ${nrows} -c ${ncol}
+    echo
 done
