@@ -56,10 +56,10 @@ gint sisl_sparse_mul_complex(sisl_matrix_sparse_t *m, gdouble *v,
     j = g_array_index(m->ij,gint,k) % (m->size[SISL_COL_NUMBER_OFFSET]) ;
     g_assert(i*m->size[SISL_COL_NUMBER_OFFSET] + j == 
 	     g_array_index(m->ij,gint,k)) ;
-    fprintf(stderr, "%d %d %d %lg %lg\n", 
-	    g_array_index(m->ij,gint,k), i, j,
-	    g_array_index(m->x,gdouble,2*k+0),
-	    g_array_index(m->x,gdouble,2*k+1)) ;
+    /* fprintf(stderr, "%d %d %d %lg %lg\n",  */
+    /* 	    g_array_index(m->ij,gint,k), i, j, */
+    /* 	    g_array_index(m->x,gdouble,2*k+0), */
+    /* 	    g_array_index(m->x,gdouble,2*k+1)) ; */
     w[2*i+0] += 
       v[2*j+0]*g_array_index(m->x,gdouble,2*k+0) -
       v[2*j+1]*g_array_index(m->x,gdouble,2*k+1) ;      

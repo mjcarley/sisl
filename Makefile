@@ -216,7 +216,7 @@ AWK = gawk
 BLAS_LIBS = -lcblas -lf77blas -latlas
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2 -Wall -Werror-implicit-function-declaration -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations  -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/home/ensmjc/Codes/include
+CFLAGS = -g -O3 -Wall -Werror-implicit-function-declaration -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations  -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/home/ensmjc/Codes/include
 CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
