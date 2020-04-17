@@ -1,15 +1,15 @@
 #!/bin/sh
 # src/sisl-config.  Generated from sisl-config.in by configure.
 
-wmpi_libs="-L/home/ensmjc/Codes/lib -lwmpi_s -lglib-2.0 -L/home/ensmjc/Codes/lib -lglib-2.0 -lm"
-wmpi_cflags="-I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/home/ensmjc/Codes/include"
+wmpi_libs="-L/home/michael/Codes/lib -lwmpi_s -lglib-2.0 -L/home/michael/Codes/lib -lglib-2.0 -lm"
+wmpi_cflags="-I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/home/michael/Codes/include"
 gsl_libs="-lgsl -lgslcblas -lm"
 gsl_cflags=""
 blas_libs="-lcblas -lf77blas -latlas"
 lapack_libs="-llapack"
 sisl_cppflags=""
 
-prefix=/home/ensmjc/Codes
+prefix=/home/michael/Codes
 exec_prefix=${prefix}
 includedir=${prefix}/include
 
@@ -106,7 +106,7 @@ if test "$echo_cflags" = "yes"; then
 	echo $sisl_cppflags $sisl_cflags
 fi
 if test "$echo_libs" = "yes"; then
-	sisl_libs="-L${exec_prefix}/lib -lsisl  -lgsl -lgslcblas -lm  -lm $wmpi_libs"
+	sisl_libs="-L${exec_prefix}/lib -lsisl -L/usr/lib64 -lgsl -lgslcblas -lm  -lm $wmpi_libs"
 	sisl_libs=`uniquify "$sisl_libs"`
-	echo -L${exec_prefix}/lib -lsisl -lgsl -lgslcblas -lm -llapack -lcblas -lf77blas -latlas -lm   -L/usr/lib64/gcc/x86_64-slackware-linux/8.2.0 -L/usr/lib64/gcc/x86_64-slackware-linux/8.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib64/gcc/x86_64-slackware-linux/8.2.0/../../.. -lgfortran -lm -lquadmath
+	echo -L${exec_prefix}/lib -lsisl -lgsl -lgslcblas -lm -llapack -lcblas -lf77blas -latlas -lm   -L/usr/lib64 -L/usr/lib64/gcc/x86_64-slackware-linux/5.4.0 -L/usr/lib64/gcc/x86_64-slackware-linux/5.4.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib64/gcc/x86_64-slackware-linux/5.4.0/../../../../x86_64-slackware-linux/lib -L/usr/lib64/gcc/x86_64-slackware-linux/5.4.0/../../.. -lgfortran -lm -lquadmath
 fi

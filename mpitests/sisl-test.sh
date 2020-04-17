@@ -6,7 +6,7 @@
 
 # mpitests/sisl-test.sh.  Generated from sisl-test.sh.in by configure.
 
-prefix=/home/ensmjc/Codes
+prefix=/home/michael/Codes
 exec_prefix=${prefix}
 
 ##############################################################
